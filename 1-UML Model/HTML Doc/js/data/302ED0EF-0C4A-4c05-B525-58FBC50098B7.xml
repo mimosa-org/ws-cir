@@ -1,0 +1,5 @@
+tocTab[tocTab.length] = new Array("0:1", "", "OpenOandM CIR Model V10b1", "EARoot/EA1.htm", "175.png", "13", "0", "", "Logical diagram");
+tocTab[tocTab.length] = new Array("0:2", "", "CIRRegistry", "EARoot/EA6.htm", "5.png", "603", "0", "", "Class");
+tocTab[tocTab.length] = new Array("0:3", "", "CIRProperty", "EARoot/EA13.htm", "5.png", "588", "0", "", "Class");
+tocTab[tocTab.length] = new Array("0:4", "", "CIRRegistryCategory", "EARoot/EA14.htm", "5.png", "590", "0", "", "Class");
+tocTab[tocTab.length] = new Array("0:5", "", "CIRRegistryEntry", "EARoot/EA15.htm", "5.png", "585", "0", "", "Class");

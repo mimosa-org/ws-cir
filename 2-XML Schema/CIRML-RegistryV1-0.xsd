@@ -1,0 +1,948 @@
+<?xml version = "1.0" encoding = "UTF-8"?>
+
+<xsd:schema     xmlns:xsd               = "http://www.w3.org/2001/XMLSchema"
+                targetNamespace         = "http://www.openoandm.org/xml/CIRML-V1-0"
+                xmlns                   = "http://www.openoandm.org/xml/CIRML-V1-0"
+                elementFormDefault      = "qualified"
+                attributeFormDefault    = "unqualified">
+  
+<!-- Include the Core Components schema in the default namespace  -->
+
+  <xsd:include 	schemaLocation     		= "CIRML-CoreComponents-V1-0.xsd"/>
+
+<xsd:annotation> 
+
+   <xsd:documentation>
+
+    OpenO&amp;M Common Interoperability Registry Markup Language (CIR-ML)
+    Copyright 2009. MIMOSA and World Batch Forum (WBF).
+    All Rights Reserved. http://www.openoandm.org
+
+    This OpenO&amp;M Work (including specifications, documents, 
+    software, and related items) referred to as the OpenO&amp;M Registry markup
+	language is provided by the copyright holders under the 
+	following license. 
+
+    Permission to use, copy, modify, or redistribute this Work and its 
+    documentation, with or without modification, for any purpose and 
+    without fee or royalty is hereby granted provided OpenO&amp;M and the World Batch 
+    Forum are acknowledged as the originator of this Work using the 
+    following statement:
+
+    "The Common Interoperability Registry Markup Language (CIR-ML) is used courtesy of OpenO&amp;M.
+     The Business To Manufacturing Markup Language (B2MML) is used courtesy of WBF."
+
+    In no event shall the OpenO&amp;M, its members, or any 
+    third party be liable for any costs, expenses, losses, damages or 
+    injuries incurred by use of the Work or as a result of this 
+    agreement.
+
+    </xsd:documentation>
+
+    <xsd:documentation> 
+
+        Revision History
+
+        Ver     Date            Person          Note
+        ---     ----            ------          ----
+	V01	Apr 24, 2009	Dennis Brandl	Initial Version
+	V05	May 27, 2009	Dennis Brandl	Update to Initial Version
+	V06	Jul 7,  2009	Ken Bever		Corrections to match spec.
+	V07 Oct 25, 2009	Dennis Brandl	Change to V07 to match spec number
+	V10 Dec 11, 2009	Dennis Brandl	Beta 1 for Version 1.0
+	V10     Dec 23, 2010    Ken Bever       Prod for Version 1.0
+
+ 
+   </xsd:documentation>
+
+</xsd:annotation>
+
+<!-- ========================================= -->
+<!-- Global Elements ========================= -->
+<!-- ========================================= -->
+  
+	<xsd:element name = "RegistryData">
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element name = "registry"	type = "CIRRegistryType" 
+													minOccurs="0" maxOccurs="unbounded">
+				</xsd:element>
+			</xsd:sequence>
+		</xsd:complexType>
+	</xsd:element>
+
+<!-- ========================================= -->
+
+	<xsd:element name = "GetCIRRegistry"        		type = "GetCIRRegistryType"/>
+	<xsd:element name = "ShowCIRRegistry"       		type = "ShowCIRRegistryType"/>
+	<xsd:element name = "ProcessCIRRegistry"    		type = "ProcessCIRRegistryType"/>
+	<xsd:element name = "AcknowledgeCIRRegistry" 		type = "AcknowledgeCIRRegistryType"/>
+	<xsd:element name = "ChangeCIRRegistry"     		type = "ChangeCIRRegistryType"/>
+	<xsd:element name = "RespondCIRRegistry"    		type = "RespondCIRRegistryType"/>
+	<xsd:element name = "CancelCIRRegistry"     		type = "CancelCIRRegistryType"/>
+	<xsd:element name = "SyncCIRRegistry"       		type = "SyncCIRRegistryType"/>
+<!-- ========================================= -->
+	
+	<xsd:element name = "GetCIRRegistryCategory"        type = "GetCIRRegistryCategoryType"/>
+	<xsd:element name = "ShowCIRRegistryCategory"       type = "ShowCIRRegistryCategoryType"/>
+	<xsd:element name = "ProcessCIRRegistryCategory"    type = "ProcessCIRRegistryCategoryType"/>
+	<xsd:element name = "AcknowledgeCIRRegistryCategory" type = "AcknowledgeCIRRegistryCategoryType"/>
+	<xsd:element name = "ChangeCIRRegistryCategory"     type = "ChangeCIRRegistryCategoryType"/>
+	<xsd:element name = "RespondCIRRegistryCategory"    type = "RespondCIRRegistryCategoryType"/>
+	<xsd:element name = "CancelCIRRegistryCategory"     type = "CancelCIRRegistryCategoryType"/>
+	<xsd:element name = "SyncCIRRegistryCategory"       type = "SyncCIRRegistryCategoryType"/>
+<!-- ========================================= -->
+	
+	<xsd:element name = "GetCIRRegistryEntry"          	type = "GetCIRRegistryEntryType"/>
+	<xsd:element name = "ShowCIRRegistryEntry"         	type = "ShowCIRRegistryEntryType"/>
+	<xsd:element name = "ProcessCIRRegistryEntry"      	type = "ProcessCIRRegistryEntryType"/>
+	<xsd:element name = "AcknowledgeCIRRegistryEntry"  	type = "AcknowledgeCIRRegistryEntryType"/>
+	<xsd:element name = "ChangeCIRRegistryEntry"       	type = "ChangeCIRRegistryEntryType"/>
+	<xsd:element name = "RespondCIRRegistryEntry"      	type = "RespondCIRRegistryEntryType"/>
+	<xsd:element name = "CancelCIRRegistryEntry"       	type = "CancelCIRRegistryEntryType"/>
+	<xsd:element name = "SyncCIRRegistryEntry"         	type = "SyncCIRRegistryEntryType"/>
+<!-- ========================================= -->
+	
+	
+
+<!-- Each collection of registration categories (eg: Test, Production, ..) -->
+	<!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+    <xsd:complexType name = "CIRRegistryType">
+        <xsd:sequence>
+            <xsd:element name = "ID" 			   	type = "IdentifierType"	
+													minOccurs="0"/>     
+            <xsd:element name = "GUID" 			   	type = "UUIDType"
+													minOccurs="0"/>     
+            <xsd:element name = "userDescription" 	type = "TextType"			
+													minOccurs="0" maxOccurs="unbounded"/>     
+			<xsd:element name = "category"			type = "CIRRegistryCategoryType"
+													minOccurs="0" maxOccurs="unbounded"/>
+			</xsd:sequence>
+    </xsd:complexType>
+
+	<!-- Each category of registered names (eg. tags, enumerations, UOM, object names -->
+	<!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -  -->
+    <xsd:complexType name = "CIRRegistryCategoryType">
+        <xsd:sequence>
+            <xsd:element name = "ID" 			   	type = "IdentifierType"
+													minOccurs="0"/>     
+            <xsd:element name = "categorySourceID"  type = "IdentifierType"
+													minOccurs="0"/>     
+            <xsd:element name = "userDescription" 	type = "TextType"			
+													minOccurs="0" maxOccurs="unbounded"/>     
+            <xsd:element name = "ISO15926ObjectReferenceURI"
+													type = "IdentifierType"		
+													minOccurs="0"/>  
+			<xsd:element name = "entry"				type = "CIRRegistryEntryType"
+													minOccurs="0" maxOccurs="unbounded"/>
+		</xsd:sequence>
+    </xsd:complexType>
+
+	<!-- Each registered entity/tag  -->
+	<!-- - - - - - - - - - - - - - -->
+    <xsd:complexType name = "CIRRegistryEntryType">
+        <xsd:sequence>
+            <xsd:element name = "entityIDinSource"  type = "IdentifierType"
+													minOccurs="0"/>     
+            <xsd:element name = "sourceID" 			type = "IdentifierType"
+													minOccurs="0"/>     
+            <xsd:element name = "CIRID" 			type = "UUIDType"       	
+													minOccurs="0"/>     
+            <xsd:element name = "sourceOwnerID"     type = "IdentifierType"		
+													minOccurs="0"/>     
+            <xsd:element name = "userDescription"   type = "TextType" 			
+													minOccurs="0"	
+													maxOccurs="unbounded"/>
+            <xsd:element name = "userTag" 			type = "CodeType"			
+													minOccurs="0"/>     
+            <xsd:element name = "active"    		type = "IndicatorType"		
+													minOccurs="0"/>
+            <xsd:element name = "property"       	type = "CIRPropertyType"	
+													minOccurs="0" maxOccurs="unbounded"/>     
+        </xsd:sequence>
+    </xsd:complexType>
+
+	<!-- Each property of registered entity  -->
+	<!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -  -->
+      <xsd:complexType name = "CIRPropertyType">
+        <xsd:sequence>
+			<xsd:element name = "ID"				type = "IdentifierType"/>
+			<xsd:group   ref  = "CIRValue"
+													minOccurs="0"
+													maxOccurs="unbounded"/>
+            <xsd:element name = "dataType"			type = "CodeType"
+										 			minOccurs="0"/>
+			<xsd:element name = "UOM"				type = "CodeType"
+													minOccurs="0"/>
+			<xsd:element name = "mandatory"			type = "IndicatorType"
+													minOccurs="0"/>
+        </xsd:sequence>
+    </xsd:complexType>
+
+
+<!-- ========================================================== -->
+<!-- Filter group for all elements for GET commands  ========== -->
+<!-- ========================================================== -->
+
+	<!-- Each collection of registration categories (eg: Test, Production, ..) -->
+	<!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+    <xsd:complexType name = "FilterCIRRegistryType">
+        <xsd:sequence>
+            <xsd:element name = "ID" 			   	type = "IdentifierType" 	
+													minOccurs="0"/>     
+            <xsd:element name = "GUID" 			   	type = "UUIDType" 			
+													minOccurs="0"/>
+			</xsd:sequence>
+    </xsd:complexType>
+
+	<!-- Each category of registered names (eg. tags, enumerations, UOM, object names -->
+	<!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -  -->
+    <xsd:complexType name = "FilterCIRRegistryCategoryType">
+        <xsd:sequence>
+            <xsd:element name = "ID" 			   	type = "IdentifierType"		
+													minOccurs="0"/>     
+            <xsd:element name = "categorySourceID"  type = "IdentifierType"		
+													minOccurs="0"/>     
+            <xsd:element name = "ISO15926ObjectReferenceURI"
+													type = "IdentifierType"		
+													minOccurs="0"/>  
+			<xsd:element name = "belongsToRegistry"	type = "FilterCIRRegistryType"	
+													minOccurs="0"/>
+		</xsd:sequence>
+    </xsd:complexType>
+
+	<!-- Each registered entity/tag  -->
+	<!-- - - - - - - - - - - - - - -->
+    <xsd:complexType name = "FilterCIRRegistryEntryType">
+        <xsd:sequence>
+            <xsd:element name = "entityIDinSource"  type = "IdentifierType"		
+													minOccurs="0"/>     
+            <xsd:element name = "sourceID" 			type = "IdentifierType"		
+													minOccurs="0"/>     
+            <xsd:element name = "CIRID" 			type = "UUIDType"       	
+													minOccurs="0"/>     
+            <xsd:element name = "sourceOwnerID"     type = "IdentifierType"		
+													minOccurs="0"/>     
+            <xsd:element name = "userTag" 			type = "CodeType"			
+													minOccurs="0"/>     
+            <xsd:element name = "active"    		type = "IndicatorType"		
+													minOccurs="0"/>
+			<xsd:element name = "belongsToCategory"	type = "FilterCIRRegistryCategoryType"	
+													minOccurs="0"/>
+          	<xsd:element name = "property"       	type = "FilterCIRPropertyType"	
+													minOccurs="0" maxOccurs="unbounded"/>
+        </xsd:sequence>
+    </xsd:complexType>
+
+	<!-- Each property of registered entity  -->
+	<!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -  -->
+      <xsd:complexType name = "FilterCIRPropertyType">
+        <xsd:sequence>
+			<xsd:element name = "ID"				type = "IdentifierType"/>
+			<xsd:group   ref  = "CIRValue"			minOccurs="0"	
+													maxOccurs="unbounded"/>
+            <xsd:element name = "dataType"			type = "CodeType" 			
+													minOccurs="0"/>
+			<xsd:element name = "UOM"				type = "CodeType"
+													minOccurs="0"/>
+			<xsd:element name = "mandatory"			type = "IndicatorType"
+													minOccurs="0"/>
+        </xsd:sequence>
+    </xsd:complexType>
+	
+
+<!-- ========================================= -->
+<!-- Simple & Complex Types ================== -->
+<!-- ========================================= -->
+	<!-- UUID is a GUID of 32 bytes represented as hex characters with dashes -->
+	<!-- Format xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx (8-4-4-4-12 characters)  -->
+	<!-- See RFC 4122 - A Universally Unique IDentifier (UUID) URN Namespace  --> 
+    <xsd:complexType name = "UUIDType">
+        <xsd:simpleContent>
+            <xsd:restriction base="IdentifierType"/>
+        </xsd:simpleContent>
+    </xsd:complexType>
+
+    <xsd:group name = "CIRValue">
+        <xsd:sequence>
+			<xsd:element name = "currentValue"		type = "xsd:string"/> 
+			<xsd:element name = "key"				type = "IdentifierType"	minOccurs="0"/>
+        </xsd:sequence>
+    </xsd:group>
+		
+<!--  - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+<!--  Transaction elements - Supporting ISA-95 Part 5 type Transactions  - - - -  -->
+<!--  - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+        <xsd:complexType name = "TransAcknowledgeType">
+                <xsd:sequence>
+                        <xsd:element name = "OriginalApplicationArea"   type="TransApplicationAreaType" 
+                                                                        minOccurs="0"/>
+                        <xsd:element name = "ResponseCriteria"          type="TransResponseCriteriaType" 
+                                                                        minOccurs="0" maxOccurs="unbounded"/>
+                </xsd:sequence>
+        </xsd:complexType>
+
+        <!--  - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+        <xsd:simpleType name = "TransActionCodeType">
+                <xsd:union memberTypes = "TransActionCodeEnumerationType xsd:normalizedString"/>
+        </xsd:simpleType>
+
+        <!--  - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+        <xsd:simpleType name = "TransActionCodeEnumerationType">
+                <xsd:restriction base="xsd:string">
+                        <xsd:enumeration value="Add"/>
+                        <xsd:enumeration value="Change"/>
+                        <xsd:enumeration value="Delete"/>
+                        <xsd:enumeration value="Replaced"/>
+                        <xsd:enumeration value="Accepted"/>
+                        <xsd:enumeration value="Modified"/>
+                        <xsd:enumeration value="Rejected"/>
+                </xsd:restriction>
+        </xsd:simpleType>
+
+        <!--  - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+        <xsd:complexType name = "TransActionCriteriaType">
+                <xsd:sequence>
+                        <xsd:element name = "ActionExpression"          type="TransExpressionType" 
+                                                                        minOccurs="0" maxOccurs="unbounded"/>
+                </xsd:sequence>
+        </xsd:complexType>
+
+        <!--  - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+        <xsd:complexType name = "TransApplicationAreaType">
+                <xsd:sequence>
+                        <xsd:element name = "Sender"                    type="TransSenderType" minOccurs="0"/>
+                        <xsd:element name = "CreationDateTime"          type="DateTimeType"/>
+                        <xsd:element name = "Signature"                 type="TransSignatureType" minOccurs="0"/>
+                        <xsd:element name = "BODID"                     type="IdentifierType" minOccurs="0"/>
+                        <xsd:element name = "UserArea"                  type="TransUserAreaType" minOccurs="0"/>
+                </xsd:sequence>
+        </xsd:complexType>
+
+        <!--  - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+        <xsd:complexType name = "TransCancelType">
+                <xsd:sequence>
+                        <xsd:element name = "ActionCriteria"            type="TransActionCriteriaType" 
+                                                                        minOccurs="0" maxOccurs="unbounded"/>
+                </xsd:sequence>
+        </xsd:complexType>
+
+        <!--  - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+        <xsd:complexType name = "TransChangeType">
+                <xsd:sequence>
+                        <xsd:element name = "ActionCriteria"            type="TransActionCriteriaType" 
+                                                                        minOccurs="0" maxOccurs="unbounded"/>
+                </xsd:sequence>
+                <xsd:attribute name = "responseCode"                    type="TransResponseCodeType" use="optional"/>
+        </xsd:complexType>
+
+
+        <!--  - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+        <xsd:complexType name = "TransConfirmationCodeType">
+          <xsd:simpleContent>
+                <xsd:restriction base="CodeType">
+                        <xsd:enumeration value="Always"/>
+                        <xsd:enumeration value="Never"/>
+                        <xsd:enumeration value="OnError"/>
+                </xsd:restriction>
+          </xsd:simpleContent>
+        </xsd:complexType>
+
+
+        <!--  - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+        <xsd:complexType name = "TransConfirmType">
+                <xsd:sequence>
+                        <xsd:element name = "OriginalApplicationArea"   type="TransApplicationAreaType" 
+                                                                        minOccurs="0"/>
+                        <xsd:element name = "ResponseCriteria"          type="TransResponseCriteriaType" 
+                                                                        minOccurs="0" maxOccurs="unbounded"/>
+                </xsd:sequence>
+        </xsd:complexType>
+
+
+        <!--  - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+        <xsd:complexType name = "TransExpression1Type">
+                <xsd:simpleContent>
+                        <xsd:extension base="xsd:token">
+                        </xsd:extension>
+                </xsd:simpleContent>
+
+        </xsd:complexType>
+
+        <xsd:complexType name = "TransExpressionType">
+                <xsd:simpleContent>
+                        <xsd:extension base="TransExpression1Type">
+                                <xsd:attribute name = "actionCode"              type="TransActionCodeType" use="required"/>
+                                <xsd:attribute name = "expressionLanguage"      type="xsd:token" use="optional"/>
+                        </xsd:extension>
+                </xsd:simpleContent>
+        </xsd:complexType>
+
+        <!--  - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+        <xsd:complexType name = "TransGetType">
+                <xsd:sequence>
+                        <xsd:element name = "Expression"                type="xsd:token"
+                                                                        minOccurs="0" maxOccurs="unbounded"/>
+                </xsd:sequence>
+        </xsd:complexType>
+
+        <!--  - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+        <xsd:complexType name = "TransProcessType">
+                <xsd:sequence>
+                        <xsd:element name = "ActionCriteria"            type="TransActionCriteriaType" 
+                                                                        minOccurs="0" maxOccurs="unbounded"/>
+                </xsd:sequence>
+                <xsd:attribute name = "acknowledgeCode"                 type="TransResponseCodeType" use="optional"/>
+        </xsd:complexType>
+
+        <!--  - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+        <xsd:complexType name = "TransRespondType">
+                <xsd:sequence>
+                        <xsd:element name = "OriginalApplicationArea"   type="TransApplicationAreaType" minOccurs="0"/>
+                        <xsd:element name = "ResponseCriteria"          type="TransResponseCriteriaType" 
+                                                                        minOccurs="0" maxOccurs="unbounded"/>
+                </xsd:sequence>
+        </xsd:complexType>
+
+        <!--  - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+        <xsd:simpleType name = "TransResponseCodeType">
+                <xsd:restriction base="xsd:normalizedString">
+                        <xsd:enumeration value="Always"/>
+                        <xsd:enumeration value="OnError"/>
+                </xsd:restriction>
+        </xsd:simpleType>
+
+        <!--  - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+        <xsd:complexType name = "TransResponseCriteriaType">
+                <xsd:sequence>
+                        <xsd:element name = "ResponseExpression"        type="TransExpressionType" minOccurs="0"/>
+                </xsd:sequence>
+        </xsd:complexType>
+
+        <!--  - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+        <xsd:complexType name = "TransSenderType">
+          <xsd:sequence>
+                        <xsd:element name = "LogicalID"                 type="IdentifierType" minOccurs="0"/>
+                        <xsd:element name = "ComponentID"               type="IdentifierType" minOccurs="0"/>
+                        <xsd:element name = "TaskID"                    type="IdentifierType" minOccurs="0"/>
+                        <xsd:element name = "ReferenceID"               type="IdentifierType" minOccurs="0"/>
+                        <xsd:element name = "ConfirmationCode"          type="TransConfirmationCodeType" minOccurs="0"/>
+                        <xsd:element name = "AuthorizationID"           type="IdentifierType" minOccurs="0"/>
+          </xsd:sequence>
+        </xsd:complexType>
+
+        <!--  - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+        <xsd:complexType name = "TransShowType">
+                <xsd:sequence>
+                        <xsd:element name = "OriginalApplicationArea"   type="TransApplicationAreaType" minOccurs="0"/>
+                        <xsd:element name = "ResponseCriteria"          type="TransResponseCriteriaType" 
+                                                                        minOccurs="0" maxOccurs="unbounded"/>
+                </xsd:sequence>
+        </xsd:complexType>
+
+        <!--  - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+        <xsd:complexType name = "TransSignatureType" block="restriction">
+                <xsd:sequence>
+                        <xsd:any namespace="##any" processContents="strict" minOccurs="0" maxOccurs="unbounded"/>
+                </xsd:sequence>
+                <xsd:attribute name = "qualifyingAgencyID"              type="xsd:normalizedString" use="optional"/>
+        </xsd:complexType>
+
+        <!--  - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+        <xsd:complexType name = "TransSyncType">
+                <xsd:sequence>
+                        <xsd:element name = "ActionCriteria"            type="TransActionCriteriaType" 
+                                                                        minOccurs="0" maxOccurs="unbounded"/>
+                </xsd:sequence>
+        </xsd:complexType>
+
+        <!--  - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+        <xsd:complexType name = "TransUserAreaType" block="restriction">
+                <xsd:sequence>
+                        <xsd:any namespace="##any" processContents="strict" minOccurs="0" maxOccurs="unbounded"/>
+                </xsd:sequence>
+        </xsd:complexType>
+
+<!-- - - - - - - - - - - - - - - - - - - - -->
+<!-- CIRRegistryEntry Transaction Types    -->
+<!-- - - - - - - - - - - - - - - - - - - - -->
+
+  <xsd:complexType name = "GetCIRRegistryEntryType">
+    <xsd:sequence>      
+         <xsd:element name = "ApplicationArea"  type = "TransApplicationAreaType"/>
+      <xsd:element name = "DataArea">
+         <xsd:complexType>
+            <xsd:sequence>
+              <xsd:element name = "Get"         type = "TransGetType"/>
+              <xsd:element name = "Filter"      type = "FilterCIRRegistryEntryType"
+                                                minOccurs = "0" 
+                                                maxOccurs = "unbounded"/>
+            </xsd:sequence>
+         </xsd:complexType>
+      </xsd:element>
+    </xsd:sequence>
+    <xsd:attribute name = "releaseID"           type="xsd:normalizedString"     use="required"/>
+    <xsd:attribute name = "versionID"           type="xsd:normalizedString"     use="optional"/>
+  </xsd:complexType>
+
+
+  <xsd:complexType name = "ShowCIRRegistryEntryType">
+    <xsd:sequence>
+      <xsd:element name = "ApplicationArea"     type = "TransApplicationAreaType"/>
+      <xsd:element name = "DataArea">
+         <xsd:complexType>
+            <xsd:sequence>
+              <xsd:element name = "Show"        type = "TransShowType"/>
+              <xsd:element name = "CIRRegistry"	type = "CIRRegistryType"
+                                                minOccurs = "0" 
+                                                maxOccurs = "unbounded"/>
+            </xsd:sequence>
+         </xsd:complexType>
+      </xsd:element>
+    </xsd:sequence>
+    <xsd:attribute name = "releaseID"           type="xsd:normalizedString"     use="required"/>
+    <xsd:attribute name = "versionID"           type="xsd:normalizedString"     use="optional"/>
+  </xsd:complexType>
+
+
+  <xsd:complexType name = "ProcessCIRRegistryEntryType">
+    <xsd:sequence>
+      <xsd:element name = "ApplicationArea"     type = "TransApplicationAreaType"/>
+      <xsd:element name = "DataArea">
+         <xsd:complexType>
+            <xsd:sequence>
+              <xsd:element name = "Process"     type = "TransProcessType"/>
+              <xsd:element name = "CIRRegistry"
+                                                type = "CIRRegistryType"
+                                                minOccurs = "1" 
+                                                maxOccurs = "unbounded"/>
+            </xsd:sequence>
+         </xsd:complexType>
+      </xsd:element>
+    </xsd:sequence>
+    <xsd:attribute name = "releaseID"           type="xsd:normalizedString"     use="required"/>
+    <xsd:attribute name = "versionID"           type="xsd:normalizedString"     use="optional"/>
+  </xsd:complexType>
+
+
+  <xsd:complexType name = "AcknowledgeCIRRegistryEntryType">
+    <xsd:sequence>
+      <xsd:element name = "ApplicationArea"     type = "TransApplicationAreaType"/>
+      <xsd:element name = "DataArea">
+         <xsd:complexType>
+            <xsd:sequence>
+              <xsd:element name = "Acknowledge" type = "TransAcknowledgeType"/>
+              <xsd:element name = "CIRRegistry"
+                                                type = "CIRRegistryType"
+                                                minOccurs = "1" 
+                                                maxOccurs = "unbounded"/>
+            </xsd:sequence>
+         </xsd:complexType>
+      </xsd:element>
+    </xsd:sequence>
+    <xsd:attribute name = "releaseID"           type="xsd:normalizedString"     use="required"/>
+    <xsd:attribute name = "versionID"           type="xsd:normalizedString"     use="optional"/>
+  </xsd:complexType>
+
+
+  <xsd:complexType name = "ChangeCIRRegistryEntryType">
+    <xsd:sequence>
+      <xsd:element name = "ApplicationArea"     type = "TransApplicationAreaType"/>
+      <xsd:element name = "DataArea">
+         <xsd:complexType>
+            <xsd:sequence>
+              <xsd:element name = "Change"      type = "TransChangeType"/>
+              <xsd:element name = "CIRRegistry"
+                                                type = "CIRRegistryType"
+                                                minOccurs = "1" 
+                                                maxOccurs = "unbounded"/>
+            </xsd:sequence>
+         </xsd:complexType>
+      </xsd:element>
+    </xsd:sequence>
+    <xsd:attribute name = "releaseID"           type="xsd:normalizedString"     use="required"/>
+    <xsd:attribute name = "versionID"           type="xsd:normalizedString"     use="optional"/>
+  </xsd:complexType>
+
+
+  <xsd:complexType name = "RespondCIRRegistryEntryType">
+    <xsd:sequence>
+      <xsd:element name = "ApplicationArea"     type = "TransApplicationAreaType"/>
+      <xsd:element name = "DataArea">
+         <xsd:complexType>
+            <xsd:sequence>
+              <xsd:element name = "Respond"     type = "TransRespondType"/>
+              <xsd:element name = "CIRRegistry"
+                                                type = "CIRRegistryType"
+                                                minOccurs = "1" 
+                                                maxOccurs = "unbounded"/>
+            </xsd:sequence>
+         </xsd:complexType>
+      </xsd:element>
+    </xsd:sequence>
+    <xsd:attribute name = "releaseID"           type="xsd:normalizedString"     use="required"/>
+    <xsd:attribute name = "versionID"           type="xsd:normalizedString"     use="optional"/>
+  </xsd:complexType>
+
+
+  <xsd:complexType name = "CancelCIRRegistryEntryType">
+    <xsd:sequence>
+      <xsd:element name = "ApplicationArea"     type = "TransApplicationAreaType"/>
+      <xsd:element name = "DataArea">
+         <xsd:complexType>
+            <xsd:sequence>
+              <xsd:element name = "Cancel"      type = "TransCancelType"/>
+              <xsd:element name = "CIRRegistry"
+                                                type = "CIRRegistryType"
+                                                minOccurs = "1" 
+                                                maxOccurs = "unbounded"/>
+            </xsd:sequence>
+         </xsd:complexType>
+      </xsd:element>
+    </xsd:sequence>
+    <xsd:attribute name = "releaseID"           type="xsd:normalizedString"     use="required"/>
+    <xsd:attribute name = "versionID"           type="xsd:normalizedString"     use="optional"/>
+  </xsd:complexType>
+
+
+  <xsd:complexType name = "SyncCIRRegistryEntryType">
+    <xsd:sequence>
+      <xsd:element name = "ApplicationArea"     type = "TransApplicationAreaType"/>
+      <xsd:element name = "DataArea">
+         <xsd:complexType>
+            <xsd:sequence>
+              <xsd:element name = "Sync"        type = "TransSyncType"/>
+              <xsd:element name = "CIRRegistry"	type = "CIRRegistryType"
+                                                minOccurs = "1" 
+                                                maxOccurs = "unbounded"/>
+            </xsd:sequence>
+         </xsd:complexType>
+      </xsd:element>
+    </xsd:sequence>
+    <xsd:attribute name = "releaseID"           type="xsd:normalizedString"     use="required"/>
+    <xsd:attribute name = "versionID"           type="xsd:normalizedString"     use="optional"/>
+  </xsd:complexType>
+
+<!-- - - - - - - - - - - - - - - - - - - - - - -->
+<!-- CIRRegistryCategory Transaction Types     -->
+<!-- - - - - - - - - - - - - - - - - - - - - - -->
+
+  <xsd:complexType name = "GetCIRRegistryCategoryType">
+    <xsd:sequence>      
+         <xsd:element name = "ApplicationArea"  type = "TransApplicationAreaType"/>
+      <xsd:element name = "DataArea">
+         <xsd:complexType>
+            <xsd:sequence>
+              <xsd:element name = "Get"         type = "TransGetType"/>
+              <xsd:element name = "Filter"      type = "FilterCIRRegistryCategoryType"
+                                                minOccurs = "0" 
+                                                maxOccurs = "unbounded"/>
+            </xsd:sequence>
+         </xsd:complexType>
+      </xsd:element>
+    </xsd:sequence>
+    <xsd:attribute name = "releaseID"           type="xsd:normalizedString"     use="required"/>
+    <xsd:attribute name = "versionID"           type="xsd:normalizedString"     use="optional"/>
+  </xsd:complexType>
+
+
+  <xsd:complexType name = "ShowCIRRegistryCategoryType">
+    <xsd:sequence>
+      <xsd:element name = "ApplicationArea"     type = "TransApplicationAreaType"/>
+      <xsd:element name = "DataArea">
+         <xsd:complexType>
+            <xsd:sequence>
+              <xsd:element name = "Show"        type = "TransShowType"/>
+              <xsd:element name = "CIRRegistry"	type = "CIRRegistryType"
+                                                minOccurs = "0" 
+                                                maxOccurs = "unbounded"/>
+            </xsd:sequence>
+         </xsd:complexType>
+      </xsd:element>
+    </xsd:sequence>
+    <xsd:attribute name = "releaseID"           type="xsd:normalizedString"     use="required"/>
+    <xsd:attribute name = "versionID"           type="xsd:normalizedString"     use="optional"/>
+  </xsd:complexType>
+
+
+  <xsd:complexType name = "ProcessCIRRegistryCategoryType">
+    <xsd:sequence>
+      <xsd:element name = "ApplicationArea"     type = "TransApplicationAreaType"/>
+      <xsd:element name = "DataArea">
+         <xsd:complexType>
+            <xsd:sequence>
+              <xsd:element name = "Process"     type = "TransProcessType"/>
+              <xsd:element name = "CIRRegistry"
+                                                type = "CIRRegistryType"
+                                                minOccurs = "1" 
+                                                maxOccurs = "unbounded"/>
+            </xsd:sequence>
+         </xsd:complexType>
+      </xsd:element>
+    </xsd:sequence>
+    <xsd:attribute name = "releaseID"           type="xsd:normalizedString"     use="required"/>
+    <xsd:attribute name = "versionID"           type="xsd:normalizedString"     use="optional"/>
+  </xsd:complexType>
+
+
+  <xsd:complexType name = "AcknowledgeCIRRegistryCategoryType">
+    <xsd:sequence>
+      <xsd:element name = "ApplicationArea"     type = "TransApplicationAreaType"/>
+      <xsd:element name = "DataArea">
+         <xsd:complexType>
+            <xsd:sequence>
+              <xsd:element name = "Acknowledge" type = "TransAcknowledgeType"/>
+              <xsd:element name = "CIRRegistry"
+                                                type = "CIRRegistryType"
+                                                minOccurs = "1" 
+                                                maxOccurs = "unbounded"/>
+            </xsd:sequence>
+         </xsd:complexType>
+      </xsd:element>
+    </xsd:sequence>
+    <xsd:attribute name = "releaseID"           type="xsd:normalizedString"     use="required"/>
+    <xsd:attribute name = "versionID"           type="xsd:normalizedString"     use="optional"/>
+  </xsd:complexType>
+
+
+  <xsd:complexType name = "ChangeCIRRegistryCategoryType">
+    <xsd:sequence>
+      <xsd:element name = "ApplicationArea"     type = "TransApplicationAreaType"/>
+      <xsd:element name = "DataArea">
+         <xsd:complexType>
+            <xsd:sequence>
+              <xsd:element name = "Change"      type = "TransChangeType"/>
+              <xsd:element name = "CIRRegistry"	type = "CIRRegistryType"
+                                                minOccurs = "0" 
+                                                maxOccurs = "unbounded"/>
+            </xsd:sequence>
+         </xsd:complexType>
+      </xsd:element>
+    </xsd:sequence>
+    <xsd:attribute name = "releaseID"           type="xsd:normalizedString"     use="required"/>
+    <xsd:attribute name = "versionID"           type="xsd:normalizedString"     use="optional"/>
+  </xsd:complexType>
+
+
+  <xsd:complexType name = "RespondCIRRegistryCategoryType">
+    <xsd:sequence>
+      <xsd:element name = "ApplicationArea"     type = "TransApplicationAreaType"/>
+      <xsd:element name = "DataArea">
+         <xsd:complexType>
+            <xsd:sequence>
+              <xsd:element name = "Respond"     type = "TransRespondType"/>
+              <xsd:element name = "CIRRegistry"	type = "CIRRegistryType"
+                                                minOccurs = "0" 
+                                                maxOccurs = "unbounded"/>
+            </xsd:sequence>
+         </xsd:complexType>
+      </xsd:element>
+    </xsd:sequence>
+    <xsd:attribute name = "releaseID"           type="xsd:normalizedString"     use="required"/>
+    <xsd:attribute name = "versionID"           type="xsd:normalizedString"     use="optional"/>
+  </xsd:complexType>
+
+
+  <xsd:complexType name = "CancelCIRRegistryCategoryType">
+    <xsd:sequence>
+      <xsd:element name = "ApplicationArea"     type = "TransApplicationAreaType"/>
+      <xsd:element name = "DataArea">
+         <xsd:complexType>
+            <xsd:sequence>
+              <xsd:element name = "Cancel"      type = "TransCancelType"/>
+              <xsd:element name = "CIRRegistry"	type = "CIRRegistryType"
+                                                minOccurs = "0" 
+                                                maxOccurs = "unbounded"/>
+            </xsd:sequence>
+         </xsd:complexType>
+      </xsd:element>
+    </xsd:sequence>
+    <xsd:attribute name = "releaseID"           type="xsd:normalizedString"     use="required"/>
+    <xsd:attribute name = "versionID"           type="xsd:normalizedString"     use="optional"/>
+  </xsd:complexType>
+
+
+  <xsd:complexType name = "SyncCIRRegistryCategoryType">
+    <xsd:sequence>
+      <xsd:element name = "ApplicationArea"     type = "TransApplicationAreaType"/>
+      <xsd:element name = "DataArea">
+         <xsd:complexType>
+            <xsd:sequence>
+              <xsd:element name = "Sync"        type = "TransSyncType"/>
+              <xsd:element name = "CIRRegistry"	type = "CIRRegistryType"
+                                                minOccurs = "0" 
+                                                maxOccurs = "unbounded"/>
+            </xsd:sequence>
+         </xsd:complexType>
+      </xsd:element>
+    </xsd:sequence>
+    <xsd:attribute name = "releaseID"           type="xsd:normalizedString"     use="required"/>
+    <xsd:attribute name = "versionID"           type="xsd:normalizedString"     use="optional"/>
+  </xsd:complexType>
+
+<!-- - - - - - - - - - - - - - - - - - - - -->
+<!-- CIRRegistry Transaction Types         -->
+<!-- - - - - - - - - - - - - - - - - - - - -->
+
+  <xsd:complexType name = "GetCIRRegistryType">
+    <xsd:sequence>      
+         <xsd:element name = "ApplicationArea"  type = "TransApplicationAreaType"/>
+      <xsd:element name = "DataArea">
+         <xsd:complexType>
+            <xsd:sequence>
+              <xsd:element name = "Get"         type = "TransGetType"/>
+              <xsd:element name = "Filter"
+                                                type = "FilterCIRRegistryType"
+                                                minOccurs = "0" 
+                                                maxOccurs = "unbounded"/>
+            </xsd:sequence>
+         </xsd:complexType>
+      </xsd:element>
+    </xsd:sequence>
+    <xsd:attribute name = "releaseID"           type="xsd:normalizedString"     use="required"/>
+    <xsd:attribute name = "versionID"           type="xsd:normalizedString"     use="optional"/>
+  </xsd:complexType>
+
+
+  <xsd:complexType name = "ShowCIRRegistryType">
+    <xsd:sequence>
+      <xsd:element name = "ApplicationArea"     type = "TransApplicationAreaType"/>
+      <xsd:element name = "DataArea">
+         <xsd:complexType>
+            <xsd:sequence>
+              <xsd:element name = "Show"        type = "TransShowType"/>
+              <xsd:element name = "CIRRegistry"
+                                                type = "CIRRegistryType"
+                                                minOccurs = "0" 
+                                                maxOccurs = "unbounded"/>
+            </xsd:sequence>
+         </xsd:complexType>
+      </xsd:element>
+    </xsd:sequence>
+    <xsd:attribute name = "releaseID"           type="xsd:normalizedString"     use="required"/>
+    <xsd:attribute name = "versionID"           type="xsd:normalizedString"     use="optional"/>
+  </xsd:complexType>
+
+
+  <xsd:complexType name = "ProcessCIRRegistryType">
+    <xsd:sequence>
+      <xsd:element name = "ApplicationArea"     type = "TransApplicationAreaType"/>
+      <xsd:element name = "DataArea">
+         <xsd:complexType>
+            <xsd:sequence>
+              <xsd:element name = "Process"     type = "TransProcessType"/>
+              <xsd:element name = "CIRRegistry"
+                                                type = "CIRRegistryType"
+                                                minOccurs = "1" 
+                                                maxOccurs = "unbounded"/>
+            </xsd:sequence>
+         </xsd:complexType>
+      </xsd:element>
+    </xsd:sequence>
+    <xsd:attribute name = "releaseID"           type="xsd:normalizedString"     use="required"/>
+    <xsd:attribute name = "versionID"           type="xsd:normalizedString"     use="optional"/>
+  </xsd:complexType>
+
+
+  <xsd:complexType name = "AcknowledgeCIRRegistryType">
+    <xsd:sequence>
+      <xsd:element name = "ApplicationArea"     type = "TransApplicationAreaType"/>
+      <xsd:element name = "DataArea">
+         <xsd:complexType>
+            <xsd:sequence>
+              <xsd:element name = "Acknowledge" type = "TransAcknowledgeType"/>
+              <xsd:element name = "CIRRegistry"
+                                                type = "CIRRegistryType"
+                                                minOccurs = "1" 
+                                                maxOccurs = "unbounded"/>
+            </xsd:sequence>
+         </xsd:complexType>
+      </xsd:element>
+    </xsd:sequence>
+    <xsd:attribute name = "releaseID"           type="xsd:normalizedString"     use="required"/>
+    <xsd:attribute name = "versionID"           type="xsd:normalizedString"     use="optional"/>
+  </xsd:complexType>
+
+
+  <xsd:complexType name = "ChangeCIRRegistryType">
+    <xsd:sequence>
+      <xsd:element name = "ApplicationArea"     type = "TransApplicationAreaType"/>
+      <xsd:element name = "DataArea">
+         <xsd:complexType>
+            <xsd:sequence>
+              <xsd:element name = "Change"      type = "TransChangeType"/>
+              <xsd:element name = "CIRRegistry"
+                                                type = "CIRRegistryType"
+                                                minOccurs = "1" 
+                                                maxOccurs = "unbounded"/>
+            </xsd:sequence>
+         </xsd:complexType>
+      </xsd:element>
+    </xsd:sequence>
+    <xsd:attribute name = "releaseID"           type="xsd:normalizedString"     use="required"/>
+    <xsd:attribute name = "versionID"           type="xsd:normalizedString"     use="optional"/>
+  </xsd:complexType>
+
+
+  <xsd:complexType name = "RespondCIRRegistryType">
+    <xsd:sequence>
+      <xsd:element name = "ApplicationArea"     type = "TransApplicationAreaType"/>
+      <xsd:element name = "DataArea">
+         <xsd:complexType>
+            <xsd:sequence>
+              <xsd:element name = "Respond"     type = "TransRespondType"/>
+              <xsd:element name = "CIRRegistry"
+                                                type = "CIRRegistryType"
+                                                minOccurs = "1" 
+                                                maxOccurs = "unbounded"/>
+            </xsd:sequence>
+         </xsd:complexType>
+      </xsd:element>
+    </xsd:sequence>
+    <xsd:attribute name = "releaseID"           type="xsd:normalizedString"     use="required"/>
+    <xsd:attribute name = "versionID"           type="xsd:normalizedString"     use="optional"/>
+  </xsd:complexType>
+
+
+  <xsd:complexType name = "CancelCIRRegistryType">
+    <xsd:sequence>
+      <xsd:element name = "ApplicationArea"     type = "TransApplicationAreaType"/>
+      <xsd:element name = "DataArea">
+         <xsd:complexType>
+            <xsd:sequence>
+              <xsd:element name = "Cancel"      type = "TransCancelType"/>
+              <xsd:element name = "CIRRegistry"
+                                                type = "CIRRegistryType"
+                                                minOccurs = "1" 
+                                                maxOccurs = "unbounded"/>
+            </xsd:sequence>
+         </xsd:complexType>
+      </xsd:element>
+    </xsd:sequence>
+    <xsd:attribute name = "releaseID"           type="xsd:normalizedString"     use="required"/>
+    <xsd:attribute name = "versionID"           type="xsd:normalizedString"     use="optional"/>
+  </xsd:complexType>
+
+
+  <xsd:complexType name = "SyncCIRRegistryType">
+    <xsd:sequence>
+      <xsd:element name = "ApplicationArea"     type = "TransApplicationAreaType"/>
+      <xsd:element name = "DataArea">
+         <xsd:complexType>
+            <xsd:sequence>
+              <xsd:element name = "Sync"        type = "TransSyncType"/>
+              <xsd:element name = "CIRRegistry"
+                                                type = "CIRRegistryType"
+                                                minOccurs = "1" 
+                                                maxOccurs = "unbounded"/>
+            </xsd:sequence>
+         </xsd:complexType>
+      </xsd:element>
+    </xsd:sequence>
+    <xsd:attribute name = "releaseID"           type="xsd:normalizedString"     use="required"/>
+    <xsd:attribute name = "versionID"           type="xsd:normalizedString"     use="optional"/>
+  </xsd:complexType>
+
+		
+		
+</xsd:schema>

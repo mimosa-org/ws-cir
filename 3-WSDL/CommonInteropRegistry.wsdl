@@ -1,0 +1,473 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" 
+  xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" 
+  xmlns:tns="http://www.openoandm.org/xml/CIRML/" 
+  xmlns:xsd="http://www.w3.org/2001/XMLSchema" 
+  xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" 
+  xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" 
+  targetNamespace="http://www.openoandm.org/xml/CIRML/" 
+  xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <xsd:schema elementFormDefault="qualified" targetNamespace="http://www.openoandm.org/xml/CIRML/">
+      <xsd:element name="CreateRegistry">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element minOccurs="0" maxOccurs="1" name="processCIRRegistry" type="xsd:string" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="CreateRegistryResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element minOccurs="0" maxOccurs="1" name="CreateRegistryResult" type="xsd:string" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="CreateUniqueRegistry">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element minOccurs="0" maxOccurs="1" name="processCIRRegistry" type="xsd:string" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="CreateUniqueRegistryResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element minOccurs="0" maxOccurs="1" name="CreateUniqueRegistryResult" type="xsd:string" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="CombineRegistry">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element minOccurs="0" maxOccurs="1" name="registryID" type="xsd:string" />
+            <xsd:element minOccurs="0" maxOccurs="1" name="processCIRRegistry" type="xsd:string" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="CombineRegistryResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element minOccurs="0" maxOccurs="1" name="CombineRegistryResult" type="xsd:string" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="GetFullRegistry">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element minOccurs="0" maxOccurs="1" name="getCIRRegistry" type="xsd:string" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="GetFullRegistryResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element minOccurs="0" maxOccurs="1" name="GetFullRegistryResult" type="xsd:string" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="GetRegistryEntries">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element minOccurs="0" maxOccurs="1" name="getCIRRegistry" type="xsd:string" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="GetRegistryEntriesResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element minOccurs="0" maxOccurs="1" name="GetRegistryEntriesResult" type="xsd:string" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="FindEquivalentEntry">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element minOccurs="0" maxOccurs="1" name="registryID" type="xsd:string" />
+            <xsd:element minOccurs="0" maxOccurs="1" name="categoryID" type="xsd:string" />
+            <xsd:element minOccurs="0" maxOccurs="1" name="entryIDinSource" type="xsd:string" />
+            <xsd:element minOccurs="0" maxOccurs="1" name="sourceOwnerID" type="xsd:string" />
+            <xsd:element minOccurs="0" maxOccurs="1" name="targetOwnerID" type="xsd:string" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="FindEquivalentEntryResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element minOccurs="0" maxOccurs="1" name="FindEquivalentEntryResult" type="xsd:string" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="AddEquivalentEntry">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element minOccurs="0" maxOccurs="1" name="registryID" type="xsd:string" />
+            <xsd:element minOccurs="0" maxOccurs="1" name="categoryID" type="xsd:string" />
+            <xsd:element minOccurs="0" maxOccurs="1" name="entryIDinSource" type="xsd:string" />
+            <xsd:element minOccurs="0" maxOccurs="1" name="sourceOwnerID" type="xsd:string" />
+            <xsd:element minOccurs="0" maxOccurs="1" name="entryIDinTarget" type="xsd:string" />
+            <xsd:element minOccurs="0" maxOccurs="1" name="targetOwnerID" type="xsd:string" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="AddEquivalentEntryResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element minOccurs="0" maxOccurs="1" name="AddEquivalentEntryResult" type="xsd:string" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="DefineEquivalentEntries">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element minOccurs="0" maxOccurs="1" name="sourceCIRID" type="xsd:string" />
+            <xsd:element minOccurs="0" maxOccurs="1" name="targetCIRID" type="xsd:string" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="DefineEquivalentEntriesResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element minOccurs="0" maxOccurs="1" name="DefineEquivalentEntriesResult" type="xsd:string" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="DeleteRegistryEntries">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element minOccurs="0" maxOccurs="1" name="registryID" type="xsd:string" />
+            <xsd:element minOccurs="0" maxOccurs="1" name="categoryID" type="xsd:string" />
+            <xsd:element minOccurs="0" maxOccurs="1" name="getCIRRegistry" type="xsd:string" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="DeleteRegistryEntriesResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element minOccurs="0" maxOccurs="1" name="DeleteRegistryEntriesResult" type="xsd:string" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="ChangeRegistryEntries">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element minOccurs="0" maxOccurs="1" name="changeCIRRegistry" type="xsd:string" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="ChangeRegistryEntriesResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element minOccurs="0" maxOccurs="1" name="ChangeRegistryEntriesResult" type="xsd:string" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="CreateRegistrySoapIn">
+    <wsdl:part name="parameters" element="tns:CreateRegistry" />
+  </wsdl:message>
+  <wsdl:message name="CreateRegistrySoapOut">
+    <wsdl:part name="parameters" element="tns:CreateRegistryResponse" />
+  </wsdl:message>
+  <wsdl:message name="CreateUniqueRegistrySoapIn">
+    <wsdl:part name="parameters" element="tns:CreateUniqueRegistry" />
+  </wsdl:message>
+  <wsdl:message name="CreateUniqueRegistrySoapOut">
+    <wsdl:part name="parameters" element="tns:CreateUniqueRegistryResponse" />
+  </wsdl:message>
+  <wsdl:message name="CombineRegistrySoapIn">
+    <wsdl:part name="parameters" element="tns:CombineRegistry" />
+  </wsdl:message>
+  <wsdl:message name="CombineRegistrySoapOut">
+    <wsdl:part name="parameters" element="tns:CombineRegistryResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetFullRegistrySoapIn">
+    <wsdl:part name="parameters" element="tns:GetFullRegistry" />
+  </wsdl:message>
+  <wsdl:message name="GetFullRegistrySoapOut">
+    <wsdl:part name="parameters" element="tns:GetFullRegistryResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetRegistryEntriesSoapIn">
+    <wsdl:part name="parameters" element="tns:GetRegistryEntries" />
+  </wsdl:message>
+  <wsdl:message name="GetRegistryEntriesSoapOut">
+    <wsdl:part name="parameters" element="tns:GetRegistryEntriesResponse" />
+  </wsdl:message>
+  <wsdl:message name="FindEquivalentEntrySoapIn">
+    <wsdl:part name="parameters" element="tns:FindEquivalentEntry" />
+  </wsdl:message>
+  <wsdl:message name="FindEquivalentEntrySoapOut">
+    <wsdl:part name="parameters" element="tns:FindEquivalentEntryResponse" />
+  </wsdl:message>
+  <wsdl:message name="AddEquivalentEntrySoapIn">
+    <wsdl:part name="parameters" element="tns:AddEquivalentEntry" />
+  </wsdl:message>
+  <wsdl:message name="AddEquivalentEntrySoapOut">
+    <wsdl:part name="parameters" element="tns:AddEquivalentEntryResponse" />
+  </wsdl:message>
+  <wsdl:message name="DefineEquivalentEntriesSoapIn">
+    <wsdl:part name="parameters" element="tns:DefineEquivalentEntries" />
+  </wsdl:message>
+  <wsdl:message name="DefineEquivalentEntriesSoapOut">
+    <wsdl:part name="parameters" element="tns:DefineEquivalentEntriesResponse" />
+  </wsdl:message>
+  <wsdl:message name="DeleteRegistryEntriesSoapIn">
+    <wsdl:part name="parameters" element="tns:DeleteRegistryEntries" />
+  </wsdl:message>
+  <wsdl:message name="DeleteRegistryEntriesSoapOut">
+    <wsdl:part name="parameters" element="tns:DeleteRegistryEntriesResponse" />
+  </wsdl:message>
+  <wsdl:message name="ChangeRegistryEntriesSoapIn">
+    <wsdl:part name="parameters" element="tns:ChangeRegistryEntries" />
+  </wsdl:message>
+  <wsdl:message name="ChangeRegistryEntriesSoapOut">
+    <wsdl:part name="parameters" element="tns:ChangeRegistryEntriesResponse" />
+  </wsdl:message>
+  <wsdl:portType name="CIRServiceSoap">
+    <wsdl:operation name="CreateRegistry">
+      <wsdl:documentation>Creates a new registry, new category in a registry, or new entries in a category.  Returns the system assigned GUID for the new registry.</wsdl:documentation>
+      <wsdl:input message="tns:CreateRegistrySoapIn" />
+      <wsdl:output message="tns:CreateRegistrySoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="CreateUniqueRegistry">
+      <wsdl:documentation>Creates a new registry, new category in a registry, or new entries in a category.  Returns the system assigned GUID for the new registry and for the new registry entries.</wsdl:documentation>
+      <wsdl:input message="tns:CreateUniqueRegistrySoapIn" />
+      <wsdl:output message="tns:CreateUniqueRegistrySoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="CombineRegistry">
+      <wsdl:documentation>Adds a list of a registry categories and registry entries to an existing registry. Return an error as AcknowledgeCIRRegistry if the registry is not defined.</wsdl:documentation>
+      <wsdl:input message="tns:CombineRegistrySoapIn" />
+      <wsdl:output message="tns:CombineRegistrySoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetFullRegistry">
+      <wsdl:documentation>Returns all categories and entries in a registry.</wsdl:documentation>
+      <wsdl:input message="tns:GetFullRegistrySoapIn" />
+      <wsdl:output message="tns:GetFullRegistrySoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetRegistryEntries">
+      <wsdl:documentation>Returns entries and their properties from a category in a registry.  Used to find information about registry entries.</wsdl:documentation>
+      <wsdl:input message="tns:GetRegistryEntriesSoapIn" />
+      <wsdl:output message="tns:GetRegistryEntriesSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="FindEquivalentEntry">
+      <wsdl:documentation>Finds an equivalent registry entry. Return an error if the registry or category is not defined.</wsdl:documentation>
+      <wsdl:input message="tns:FindEquivalentEntrySoapIn" />
+      <wsdl:output message="tns:FindEquivalentEntrySoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="AddEquivalentEntry">
+      <wsdl:documentation>Adds a CIRID to a registry entry from an equivalent registry entry.  If neither entry has a CIRID, then a new CIRID is created. Return an error if the registry, category, source entry, or target entry are not defined.</wsdl:documentation>
+      <wsdl:input message="tns:AddEquivalentEntrySoapIn" />
+      <wsdl:output message="tns:AddEquivalentEntrySoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="DefineEquivalentEntries">
+      <wsdl:documentation>Defines two CIRIDs as equivalent by changing the target CIRID in all registries to the source CIRID.</wsdl:documentation>
+      <wsdl:input message="tns:DefineEquivalentEntriesSoapIn" />
+      <wsdl:output message="tns:DefineEquivalentEntriesSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="DeleteRegistryEntries">
+      <wsdl:documentation>Deletes one or more registry entries. Return an error if the registry or category is not defined.</wsdl:documentation>
+      <wsdl:input message="tns:DeleteRegistryEntriesSoapIn" />
+      <wsdl:output message="tns:DeleteRegistryEntriesSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ChangeRegistryEntries">
+      <wsdl:documentation>Updates one or more registry entries and associated properties.</wsdl:documentation>
+      <wsdl:input message="tns:ChangeRegistryEntriesSoapIn" />
+      <wsdl:output message="tns:ChangeRegistryEntriesSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="CIRServiceSoap" type="tns:CIRServiceSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="CreateRegistry">
+      <soap:operation soapAction="http://www.openoandm.org/xml/CIRML/CreateRegistry" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CreateUniqueRegistry">
+      <soap:operation soapAction="http://www.openoandm.org/xml/CIRML/CreateUniqueRegistry" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CombineRegistry">
+      <soap:operation soapAction="http://www.openoandm.org/xml/CIRML/CombineRegistry" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetFullRegistry">
+      <soap:operation soapAction="http://www.openoandm.org/xml/CIRML/GetFullRegistry" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetRegistryEntries">
+      <soap:operation soapAction="http://www.openoandm.org/xml/CIRML/GetRegistryEntries" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="FindEquivalentEntry">
+      <soap:operation soapAction="http://www.openoandm.org/xml/CIRML/FindEquivalentEntry" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AddEquivalentEntry">
+      <soap:operation soapAction="http://www.openoandm.org/xml/CIRML/AddEquivalentEntry" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DefineEquivalentEntries">
+      <soap:operation soapAction="http://www.openoandm.org/xml/CIRML/DefineEquivalentEntries" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteRegistryEntries">
+      <soap:operation soapAction="http://www.openoandm.org/xml/CIRML/DeleteRegistryEntries" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ChangeRegistryEntries">
+      <soap:operation soapAction="http://www.openoandm.org/xml/CIRML/ChangeRegistryEntries" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="CIRServiceSoap12" type="tns:CIRServiceSoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="CreateRegistry">
+      <soap12:operation soapAction="http://www.openoandm.org/xml/CIRML/CreateRegistry" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CreateUniqueRegistry">
+      <soap12:operation soapAction="http://www.openoandm.org/xml/CIRML/CreateUniqueRegistry" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CombineRegistry">
+      <soap12:operation soapAction="http://www.openoandm.org/xml/CIRML/CombineRegistry" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetFullRegistry">
+      <soap12:operation soapAction="http://www.openoandm.org/xml/CIRML/GetFullRegistry" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetRegistryEntries">
+      <soap12:operation soapAction="http://www.openoandm.org/xml/CIRML/GetRegistryEntries" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="FindEquivalentEntry">
+      <soap12:operation soapAction="http://www.openoandm.org/xml/CIRML/FindEquivalentEntry" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AddEquivalentEntry">
+      <soap12:operation soapAction="http://www.openoandm.org/xml/CIRML/AddEquivalentEntry" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DefineEquivalentEntries">
+      <soap12:operation soapAction="http://www.openoandm.org/xml/CIRML/DefineEquivalentEntries" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteRegistryEntries">
+      <soap12:operation soapAction="http://www.openoandm.org/xml/CIRML/DeleteRegistryEntries" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ChangeRegistryEntries">
+      <soap12:operation soapAction="http://www.openoandm.org/xml/CIRML/ChangeRegistryEntries" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="CIRService">
+    <wsdl:port name="CIRServiceSoap" binding="tns:CIRServiceSoap">
+      <soap:address location="http://localhost:49574/CIRService.asmx" />
+    </wsdl:port>
+    <wsdl:port name="CIRServiceSoap12" binding="tns:CIRServiceSoap12">
+      <soap12:address location="http://localhost:49574/CIRService.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>
