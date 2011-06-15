@@ -1,5 +1,7 @@
-tocTab[tocTab.length] = new Array("0:1", "", "OpenOandM CIR Model V10b1", "EARoot/EA1.htm", "175.png", "13", "0", "", "Logical diagram");
-tocTab[tocTab.length] = new Array("0:2", "", "CIRRegistry", "EARoot/EA6.htm", "5.png", "603", "0", "", "Class");
-tocTab[tocTab.length] = new Array("0:3", "", "CIRProperty", "EARoot/EA13.htm", "5.png", "588", "0", "", "Class");
-tocTab[tocTab.length] = new Array("0:4", "", "CIRRegistryCategory", "EARoot/EA14.htm", "5.png", "590", "0", "", "Class");
-tocTab[tocTab.length] = new Array("0:5", "", "CIRRegistryEntry", "EARoot/EA15.htm", "5.png", "585", "0", "", "Class");
+tocTab[tocTab.length] = new Array("0:1", "", "OpenO&M Common Interoperability Registry", "EARoot/EA1.htm", "175.png", "13", "0", "", "Logical diagram0","{8FD6A56C-A075-4406-8B56-4F33C3F364BA}");
+tocTab[tocTab.length] = new Array("0:2", "", "«XSDgroup» PropertyValue", "EARoot/EA4.htm", "5.png", "609", "0", "", "Class0","{10C9E691-2399-4266-A84B-D9337884888D}");
+tocTab[tocTab.length] = new Array("0:3", "", "Registry", "EARoot/EA5.htm", "5.png", "603", "0", "", "Class0","{BBFA30A2-D166-4768-955D-583381D67BAF}");
+tocTab[tocTab.length] = new Array("0:4", "", "UUID", "EARoot/EA6.htm", "5.png", "610", "0", "", "Class0","{65E6FA66-CAA8-461d-9DD9-C3DDF653BA7A}");
+tocTab[tocTab.length] = new Array("0:5", "", "Category", "EARoot/EA8.htm", "5.png", "590", "0", "", "Class0","{4B15E134-7163-49a3-A0C8-FE54EB8326B3}");
+tocTab[tocTab.length] = new Array("0:6", "", "Entry", "EARoot/EA9.htm", "5.png", "585", "0", "", "Class0","{90C26AF6-EFD9-415d-A2A7-3317EFD835F4}");
+tocTab[tocTab.length] = new Array("0:7", "", "Property", "EARoot/EA10.htm", "5.png", "588", "0", "", "Class0","{E180504F-5082-4e21-8956-8B46EAE1033F}");

@@ -4,7 +4,8 @@ var icon=new Array();
 var preloadIcons=new Array(1,10,101,102,103,104,106,107,108,11,113,116,118,16,175,176,177,178,179,180,181,182,183,184,185,186,187,188,189,19,20,21,24,25,26,28,29,31,34,4,5,52,53,56,57,6,60,68,69,7,8,82,9,99);
 
 var browser=browserCheck();
-
+var content=0;
+var Linkguid="";
 function browserCheck() {
 	browser=navigator.userAgent.toLowerCase();
 	if (browser.indexOf('msie')!=-1) {
@@ -19,7 +20,7 @@ function browserCheck() {
 
 function changeCSS(theClass,element,value,target) {
 	var cssRules;
-	target = eval(target+'.document.styleSheets'); 
+	target = eval(target+'.document.styleSheets');
 	if (browser=='ie6'||browser=='ie7') {
 		cssRules = 'rules';
 	} else if (browser=='ff'||browser=='op') {
@@ -45,7 +46,7 @@ function initItem(item) {
 
 function initLoad(src,toc,home) {
 
-	qs=document.location.search.substring(1);
+	var qs=document.location.search.substring(1);
 
 	if (qs.substring(0,qs.indexOf('='))=='goto') {
 		var gotoPage = qs.substring(qs.indexOf('=')+1).split(':');
@@ -60,19 +61,142 @@ function initLoad(src,toc,home) {
 		}
 	}
 
-	src=src.document.location+"";
-
-	src=src.substring(src.lastIndexOf('/')+1);
-	if(src.indexOf('index')==-1&&src!="") return;
-
-	var content = document.createElement('div');
+	content = document.createElement('div');
 	content.className = "IndexBody";
 	content.innerHTML="	<iframe src='"+toc+"' name='toc' id='tocIFrame' frameborder='0'></iframe>\n";
-	content.innerHTML+="	<iframe src='"+home+"' name='cont' id='contentIFrame' frameborder='0'></iframe>";
-	content.innerHTML+="	<div id=\"resizeFrames\"></div>";
 
-	initPreLoad(content);
+	if (qs.substring(0,qs.indexOf('='))=='guid') {
+		Linkguid = qs.substring(qs.indexOf('=')+1).split('?guid=');
+		var sGuid = new String(Linkguid);
+		if(sGuid.substring(0,1)=="{" && sGuid.substring(sGuid.length,sGuid.length-1)=="}")
+		  sGuid = sGuid.substring(1,sGuid.length-1);
+		Linkguid = sGuid;
+		LoadGuidMap(OnReadyLoadGuidMap);
+	}
+	else{
+		// We don't have a guid in the address bar, so set the default homepage and continue
+		content.innerHTML+="	<iframe src='"+home+"' name='cont' id='contentIFrame' frameborder='0'></iframe>";
+		content.innerHTML+="	<div id=\"resizeFrames\"></div>";
 
+		// Pass in the guid of the home page or class.
+		initPreLoad(content);
+	}
+}
+
+function LoadGuidMap(ResponseFunc){
+
+	// Get the correct file
+	var FirstTwoHexDigits = new String(Linkguid);
+	FirstTwoHexDigits = FirstTwoHexDigits.slice(0,2).toLowerCase();
+	var src = "js/data/guidmaps/"+"GuidMap"+FirstTwoHexDigits+".xml";
+
+  RequestPage(src,ResponseFunc);// Request the page passing in the filelocation and the response function.
+}
+
+function OnReadyLoadGuidMap(){
+
+	if (data.readyState == 4){
+		try{
+
+			var Home = GetPageAddressFromMapString(data.responseText);
+
+			//Set the home page.
+			content.innerHTML+="	<iframe src='"+Home+"' name='cont' id='contentIFrame' frameborder='0'></iframe>";
+			content.innerHTML+="	<div id=\"resizeFrames\"></div>";
+
+      //Make sure memory for the string is cleared. The browser should do this anyway but just in case.
+      Home=null;
+
+			// Continue loading the rest of the page.
+			initPreLoad(content);
+		}
+		catch(e){
+			return;
+		}
+	}
+}
+
+function GetPageAddressFromMapString(MapString)
+{
+    var LG = new String(Linkguid);
+    var Page = new String(MapString);
+    
+    LG = LG.toLowerCase();    //Make searching case insensitive.
+    Page = Page.toLowerCase();
+    
+    var Pos1 = Page.search(LG);   // Search the the guid in the string and return the position.
+    Page = Page.slice(Pos1);// Remove the top half of the string.
+    
+    var Pos2 = Page.search("/");  //Search for the start of the web address.
+    var Pos3 = Page.search(";");  //Search for the end of the web address.
+    Page = Page.slice(Pos2+1,Pos3);   // extract the web address.
+    
+    // Leave the page address in the original case as Linux is case sensitive.    
+    var sExt = ".html";
+    Pos1 = Page.search(sExt);
+    if(Pos1 == -1)
+    {
+        sExt = ".htm";
+        Pos1 = Page.search(sExt);
+    }
+    
+    Page = Page.slice(0,Pos1);
+    
+    Page = Page.toUpperCase();
+    
+    Page = "EARoot/" + Page + sExt; // At the root back onto the page.
+    
+    return Page;
+}
+
+function guidLink(guid,qs) {
+
+  guid = guid.substring(1,guid.length-1); //Remove the brakets
+	Linkguid = guid;
+	LoadGuidMap(OnReadyGuidLink);
+
+}
+
+function OnReadyGuidLink(){
+
+  if (data.readyState == 4){
+    try{
+
+      // Get the page location from the guid map.
+      var Page = GetPageAddressFromMapString(data.responseText);
+
+      cont.location = Page;
+
+      //Make sure memory for the string is cleared. The browser should do this anyway but just in case.
+      Page=null;
+      Linkguid=null;
+    }
+    catch(e){
+      return;
+    }
+  }
+}
+
+function RequestPage(Page,ResponseFunc)
+{
+ 	try {
+		data = new XMLHttpRequest();
+		data.onreadystatechange = ResponseFunc;
+		data.open("GET", Page, true);
+		data.send(null);
+	} catch(e) {
+		if (browser=="ie6"||browser=="ie7"||browser=="ie8"){
+			data = new ActiveXObject("Microsoft.XMLHTTP");
+			if (data) {
+				data.onreadystatechange = ResponseFunc;
+				data.open("GET", Page, true);
+				data.send();
+			}
+		}
+		else{
+			alert(e);
+		}
+	}
 }
 
 function initPage(src) {
@@ -109,11 +233,14 @@ function initPage(src) {
 	if (toc.document.body==null) {
 		setTimeout("initPage('"+src+"')","1");
 		return;
-	} else if (toc.document.body.childNodes.length==1) {
+	} else if (toc.document.body.childNodes && toc.document.body.childNodes.length==1) {
 		setTimeout("initPage('"+src+"')","1");
 		return;
-	} else if (toc.document.body.lastChild.childNodes.length==0) {
+	} else if (toc.document.body.lastChild && toc.document.body.lastChild.childNodes && toc.document.body.lastChild.childNodes.length==0) {
 		setTimeout("initPage('"+src+"')","1");
+		return;
+	} else if (!toc.document.body.childNodes || !toc.document.body.lastChild || !toc.document.body.lastChild.childNodes) {
+	   setTimeout("initPage('"+src+"')","1");
 		return;
 	} else {
 		var parTree = curPage.substr(0,curPage.lastIndexOf('/')).substr(curPage.indexOf('/')+1).replace(/EA/g,"").replace(/\//g,".");
@@ -194,9 +321,9 @@ function initPreLoad(content) {
 	preloader.style.display="none";
 	preloader.id="preloader";
 	preloader.appendChild(content);
-	
+
 	resizeFrames('init');
-	
+
 }
 
 function initPreLoaded() {
@@ -211,7 +338,7 @@ function initPreLoaded() {
 
 	if (browser!="op")
 		setTimeout('setCSS();','1000');
-	
+
 }
 
 function resizeFrames(str) {
@@ -224,7 +351,7 @@ function resizeFrames(str) {
 		resizeFrames.onmouseout = resizeFramesOff;
 		resizeFrames.onmousemove = resizeFramesMove;
 	}
-		
+
 }
 
 function resizeFramesOn(e) {
@@ -277,8 +404,10 @@ function resizeFramesMove(e) {
 		if(tableSelTable!=null) {
 			if(tableSelTable.childNodes.length>1&&document.getElementById('tmpRF')!=null) {
 				tableSelTable.style.width=(document.body.clientWidth-(document.getElementById('tmpRF').offsetLeft+6)-20)+"px";
-				tableSelTable.childNodes[0].style.width=(tableSelTable.offsetWidth-19)+"px";
-				tableSelTable.childNodes[1].style.width=(tableSelTable.offsetWidth-19)+"px";
+				if(tableSelTable.childNodes[0].style)
+          			tableSelTable.childNodes[0].style.width=(tableSelTable.offsetWidth-19)+"px";
+        		if(tableSelTable.childNodes[1].style)
+  					tableSelTable.childNodes[1].style.width=(tableSelTable.offsetWidth-19)+"px";
 			}
 		}
 	}
@@ -290,7 +419,7 @@ function resizePage() {
 
 	if(document.getElementById('resizeFrames')==null)
 		return;
-	
+
 	if (browser=="ie6") {
 		pHeight=top.document.body.clientHeight;
 	} else {
@@ -304,7 +433,7 @@ function resizePage() {
 		changeCSS('#tmpRF','height',pHeight-72+'px','this');
 	} else {
 		document.getElementById('resizeFrames').style.height=pHeight-70+'px';
-		changeCSS('#tmpRF','height',pHeight-70+'px','this');		
+		changeCSS('#tmpRF','height',pHeight-70+'px','this');
 	}
 	document.getElementById('tocIFrame').style.height=pHeight-74+'px';
 	rFStatus=0;
@@ -331,8 +460,7 @@ function setCSS() {
 		changeCSS('#tocIFrame','height',pHeight-74+'px','this');
 	}
 
-	if (browser=="op"||browser=="ie6"||browser=="ie7")
-		changeCSS('#contentIFrame','width',top.document.body.clientWidth-258+'px','this');
+	changeCSS('#contentIFrame','width',top.document.body.clientWidth-258+'px','this');
 }
 
 
@@ -344,7 +472,7 @@ function tocBuild(data) {
 
 	for (var i=0; i<tocTab.length; i++) {
 		if (!tocTab[i][8]) tocTab[i][8] = 'misc';
-		if (tocTab[i][8].toLowerCase().indexOf('diagram')!=-1&&tocTab[i][6]=="") tocTab[i][8] = "0Diagram";
+		if (tocTab[i][8].toLowerCase().indexOf('diagram')!=-1 && (tocTab[i][6]=="" || tocTab[i][6]=="0")) tocTab[i][8] = "0Diagram";
 		if (tocTab[i][8].toLowerCase().indexOf('package')!=-1) tocTab[i][8] = "1Package";
 		if (!tocType[tocTab[i][8]]) {
 			tocType[tocTab[i][8]] = new Array();
@@ -358,11 +486,13 @@ function tocBuild(data) {
 	for (var i=0; i<tocTypes.length; i++) {
 		for (var j=0; j<tocType[tocTypes[i]].length; j++) {
 			var build = tocBuildItem(tocType[tocTypes[i]][j]);
-			if (build!=true)
+			if (build!=true) {
+				build = build.substring(1);
 				tocErrs[tocErrs.length]=build;
+			}
 		}
 	}
-	
+
 	var errRuns=0;
 	var errTotal=tocErrs.length;
 
@@ -375,8 +505,9 @@ function tocBuild(data) {
 		}
 		var errNums=tocErrs.length;
 		var tmp=tocBuildItem(tocErrs.shift());
-		if(tmp!=true)
-			tocErrs[tocErrs.length]=tmp;
+		if(tmp!=true) {
+			tocErrs[tocErrs.length]=tmp.substring(1);
+		}
 	}
 
 	while(tocErrs.length!=0) {
@@ -399,10 +530,10 @@ function tocBuildItem(i) {
 	else if (tocTab[i][0]!="0") tocBranch = document.getElementById("toc0");
 	else if (tocTab[i][1]==3) tocBranch = document.getElementById("System").parentNode.lastChild;
 	else tocBranch = tocRoot;
-	
+
 	//Check if item is child
 	if (tocTab[i][5]&&tocTab[i][6]&&tocTab[i][6]!="0") {
-		if (document.getElementById(tocTab[i][6])==null) return i;
+		if (document.getElementById(tocTab[i][6])==null) return 'i'+i;
 		tocBranch = document.getElementById(tocTab[i][6]).parentNode.lastChild;
 		childItem = true;
 	}
@@ -480,9 +611,14 @@ function tocBuildItem(i) {
 		tocText = tocBranch.appendChild(document.createElement('a'));
 		tocText.href = tocTab[i][3];
 		tocText.target = top.frames[1].name;
+		if (tocTab[i][9])
+			tocText.id = tocTab[i][9];
+		else if (tocTab[i][7])
+			tocText.id = tocTab[i][7];
 	}
 	else tocText = tocBranch;
 	var j=0;
+	var nodeText;
 
 	//Replace values
 	while (tocTab[i][2].indexOf('&quot;')!=-1) tocTab[i][2] = tocTab[i][2].replace('&quot;','\"');
@@ -490,7 +626,10 @@ function tocBuildItem(i) {
 	while (tocTab[i][2].indexOf('&#39;')!=-1) tocTab[i][2] = tocTab[i][2].replace('&#39;','\'');
 	if (tocTab[i][2]=="") tocTab[i][2]="               ";
 
-	tocText.appendChild(document.createTextNode(tocTab[i][2]));
+	nodeText = tocText.appendChild(document.createTextNode(tocTab[i][2]));
+	while (nodeText.nodeValue.indexOf('&lt;')!=-1) nodeText.nodeValue = nodeText.nodeValue.replace('&lt;','<');
+	while (nodeText.nodeValue.indexOf('&gt;')!=-1) nodeText.nodeValue = nodeText.nodeValue.replace('&gt;','>');
+
 	tocBranch.appendChild(document.createElement('ul')).id = "toc"+tocTab[i][0];
 
 	tocLastID = tocTab[i][0];
@@ -540,23 +679,7 @@ function tocLoadData(src) {
 	src = tmp+"js/data/"+src;
 	tocTab = new Array();
 
-	try {
-		data = new XMLHttpRequest();
-		data.onreadystatechange = tocLoadDataProcess;
-		data.open("GET", src, true);
-		data.send(null);
-	} catch(e) {
-		if (browser=="ie6"||browser=="ie7") {
-			data = new ActiveXObject("Microsoft.XMLHTTP");
-			if (data) {
-				data.onreadystatechange = tocLoadDataProcess;
-				data.open("GET", src, true);
-				data.send();
-			}
-		} else {
-			alert(e);
-		}
-	}
+  RequestPage(src,tocLoadDataProcess);
 }
 
 function tocLoadDataProcess() {
@@ -582,6 +705,18 @@ function tocLoadDataProcess() {
 	}
 }
 
+function toggleDiv(idDiv,idImage){
+	var ele = cont.document.getElementById(idDiv);
+	if(ele && ele.style.display == "none"){
+		ele.style.display = "block";
+		cont.document.getElementById(idImage).src=cont.document.getElementById(idImage).src.substring(0,cont.document.getElementById(idImage).src.lastIndexOf('images'))+cont.document.getElementById(idImage).src.substring(cont.document.getElementById(idImage).src.lastIndexOf('images')).replace('plus','minus');
+	}
+	else if(ele){
+		ele.style.display = "none";
+		cont.document.getElementById(idImage).src=cont.document.getElementById(idImage).src.substring(0,cont.document.getElementById(idImage).src.lastIndexOf('images'))+cont.document.getElementById(idImage).src.substring(cont.document.getElementById(idImage).src.lastIndexOf('images')).replace('minus','plus');
+	}
+}
+
 function toggleData(src) {
 	var dataRoot = cont.document.getElementById(src).parentNode.parentNode.parentNode;
 	if (cont.document.getElementById(src).src.substring(cont.document.getElementById(src).src.lastIndexOf('images')).indexOf('plus')!=-1) cont.document.getElementById(src).src=cont.document.getElementById(src).src.substring(0,cont.document.getElementById(src).src.lastIndexOf('images'))+cont.document.getElementById(src).src.substring(cont.document.getElementById(src).src.lastIndexOf('images')).replace('plus','minus');
@@ -600,7 +735,7 @@ function toggleItem(item,type) {
 	if (tableSel!=null) {
 		cont.document.getElementById(tableSel+"Title").style.background="#FFFFFF";
 		cont.document.getElementById(tableSel+"Title").style.color="#000000";
-		cont.document.getElementById(tableSel+"Table").style.display="none";	
+		cont.document.getElementById(tableSel+"Table").style.display="none";
 	}
 	tableSel=item;
 	tableSelTable = cont.document.getElementById(item+"Table");
@@ -609,7 +744,7 @@ function toggleItem(item,type) {
 	tableSelTitle.style.background="#DDDDDD";
 	tableSelTitle.style.color="#666666";
 	tableSelTable.style.display="block";
-	
+
 	if (browser=="ff"||browser=="op"||browser=="ie7") {
 		var contWHeight = document.documentElement.clientHeight-78;
 		var contWWidth = cont.document.documentElement.clientWidth;
@@ -620,14 +755,14 @@ function toggleItem(item,type) {
 
     if (tableSelTable.id=="LinkedDocumentTable")
 		tableSelTable.style.overflow="scroll";
-			
+
 	if (cont.document.body.offsetHeight-contWHeight>0) {
 		if (tableSelTable.id!="LinkedDocumentTable")
 			tableSelTable.style.overflow="scroll";
 		if (browser=="ff"||browser=="op") {
 			tableSelTable.style.height=tableSelTable.offsetHeight-(cont.document.body.offsetHeight-cont.innerHeight)-12+"px";
 		} else {
-		
+
 			tableSelTable.style.height=tableSelTable.offsetHeight-(cont.document.body.offsetHeight-contWHeight)-3+"px";
 			if (cont.document.body.offsetWidth>contWWidth||type==null) {
 				tableSelTable.style.width=contWWidth-20+"px";
@@ -654,7 +789,9 @@ function toggleItem(item,type) {
 	}
 	if(tableSelTable.childNodes.length>1) {
 		tableSelTable.style.width=(document.body.clientWidth-(top.document.getElementById('resizeFrames').offsetLeft+6)-20)+"px";
-		tableSelTable.childNodes[0].style.width=(tableSelTable.offsetWidth-19)+"px";
-		tableSelTable.childNodes[1].style.width=(tableSelTable.offsetWidth-19)+"px";
+		if(tableSelTable.childNodes[0].style)
+      		tableSelTable.childNodes[0].style.width=(tableSelTable.offsetWidth-19)+"px";
+    	if(tableSelTable.childNodes[1].style)
+			tableSelTable.childNodes[1].style.width=(tableSelTable.offsetWidth-19)+"px";
 	}
 }

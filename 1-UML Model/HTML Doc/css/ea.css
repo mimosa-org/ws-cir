@@ -96,13 +96,10 @@ H4 {
 	padding-bottom: 0px
 }
 LI {
-	list-style: square;
 	margin-left: 0px
 }
 OL {
 	color: #000000;
-	font-size: 70%;
-	list-style: square;
 	margin-bottom: 0pt;
 	margin-top: 0pt;
 }
@@ -471,10 +468,35 @@ UL {
 }
 .TableRow {
 	background-color: #FFFFFF;
-	border-bottom: 1px dashed #CCCCCC;
 	color: #222222;
 	cursor: default;
 	font-size: 11px;
 	padding: 2px 2px 20px 2px;
 	vertical-align: top;
+}
+
+.TableRowBottomDashed {
+	border-bottom: 1px dashed #999999;
+	background-color: #FFFFFF;
+	color: #222222;
+	cursor: default;
+	font-size: 11px;
+	padding: 2px 2px 20px 2px;
+	vertical-align: top;
+}
+
+.DetailsDivParent {
+	background-color: #FFFFFF;
+	width: 100%;
+}
+
+.DetailsDiv {
+	display: block;
+	padding: 2px 2px 2px 2px;
+}
+
+.ObjectDetailsNotes UL,
+.ItemBody UL {
+	position: static;
+	margin: 0px 0px 10px 35px;
 }

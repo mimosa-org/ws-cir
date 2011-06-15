@@ -1,0 +1,696 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions
+	xmlns:xs="http://www.w3.org/2001/XMLSchema"
+	xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+	xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/"
+	xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
+	xmlns:tns="http://www.openoandm.org/xml/CIR/"
+	targetNamespace="http://www.openoandm.org/xml/CIR/">
+	
+	<wsdl:types>
+		<xs:schema xmlns:cct="urn:un:unece:uncefact:documentation:standard:CoreComponentType:2" targetNamespace="http://www.openoandm.org/xml/CIR/" elementFormDefault="qualified">
+			<xs:import namespace="urn:un:unece:uncefact:documentation:standard:CoreComponentType:2" schemaLocation="CoreComponentType_2p0.xsd"/>
+			<xs:include schemaLocation="CommonInteroperabilityRegistry.xsd" />
+
+			<!-- CIR "Create" Command Service elements -->
+
+			<xs:element name="CreateRegistry">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element minOccurs="1" maxOccurs="unbounded" name="Registry" type="tns:Registry"/>
+						<xs:element minOccurs="1" maxOccurs="1" name="CreateCIRID" type="xs:boolean"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="CreateRegistryResponse">
+				<xs:complexType />
+			</xs:element>
+
+			<xs:element name="CreateEquivalentEntry">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element minOccurs="1" maxOccurs="1" name="ExistingIDInSource" type="cct:IDType"/>
+						<xs:element minOccurs="1" maxOccurs="1" name="ExistingSourceID" type="cct:IDType"/>
+						<xs:element minOccurs="1" maxOccurs="1" name="RegistryID" type="cct:IDType"/>
+						<xs:element minOccurs="1" maxOccurs="1" name="CategoryID" type="cct:IDType"/>
+						<xs:element minOccurs="1" maxOccurs="1" name="CategorySourceID" type="cct:IDType"/>
+						<xs:element minOccurs="1" maxOccurs="1" name="Entry" type="tns:Entry"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="CreateEquivalentEntryResponse">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element minOccurs="1" maxOccurs="1" name="CIRID" type="tns:UUID"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+
+			<!-- CIR "Update" Command Service elements -->
+
+			<xs:element name="UpdateRegistry">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element minOccurs="1" maxOccurs="unbounded" name="Registry" type="tns:Registry"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="UpdateRegistryResponse">
+				<xs:complexType />
+			</xs:element>
+
+			<xs:element name="UpdateEntryCIRID">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element minOccurs="1" maxOccurs="unbounded" name="OldCIRID" type="cct:IDType"/>
+						<xs:element minOccurs="1" maxOccurs="1" name="NewCIRID" type="cct:IDType"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="UpdateEntryCIRIDResponse">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element minOccurs="1" maxOccurs="1" name="Count" type="xs:int"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+
+			<!-- CIR "Delete" Command Service elements -->
+
+			<xs:element name="DeleteRegistry">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element minOccurs="1" maxOccurs="1" name="RegistryID" type="cct:IDType"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="DeleteRegistryResponse">
+				<xs:complexType />
+			</xs:element>
+
+			<xs:element name="DeleteCategory">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element minOccurs="1" maxOccurs="1" name="RegistryID" type="cct:IDType"/>
+						<xs:element minOccurs="1" maxOccurs="1" name="CategoryID" type="cct:IDType"/>
+						<xs:element minOccurs="1" maxOccurs="1" name="CategorySourceID" type="cct:IDType"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="DeleteCategoryResponse">
+				<xs:complexType />
+			</xs:element>
+
+			<xs:element name="DeleteEntries">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element minOccurs="1" maxOccurs="unbounded" name="EntryIdentifier" type="tns:EntryIdentifier" />
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="DeleteEntriesResponse">
+				<xs:complexType />
+			</xs:element>
+
+			<xs:element name="DeleteProperties">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element minOccurs="1" maxOccurs="unbounded" name="PropertyIdentifier" type="tns:PropertyIdentifier"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="DeletePropertiesResponse">
+				<xs:complexType />
+			</xs:element>
+
+			<!-- CIR Query Service elements -->
+
+			<xs:element name="GetRegistry">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element minOccurs="0" maxOccurs="1" name="Filter" type="tns:Filter"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="GetRegistryResponse">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element minOccurs="0" maxOccurs="1" name="Registry" type="tns:Registry"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+
+			<xs:element name="GetEquivalentEntries">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element minOccurs="1" maxOccurs="1" name="ExistingIDInSource" type="cct:IDType"/>
+						<xs:element minOccurs="1" maxOccurs="1" name="ExistingSourceID" type="cct:IDType"/>
+						<xs:element minOccurs="0" maxOccurs="unbounded" name="TargetSourceID" type="cct:IDType"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="GetEquivalentEntriesResponse">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element minOccurs="0" maxOccurs="1" name="Registry" type="tns:Registry"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			
+			<xs:element name="GetEquivalentEntriesByCIRID">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element minOccurs="1" maxOccurs="1" name="ExistingCIRID" type="cct:IDType"/>
+						<xs:element minOccurs="0" maxOccurs="unbounded" name="TargetSourceID" type="cct:IDType"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="GetEquivalentEntriesByCIRIDResponse">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element minOccurs="0" maxOccurs="1" name="Registry" type="tns:Registry"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+		</xs:schema>
+	</wsdl:types>
+
+	<wsdl:message name="CreateRegistryIn">
+		<wsdl:part name="parameters" element="tns:CreateRegistry"/>
+	</wsdl:message>
+	<wsdl:message name="CreateRegistryOut">
+		<wsdl:part name="parameters" element="tns:CreateRegistryResponse"/>
+	</wsdl:message>
+	<wsdl:message name="CreateEquivalentEntryIn">
+		<wsdl:part name="parameters" element="tns:CreateEquivalentEntry"/>
+	</wsdl:message>
+	<wsdl:message name="CreateEquivalentEntryOut">
+		<wsdl:part name="parameters" element="tns:CreateEquivalentEntryResponse"/>
+	</wsdl:message>
+	<wsdl:message name="UpdateRegistryIn">
+		<wsdl:part name="parameters" element="tns:UpdateRegistry"/>
+	</wsdl:message>
+	<wsdl:message name="UpdateRegistryOut">
+		<wsdl:part name="parameters" element="tns:UpdateRegistryResponse"/>
+	</wsdl:message>
+	<wsdl:message name="UpdateEntryCIRIDIn">
+		<wsdl:part name="parameters" element="tns:UpdateEntryCIRID"/>
+	</wsdl:message>
+	<wsdl:message name="UpdateEntryCIRIDOut">
+		<wsdl:part name="parameters" element="tns:UpdateEntryCIRIDResponse"/>
+	</wsdl:message>
+	<wsdl:message name="DeleteRegistryIn">
+		<wsdl:part name="parameters" element="tns:DeleteRegistry"/>
+	</wsdl:message>
+	<wsdl:message name="DeleteRegistryOut">
+		<wsdl:part name="parameters" element="tns:DeleteRegistryResponse"/>
+	</wsdl:message>
+	<wsdl:message name="DeleteCategoryIn">
+		<wsdl:part name="parameters" element="tns:DeleteCategory"/>
+	</wsdl:message>
+	<wsdl:message name="DeleteCategoryOut">
+		<wsdl:part name="parameters" element="tns:DeleteCategoryResponse"/>
+	</wsdl:message>
+	<wsdl:message name="DeleteEntriesIn">
+		<wsdl:part name="parameters" element="tns:DeleteEntries"/>
+	</wsdl:message>
+	<wsdl:message name="DeleteEntriesOut">
+		<wsdl:part name="parameters" element="tns:DeleteEntriesResponse"/>
+	</wsdl:message>
+	<wsdl:message name="DeletePropertiesIn">
+		<wsdl:part name="parameters" element="tns:DeleteProperties"/>
+	</wsdl:message>
+	<wsdl:message name="DeletePropertiesOut">
+		<wsdl:part name="parameters" element="tns:DeletePropertiesResponse"/>
+	</wsdl:message>
+	<wsdl:message name="GetRegistryIn">
+		<wsdl:part name="parameters" element="tns:GetRegistry"/>
+	</wsdl:message>
+	<wsdl:message name="GetRegistryOut">
+		<wsdl:part name="parameters" element="tns:GetRegistryResponse"/>
+	</wsdl:message>
+	<wsdl:message name="GetEquivalentEntriesIn">
+		<wsdl:part name="parameters" element="tns:GetEquivalentEntries"/>
+	</wsdl:message>
+	<wsdl:message name="GetEquivalentEntriesOut">
+		<wsdl:part name="parameters" element="tns:GetEquivalentEntriesResponse"/>
+	</wsdl:message>
+	<wsdl:message name="GetEquivalentEntriesByCIRIDIn">
+		<wsdl:part name="parameters" element="tns:GetEquivalentEntriesByCIRID"/>
+	</wsdl:message>
+	<wsdl:message name="GetEquivalentEntriesByCIRIDOut">
+		<wsdl:part name="parameters" element="tns:GetEquivalentEntriesByCIRIDResponse"/>
+	</wsdl:message>
+	<wsdl:message name="CreateRegistryFault">
+		<wsdl:part name="parameters" element="tns:CreateRegistryFault"/>
+	</wsdl:message>
+	<wsdl:message name="CreateCategoryFault">
+		<wsdl:part name="parameters" element="tns:CreateCategoryFault"/>
+	</wsdl:message>
+	<wsdl:message name="RegistryNotFoundFault">
+		<wsdl:part name="parameters" element="tns:RegistryNotFoundFault"/>
+	</wsdl:message>
+	<wsdl:message name="CategoryNotFoundFault">
+		<wsdl:part name="parameters" element="tns:CategoryNotFoundFault"/>
+	</wsdl:message>
+	<wsdl:message name="EntryNotFoundFault">
+		<wsdl:part name="parameters" element="tns:EntryNotFoundFault"/>
+	</wsdl:message>
+	<wsdl:message name="PropertyNotFoundFault">
+		<wsdl:part name="parameters" element="tns:PropertyNotFoundFault"/>
+	</wsdl:message>
+	<wsdl:message name="DuplicateEntryFault">
+		<wsdl:part name="parameters" element="tns:DuplicateEntryFault"/>
+	</wsdl:message>
+	<wsdl:message name="DuplicatePropertyFault">
+		<wsdl:part name="parameters" element="tns:DuplicatePropertyFault"/>
+	</wsdl:message>
+
+	<wsdl:portType name="CIRService">
+		<wsdl:operation name="CreateRegistry">
+			<wsdl:documentation>Creates a new Registry, new Category in a Registry, new Entries in a Category, and Properties with Values in an Entry.</wsdl:documentation>
+			<wsdl:input message="tns:CreateRegistryIn"/>
+			<wsdl:output message="tns:CreateRegistryOut"/>
+			<wsdl:fault name="CreateRegistryFault" message="tns:CreateRegistryFault"/>
+			<wsdl:fault name="CreateCategoryFault" message="tns:CreateCategoryFault"/>
+			<wsdl:fault name="DuplicateEntryFault" message="tns:DuplicateEntryFault"/>
+			<wsdl:fault name="DuplicatePropertyFault" message="tns:DuplicatePropertyFault"/>
+		</wsdl:operation>
+		<wsdl:operation name="CreateEquivalentEntry">
+			<wsdl:documentation>Creates a single Entry and associated Properties, and links the new Entry to an existing equivalent Entry.</wsdl:documentation>
+			<wsdl:input message="tns:CreateEquivalentEntryIn"/>
+			<wsdl:output message="tns:CreateEquivalentEntryOut"/>
+			<wsdl:fault name="EntryNotFoundFault" message="tns:EntryNotFoundFault"/>
+			<wsdl:fault name="RegistryNotFoundFault" message="tns:RegistryNotFoundFault"/>
+			<wsdl:fault name="CategoryNotFoundFault" message="tns:CategoryNotFoundFault"/>
+			<wsdl:fault name="DuplicateEntryFault" message="tns:DuplicateEntryFault"/>
+		</wsdl:operation>
+		<wsdl:operation name="UpdateRegistry">
+			<wsdl:documentation>Updates the attributes of existing Registries, Categories, Entries or Properties.</wsdl:documentation>
+			<wsdl:input message="tns:UpdateRegistryIn"/>
+			<wsdl:output message="tns:UpdateRegistryOut"/>
+			<wsdl:fault name="RegistryNotFoundFault" message="tns:RegistryNotFoundFault"/>
+			<wsdl:fault name="CategoryNotFoundFault" message="tns:CategoryNotFoundFault"/>
+			<wsdl:fault name="EntryNotFoundFault" message="tns:EntryNotFoundFault"/>
+			<wsdl:fault name="PropertyNotFoundFault" message="tns:PropertyNotFoundFault"/>
+		</wsdl:operation>
+		<wsdl:operation name="UpdateEntryCIRID">
+			<wsdl:documentation>Replaces the CIRID field on matching Entries with a new CIRID value.</wsdl:documentation>
+			<wsdl:input message="tns:UpdateEntryCIRIDIn"/>
+			<wsdl:output message="tns:UpdateEntryCIRIDOut"/>
+		</wsdl:operation>
+		<wsdl:operation name="DeleteRegistry">
+			<wsdl:documentation>Deletes the specified Registry along with its Categories, Entries and Properties.</wsdl:documentation>
+			<wsdl:input message="tns:DeleteRegistryIn"/>
+			<wsdl:output message="tns:DeleteRegistryOut"/>
+			<wsdl:fault name="RegistryNotFoundFault" message="tns:RegistryNotFoundFault"/>
+		</wsdl:operation>
+		<wsdl:operation name="DeleteCategory">
+			<wsdl:documentation>Deletes the specified Category along with its Entries and Properties.</wsdl:documentation>
+			<wsdl:input message="tns:DeleteCategoryIn"/>
+			<wsdl:output message="tns:DeleteCategoryOut"/>
+			<wsdl:fault name="RegistryNotFoundFault" message="tns:RegistryNotFoundFault"/>
+			<wsdl:fault name="CategoryNotFoundFault" message="tns:CategoryNotFoundFault"/>
+		</wsdl:operation>
+		<wsdl:operation name="DeleteEntries">
+			<wsdl:documentation>Deletes the specified Entries along with its Properties.</wsdl:documentation>
+			<wsdl:input message="tns:DeleteEntriesIn"/>
+			<wsdl:output message="tns:DeleteEntriesOut"/>
+			<wsdl:fault name="RegistryNotFoundFault" message="tns:RegistryNotFoundFault"/>
+			<wsdl:fault name="CategoryNotFoundFault" message="tns:CategoryNotFoundFault"/>
+			<wsdl:fault name="EntryNotFoundFault" message="tns:EntryNotFoundFault"/>
+		</wsdl:operation>
+		<wsdl:operation name="DeleteProperties">
+			<wsdl:documentation>Deletes the specified Properties.</wsdl:documentation>
+			<wsdl:input message="tns:DeletePropertiesIn"/>
+			<wsdl:output message="tns:DeletePropertiesOut"/>
+			<wsdl:fault name="RegistryNotFoundFault" message="tns:RegistryNotFoundFault"/>
+			<wsdl:fault name="CategoryNotFoundFault" message="tns:CategoryNotFoundFault"/>
+			<wsdl:fault name="EntryNotFoundFault" message="tns:EntryNotFoundFault"/>
+			<wsdl:fault name="PropertyNotFoundFault" message="tns:PropertyNotFoundFault"/>
+		</wsdl:operation>
+		<wsdl:operation name="GetRegistry">
+			<wsdl:documentation>Returns all Registries, Categories, Entries and Properties filtered by the specified attributes.</wsdl:documentation>
+			<wsdl:input message="tns:GetRegistryIn"/>
+			<wsdl:output message="tns:GetRegistryOut"/>
+		</wsdl:operation>
+		<wsdl:operation name="GetEquivalentEntries">
+			<wsdl:documentation>Returns any equivalent Entries to the specified existing Entry (i.e. same CIRID). An Entry is specified by IDInSource and SourceID. A Target SourceID can be specified to filter returned Entries.</wsdl:documentation>
+			<wsdl:input message="tns:GetEquivalentEntriesIn"/>
+			<wsdl:output message="tns:GetEquivalentEntriesOut"/>
+		</wsdl:operation>
+		<wsdl:operation name="GetEquivalentEntriesByCIRID">
+			<wsdl:documentation>Returns any equivalent Entries to the specified existing Entry (i.e. same CIRID). An Entry is specified by CIRID. A Target SourceID can be specified to filter returned Entries.</wsdl:documentation>
+			<wsdl:input message="tns:GetEquivalentEntriesByCIRIDIn"/>
+			<wsdl:output message="tns:GetEquivalentEntriesByCIRIDOut"/>
+		</wsdl:operation>
+	</wsdl:portType>
+
+	<wsdl:binding name="CIRServiceSoap" type="tns:CIRService">
+		<soap:binding transport="http://schemas.xmlsoap.org/soap/http"/>
+		<wsdl:operation name="CreateRegistry">
+			<soap:operation soapAction="http://www.openoandm.org/xml/CIR/CreateRegistry" style="document"/>
+			<wsdl:input>
+				<soap:body use="literal"/>
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal"/>
+			</wsdl:output>
+			<wsdl:fault name="CreateRegistryFault">
+				<soap:fault name="CreateRegistryFault" use="literal"/>
+			</wsdl:fault>
+			<wsdl:fault name="CreateCategoryFault">
+				<soap:fault name="CreateCategoryFault" use="literal"/>
+			</wsdl:fault>
+			<wsdl:fault name="DuplicateEntryFault">
+				<soap:fault name="DuplicateEntryFault" use="literal"/>
+			</wsdl:fault>
+			<wsdl:fault name="DuplicatePropertyFault">
+				<soap:fault name="DuplicatePropertyFault" use="literal"/>
+			</wsdl:fault>
+		</wsdl:operation>
+		<wsdl:operation name="CreateEquivalentEntry">
+			<soap:operation soapAction="http://www.openoandm.org/xml/CIR/CreateEquivalentEntry" style="document"/>
+			<wsdl:input>
+				<soap:body use="literal"/>
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal"/>
+			</wsdl:output>
+			<wsdl:fault name="EntryNotFoundFault">
+				<soap:fault name="EntryNotFoundFault" use="literal"/>
+			</wsdl:fault>
+			<wsdl:fault name="RegistryNotFoundFault">
+				<soap:fault name="RegistryNotFoundFault" use="literal"/>
+			</wsdl:fault>
+			<wsdl:fault name="CategoryNotFoundFault">
+				<soap:fault name="CategoryNotFoundFault" use="literal"/>
+			</wsdl:fault>
+			<wsdl:fault name="DuplicateEntryFault">
+				<soap:fault name="DuplicateEntryFault" use="literal"/>
+			</wsdl:fault>
+		</wsdl:operation>
+		<wsdl:operation name="UpdateRegistry">
+			<soap:operation soapAction="http://www.openoandm.org/xml/CIR/UpdateRegistry" style="document"/>
+			<wsdl:input>
+				<soap:body use="literal"/>
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal"/>
+			</wsdl:output>
+			<wsdl:fault name="RegistryNotFoundFault">
+				<soap:fault name="RegistryNotFoundFault" use="literal"/>
+			</wsdl:fault>
+			<wsdl:fault name="CategoryNotFoundFault">
+				<soap:fault name="CategoryNotFoundFault" use="literal"/>
+			</wsdl:fault>
+			<wsdl:fault name="EntryNotFoundFault">
+				<soap:fault name="EntryNotFoundFault" use="literal"/>
+			</wsdl:fault>
+			<wsdl:fault name="PropertyNotFoundFault">
+				<soap:fault name="PropertyNotFoundFault" use="literal"/>
+			</wsdl:fault>
+		</wsdl:operation>
+		<wsdl:operation name="UpdateEntryCIRID">
+			<soap:operation soapAction="http://www.openoandm.org/xml/CIR/UpdateEntryCIRID" style="document"/>
+			<wsdl:input>
+				<soap:body use="literal"/>
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal"/>
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="DeleteRegistry">
+			<soap:operation soapAction="http://www.openoandm.org/xml/CIR/DeleteRegistry" style="document"/>
+			<wsdl:input>
+				<soap:body use="literal"/>
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal"/>
+			</wsdl:output>
+			<wsdl:fault name="RegistryNotFoundFault">
+				<soap:fault name="RegistryNotFoundFault" use="literal"/>
+			</wsdl:fault>
+		</wsdl:operation>
+		<wsdl:operation name="DeleteCategory">
+			<soap:operation soapAction="http://www.openoandm.org/xml/CIR/DeleteCategory" style="document"/>
+			<wsdl:input>
+				<soap:body use="literal"/>
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal"/>
+			</wsdl:output>
+			<wsdl:fault name="RegistryNotFoundFault">
+				<soap:fault name="RegistryNotFoundFault" use="literal"/>
+			</wsdl:fault>
+			<wsdl:fault name="CategoryNotFoundFault">
+				<soap:fault name="CategoryNotFoundFault" use="literal"/>
+			</wsdl:fault>
+		</wsdl:operation>
+		<wsdl:operation name="DeleteEntries">
+			<soap:operation soapAction="http://www.openoandm.org/xml/CIR/DeleteEntries" style="document"/>
+			<wsdl:input>
+				<soap:body use="literal"/>
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal"/>
+			</wsdl:output>
+			<wsdl:fault name="RegistryNotFoundFault">
+				<soap:fault name="RegistryNotFoundFault" use="literal"/>
+			</wsdl:fault>
+			<wsdl:fault name="CategoryNotFoundFault">
+				<soap:fault name="CategoryNotFoundFault" use="literal"/>
+			</wsdl:fault>
+			<wsdl:fault name="EntryNotFoundFault">
+				<soap:fault name="EntryNotFoundFault" use="literal"/>
+			</wsdl:fault>
+		</wsdl:operation>
+		<wsdl:operation name="DeleteProperties">
+			<soap:operation soapAction="http://www.openoandm.org/xml/CIR/DeleteProperties" style="document"/>
+			<wsdl:input>
+				<soap:body use="literal"/>
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal"/>
+			</wsdl:output>
+			<wsdl:fault name="RegistryNotFoundFault">
+				<soap:fault name="RegistryNotFoundFault" use="literal"/>
+			</wsdl:fault>
+			<wsdl:fault name="CategoryNotFoundFault">
+				<soap:fault name="CategoryNotFoundFault" use="literal"/>
+			</wsdl:fault>
+			<wsdl:fault name="EntryNotFoundFault">
+				<soap:fault name="EntryNotFoundFault" use="literal"/>
+			</wsdl:fault>
+			<wsdl:fault name="PropertyNotFoundFault">
+				<soap:fault name="PropertyNotFoundFault" use="literal"/>
+			</wsdl:fault>
+		</wsdl:operation>
+		<wsdl:operation name="GetRegistry">
+			<soap:operation soapAction="http://www.openoandm.org/xml/CIR/GetRegistry" style="document"/>
+			<wsdl:input>
+				<soap:body use="literal"/>
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal"/>
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="GetEquivalentEntries">
+			<soap:operation soapAction="http://www.openoandm.org/xml/CIR/GetEquivalentEntries" style="document"/>
+			<wsdl:input>
+				<soap:body use="literal"/>
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal"/>
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="GetEquivalentEntriesByCIRID">
+			<soap:operation soapAction="http://www.openoandm.org/xml/CIR/GetEquivalentEntriesByCIRID" style="document"/>
+			<wsdl:input>
+				<soap:body use="literal"/>
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal"/>
+			</wsdl:output>
+		</wsdl:operation>
+	</wsdl:binding>
+
+	<wsdl:binding name="CIRServiceSoap12" type="tns:CIRService">
+		<soap12:binding transport="http://schemas.xmlsoap.org/soap/http"/>
+		<wsdl:operation name="CreateRegistry">
+			<soap12:operation soapAction="http://www.openoandm.org/xml/CIR/CreateRegistry" style="document"/>
+			<wsdl:input>
+				<soap12:body use="literal"/>
+			</wsdl:input>
+			<wsdl:output>
+				<soap12:body use="literal"/>
+			</wsdl:output>
+			<wsdl:fault name="CreateRegistryFault">
+				<soap12:fault name="CreateRegistryFault" use="literal"/>
+			</wsdl:fault>
+			<wsdl:fault name="CreateCategoryFault">
+				<soap12:fault name="CreateCategoryFault" use="literal"/>
+			</wsdl:fault>
+			<wsdl:fault name="DuplicateEntryFault">
+				<soap12:fault name="DuplicateEntryFault" use="literal"/>
+			</wsdl:fault>
+			<wsdl:fault name="DuplicatePropertyFault">
+				<soap12:fault name="DuplicatePropertyFault" use="literal"/>
+			</wsdl:fault>
+		</wsdl:operation>
+		<wsdl:operation name="CreateEquivalentEntry">
+			<soap12:operation soapAction="http://www.openoandm.org/xml/CIR/CreateEquivalentEntry" style="document"/>
+			<wsdl:input>
+				<soap12:body use="literal"/>
+			</wsdl:input>
+			<wsdl:output>
+				<soap12:body use="literal"/>
+			</wsdl:output>
+			<wsdl:fault name="EntryNotFoundFault">
+				<soap12:fault name="EntryNotFoundFault" use="literal"/>
+			</wsdl:fault>
+			<wsdl:fault name="RegistryNotFoundFault">
+				<soap12:fault name="RegistryNotFoundFault" use="literal"/>
+			</wsdl:fault>
+			<wsdl:fault name="CategoryNotFoundFault">
+				<soap12:fault name="CategoryNotFoundFault" use="literal"/>
+			</wsdl:fault>
+			<wsdl:fault name="DuplicateEntryFault">
+				<soap12:fault name="DuplicateEntryFault" use="literal"/>
+			</wsdl:fault>
+		</wsdl:operation>
+		<wsdl:operation name="UpdateRegistry">
+			<soap12:operation soapAction="http://www.openoandm.org/xml/CIR/UpdateRegistry" style="document"/>
+			<wsdl:input>
+				<soap12:body use="literal"/>
+			</wsdl:input>
+			<wsdl:output>
+				<soap12:body use="literal"/>
+			</wsdl:output>
+			<wsdl:fault name="RegistryNotFoundFault">
+				<soap12:fault name="RegistryNotFoundFault" use="literal"/>
+			</wsdl:fault>
+			<wsdl:fault name="CategoryNotFoundFault">
+				<soap12:fault name="CategoryNotFoundFault" use="literal"/>
+			</wsdl:fault>
+			<wsdl:fault name="EntryNotFoundFault">
+				<soap12:fault name="EntryNotFoundFault" use="literal"/>
+			</wsdl:fault>
+			<wsdl:fault name="PropertyNotFoundFault">
+				<soap12:fault name="PropertyNotFoundFault" use="literal"/>
+			</wsdl:fault>
+		</wsdl:operation>
+		<wsdl:operation name="UpdateEntryCIRID">
+			<soap12:operation soapAction="http://www.openoandm.org/xml/CIR/UpdateEntryCIRID" style="document"/>
+			<wsdl:input>
+				<soap12:body use="literal"/>
+			</wsdl:input>
+			<wsdl:output>
+				<soap12:body use="literal"/>
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="DeleteRegistry">
+			<soap12:operation soapAction="http://www.openoandm.org/xml/CIR/DeleteRegistry" style="document"/>
+			<wsdl:input>
+				<soap12:body use="literal"/>
+			</wsdl:input>
+			<wsdl:output>
+				<soap12:body use="literal"/>
+			</wsdl:output>
+			<wsdl:fault name="RegistryNotFoundFault">
+				<soap12:fault name="RegistryNotFoundFault" use="literal"/>
+			</wsdl:fault>
+		</wsdl:operation>
+		<wsdl:operation name="DeleteCategory">
+			<soap12:operation soapAction="http://www.openoandm.org/xml/CIR/DeleteCategory" style="document"/>
+			<wsdl:input>
+				<soap12:body use="literal"/>
+			</wsdl:input>
+			<wsdl:output>
+				<soap12:body use="literal"/>
+			</wsdl:output>
+			<wsdl:fault name="RegistryNotFoundFault">
+				<soap12:fault name="RegistryNotFoundFault" use="literal"/>
+			</wsdl:fault>
+			<wsdl:fault name="CategoryNotFoundFault">
+				<soap12:fault name="CategoryNotFoundFault" use="literal"/>
+			</wsdl:fault>
+		</wsdl:operation>
+		<wsdl:operation name="DeleteEntries">
+			<soap12:operation soapAction="http://www.openoandm.org/xml/CIR/DeleteEntries" style="document"/>
+			<wsdl:input>
+				<soap12:body use="literal"/>
+			</wsdl:input>
+			<wsdl:output>
+				<soap12:body use="literal"/>
+			</wsdl:output>
+			<wsdl:fault name="RegistryNotFoundFault">
+				<soap12:fault name="RegistryNotFoundFault" use="literal"/>
+			</wsdl:fault>
+			<wsdl:fault name="CategoryNotFoundFault">
+				<soap12:fault name="CategoryNotFoundFault" use="literal"/>
+			</wsdl:fault>
+			<wsdl:fault name="EntryNotFoundFault">
+				<soap12:fault name="EntryNotFoundFault" use="literal"/>
+			</wsdl:fault>
+		</wsdl:operation>
+		<wsdl:operation name="DeleteProperties">
+			<soap12:operation soapAction="http://www.openoandm.org/xml/CIR/DeleteProperties" style="document"/>
+			<wsdl:input>
+				<soap12:body use="literal"/>
+			</wsdl:input>
+			<wsdl:output>
+				<soap12:body use="literal"/>
+			</wsdl:output>
+			<wsdl:fault name="RegistryNotFoundFault">
+				<soap12:fault name="RegistryNotFoundFault" use="literal"/>
+			</wsdl:fault>
+			<wsdl:fault name="CategoryNotFoundFault">
+				<soap12:fault name="CategoryNotFoundFault" use="literal"/>
+			</wsdl:fault>
+			<wsdl:fault name="EntryNotFoundFault">
+				<soap12:fault name="EntryNotFoundFault" use="literal"/>
+			</wsdl:fault>
+			<wsdl:fault name="PropertyNotFoundFault">
+				<soap12:fault name="PropertyNotFoundFault" use="literal"/>
+			</wsdl:fault>
+		</wsdl:operation>
+		<wsdl:operation name="GetRegistry">
+			<soap12:operation soapAction="http://www.openoandm.org/xml/CIR/GetRegistry" style="document"/>
+			<wsdl:input>
+				<soap12:body use="literal"/>
+			</wsdl:input>
+			<wsdl:output>
+				<soap12:body use="literal"/>
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="GetEquivalentEntries">
+			<soap12:operation soapAction="http://www.openoandm.org/xml/CIR/GetEquivalentEntries" style="document"/>
+			<wsdl:input>
+				<soap12:body use="literal"/>
+			</wsdl:input>
+			<wsdl:output>
+				<soap12:body use="literal"/>
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="GetEquivalentEntriesByCIRID">
+			<soap12:operation soapAction="http://www.openoandm.org/xml/CIR/GetEquivalentEntriesByCIRID" style="document"/>
+			<wsdl:input>
+				<soap12:body use="literal"/>
+			</wsdl:input>
+			<wsdl:output>
+				<soap12:body use="literal"/>
+			</wsdl:output>
+		</wsdl:operation>
+	</wsdl:binding>
+
+	<wsdl:service name="CIRService">
+		<wsdl:port name="CIRServiceSoap" binding="tns:CIRServiceSoap">
+			<soap:address location="http://localhost/CIRService"/>
+		</wsdl:port>
+		<wsdl:port name="CIRServiceSoap12" binding="tns:CIRServiceSoap12">
+			<soap12:address location="http://localhost/CIRService"/>
+		</wsdl:port>
+	</wsdl:service>
+
+</wsdl:definitions>

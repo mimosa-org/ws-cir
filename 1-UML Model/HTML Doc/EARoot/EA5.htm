@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-<title></title>
+<title>Registry</title>
 <link href="../css/ea.css" rel="stylesheet" type="text/css" />
 <script>
 function initPage(src) {
@@ -16,15 +16,15 @@ function initPage(src) {
 <body onload="initPage(this);" class="Content">
 <div class="pageHeader"></div>
 <div class="PageBody">
-	<span class="ObjectTitle">  : public   note</span>
+	<span class="ObjectTitle">Registry  : public   class</span>
 	<table border="0" cellpadding="0" cellspacing="0" class="ObjectDetails">
 		<tr>
 			<td width="15%" class="ObjectDetailsTopic">Created:</td>
-			<td width="85%" class="ObjectDetailsValue">4/14/2009 3:49:42 PM</td>
+			<td width="85%" class="ObjectDetailsValue">17/04/2009 12:30:23 PM</td>
 		</tr>
 		<tr>
 			<td class="ObjectDetailsTopic">Modified:</td>
-			<td class="ObjectDetailsValue">7/7/2009 5:50:59 PM</td>
+			<td class="ObjectDetailsValue">15/06/2011 10:26:09 AM</td>
 		</tr>
 		<tr style="height: 10px"><td colspan="2"></td></tr>
 		<tr>
@@ -33,15 +33,15 @@ function initPage(src) {
 		</tr>
 		<tr id="proj00" style="display: none;">
 			<td class="ObjectDetailsTopic" style="padding-left: 18px;">Author:</td>
-			<td class="ObjectDetailsValue">kbever</td>
+			<td class="ObjectDetailsValue">OpenO&M</td>
 		</tr>
 		<tr id="proj01" style="display: none;">
 			<td class="ObjectDetailsTopic" style="padding-left: 18px;">Version:</td>
-			<td class="ObjectDetailsValue">1.0</td>
+			<td class="ObjectDetailsValue"></td>
 		</tr>
 		<tr id="proj02" style="display: none;">
 			<td class="ObjectDetailsTopic" style="padding-left: 18px;">Phase:</td>
-			<td class="ObjectDetailsValue">1.0</td>
+			<td class="ObjectDetailsValue"></td>
 		</tr>
 		<tr id="proj03" style="display: none;">
 			<td class="ObjectDetailsTopic" style="padding-left: 18px;">Status:</td>
@@ -57,15 +57,122 @@ function initPage(src) {
 		</tr>
 		<tr id="adv00" style="display: none;">
 			<td class="ObjectDetailsTopic" style="padding-left: 18px;">UUID:</td>
-			<td class="ObjectDetailsValue">{BCA0E75F-9E46-4382-B821-A3D1F901F446}</td>
+			<td class="ObjectDetailsValue">{BBFA30A2-D166-4768-955D-583381D67BAF}</td>
 		</tr>
 		<tr id="adv01" style="display: none;">
 			<td class="ObjectDetailsTopic" style="padding-left: 18px;">Appears In:</td>
-			<td class="ObjectDetailsValue"><a href="EA1.htm">OpenOandM CIR Model V10b1</a></td>
+			<td class="ObjectDetailsValue"><a href="EA1.htm">OpenO&M Common Interoperability Registry</a></td>
 		</tr>
 	</table>
-	<div class="ObjectDetailsNotes">Entity to store a small subset of properties that may be needed to link systems together.  It is not intended to be a global property master registry.  The properties may help in identification of equivalent entries. There are two predefined properties:<br />&lt;ul&gt;<br />	&lt;li&gt;&lt;b&gt;CIRParentEntityID &lt;/b&gt;: Has the &lt;b&gt;entityIDinSource &lt;/b&gt;for the parent object in the source&#39;s hierarchy. &lt;/li&gt;<br />	&lt;li&gt;&lt;b&gt;CIRChildEntityID&lt;/b&gt;: Has the set of &lt;b&gt;entityIDinSource &lt;/b&gt;for the child objcts in the source&#39;s hierarchy.&lt;/li&gt;<br />&lt;/ul&gt;</div>
+	<div class="ObjectDetailsNotes">A Registry is the container object for a set of registration categories. Examples of multiple registries include: test registry, active registry, local site registry, global corporate registry.</div>
 
+	<div class="TableGroup" id="TableGroup">
+		<ul class="ItemTitle">
+			<li onClick="parent.toggleItem('Attributes');" id="AttributesTitle">Attributes</li>
+			<li onClick="parent.toggleItem('AssociationsFrom');" id="AssociationsFromTitle">Associations From</li>
+			<li onClick="parent.toggleItem('Links');" id="LinksTitle">Other Links</li>
+		</ul>
+<div class="ItemBody" id="AttributesTable">
+	<table border="0" cellspacing="0" cellpadding="0" class="Table">
+		<tr>
+			<td width="100%" class="TableHeading">Attribute</td>
+		</tr>
+						<tr>
+				<td width="100%" class="TableRow" valign="top"><i>public cct:IDType</i><br /><strong>&nbsp;&nbsp;ID</strong></td>
+			</tr>
+			<tr>
+				<td class="TableRowBottomDashed"  colspan="1">
+					<div class="DetailsDivParent"><img src="../images/minus03.gif" align="absmiddle" id="DetailsImageAttributes5" onclick="parent.toggleDiv('detailsDIVAttributes5','DetailsImageAttributes5')" />Details:
+						<div id="detailsDIVAttributes5" class="DetailsDiv" >
+						<i></i><div class="ObjectDetailsNotes"><table>
+	<tr>
+		<td valign="top">
+			<i>Notes: </i><span style="margin-left: .4cm;"> </span>
+		</td>
+		<td>
+			User defined identifier of the registry. This must be unique within the registry server.&lt;br /&gt;For example:&lt;br /&gt;&lt;ul&gt;&lt;br /&gt;&nbsp;&nbsp;&nbsp;&nbsp;&lt;li&gt;Registration Server A&lt;/li&gt;&lt;br /&gt;&nbsp;&nbsp;&nbsp;&nbsp;&lt;li&gt;Test Registry&lt;/li&gt;&lt;br /&gt;&nbsp;&nbsp;&nbsp;&nbsp;&lt;li&gt;Finance System Registry&lt;/li&gt;&lt;br /&gt;&lt;/ul&gt;
+		</td>
+	</tr>
+</table></div>
+
+						</div>
+					</div>
+				</td>
+			</tr>			<tr>
+				<td width="100%" class="TableRow" valign="top"><i>public cct:TextType</i><br /><strong>&nbsp;&nbsp;Description</strong></td>
+			</tr>
+			<tr>
+				<td class="TableRowBottomDashed"  colspan="1">
+					<div class="DetailsDivParent"><img src="../images/minus03.gif" align="absmiddle" id="DetailsImageAttributes6" onclick="parent.toggleDiv('detailsDIVAttributes6','DetailsImageAttributes6')" />Details:
+						<div id="detailsDIVAttributes6" class="DetailsDiv" >
+						<i>Range:0 to *</i><div class="ObjectDetailsNotes"><table>
+	<tr>
+		<td valign="top">
+			<i>Notes: </i><span style="margin-left: .4cm;"> </span>
+		</td>
+		<td>
+			Description and expected use of the registry. Multiple values are allowed for multiple languages or alternate descriptions.
+		</td>
+	</tr>
+</table></div>
+
+						</div>
+					</div>
+				</td>
+			</tr>
+	</table>
+</div>
+		<div class="ItemBody" id="AssociationsFromTable">
+			<table border="0" cellspacing="0" cellpadding="0" class="Table">
+				<tr>
+					<td width="40%" class="TableHeading">Element</td>
+					<td width="30%" class="TableHeading">Source Role</td>
+					<td width="30%" class="TableHeading">Target Role</td>
+				</tr>
+				<tr>
+					<td width="40%" class="TableRow" valign="top">
+						<a href="EA8.htm">Category</a><br />
+						Class &nbsp;
+					</td>
+					<td width="30%" class="TableRow" valign="top">
+						<strong>Name:</strong> &nbsp;<br />
+						&nbsp;
+					</td>
+					<td width="30%" class="TableRow" valign="top">
+						<strong>Name:</strong> Category<br />
+						&nbsp;	
+					</td>
+				</tr>
+				<tr>
+					<td class="TableRowBottomDashed"  colspan="3">
+						<div class="DetailsDivParent"><img src="../images/minus03.gif" align="absmiddle" id="DetailsImageLink8" onclick="parent.toggleDiv('detailsDIVLink8','DetailsImageLink8')" />Details:
+							<div id="detailsDIVLink8" class="DetailsDiv" >
+							&nbsp;
+							</div>
+						</div>
+					</td>
+				</tr>
+
+			</table>
+		</div>
+		<div class="ItemBody" id="LinksTable">
+			<table align="center" border="0" cellspacing="0" cellpadding="0" class="Table">
+				<tr>
+					<td width="30%" class="TableHeading">Object</td>
+					<td width="15%" class="TableHeading">Type</td>
+					<td width="15%" class="TableHeading">Connection</td>
+					<td width="40%" class="TableHeading">Notes</td>
+				</tr>
+				<tr>
+					<td width="30%" class="TableRow" valign="top"><a href="EA8.htm">Category</a></td>
+					<td width="15%" class="TableRow" valign="top">Class</td>
+					<td width="15%" class="TableRow" valign="top">Strong</td>
+					<td width="40%" class="TableRow" valign="top">&nbsp;</td>
+				</tr>
+
+			</table>
+		</div>
+	</div>
 <div class="pageFooter"></div>
  
 </body>
