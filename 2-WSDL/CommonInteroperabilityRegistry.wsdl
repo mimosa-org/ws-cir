@@ -68,11 +68,7 @@
 				</xs:complexType>
 			</xs:element>
 			<xs:element name="UpdateEntryCIRIDResponse">
-				<xs:complexType>
-					<xs:sequence>
-						<xs:element minOccurs="1" maxOccurs="1" name="Count" type="xs:int"/>
-					</xs:sequence>
-				</xs:complexType>
+				<xs:complexType />
 			</xs:element>
 
 			<!-- CIR "Delete" Command Service elements -->

@@ -86,7 +86,6 @@ In no event shall the OpenO&amp;M, its members, or any third party be liable for
 			<xs:element minOccurs="1" maxOccurs="1" name="ID" type="cct:IDType"/>
 			<xs:group minOccurs="0" maxOccurs="unbounded" ref="tns:PropertyValue"/>
 			<xs:element minOccurs="0" maxOccurs="1" name="DataType" type="cct:CodeType"/>
-			<xs:element minOccurs="0" maxOccurs="1" name="Mandatory" type="xs:boolean"/>
 		</xs:sequence>
 	</xs:complexType>
 
