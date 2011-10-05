@@ -29,21 +29,12 @@
 			<xs:element name="CreateEquivalentEntry">
 				<xs:complexType>
 					<xs:sequence>
-						<xs:element minOccurs="1" maxOccurs="1" name="ExistingIDInSource" type="cct:IDType"/>
-						<xs:element minOccurs="1" maxOccurs="1" name="ExistingSourceID" type="cct:IDType"/>
-						<xs:element minOccurs="1" maxOccurs="1" name="RegistryID" type="cct:IDType"/>
-						<xs:element minOccurs="1" maxOccurs="1" name="CategoryID" type="cct:IDType"/>
-						<xs:element minOccurs="1" maxOccurs="1" name="CategorySourceID" type="cct:IDType"/>
-						<xs:element minOccurs="1" maxOccurs="1" name="Entry" type="tns:Entry"/>
+						<xs:element minOccurs="1" maxOccurs="unbounded" name="EquivalentEntry" type="tns:EquivalentEntry"/>
 					</xs:sequence>
 				</xs:complexType>
 			</xs:element>
 			<xs:element name="CreateEquivalentEntryResponse">
-				<xs:complexType>
-					<xs:sequence>
-						<xs:element minOccurs="1" maxOccurs="1" name="CIRID" type="tns:UUID"/>
-					</xs:sequence>
-				</xs:complexType>
+				<xs:complexType />
 			</xs:element>
 
 			<!-- CIR "Update" Command Service elements -->
@@ -139,8 +130,7 @@
 			<xs:element name="GetEquivalentEntries">
 				<xs:complexType>
 					<xs:sequence>
-						<xs:element minOccurs="1" maxOccurs="1" name="ExistingIDInSource" type="cct:IDType"/>
-						<xs:element minOccurs="1" maxOccurs="1" name="ExistingSourceID" type="cct:IDType"/>
+						<xs:element minOccurs="1" maxOccurs="unbounded" name="EntrySourceIdentifier" type="tns:EntrySourceIdentifier"/>
 						<xs:element minOccurs="0" maxOccurs="unbounded" name="TargetSourceID" type="cct:IDType"/>
 					</xs:sequence>
 				</xs:complexType>
@@ -152,7 +142,7 @@
 					</xs:sequence>
 				</xs:complexType>
 			</xs:element>
-			
+
 			<xs:element name="GetEquivalentEntriesByCIRID">
 				<xs:complexType>
 					<xs:sequence>
@@ -273,7 +263,7 @@
 			<wsdl:fault name="DuplicatePropertyFault" message="tns:DuplicatePropertyFault"/>
 		</wsdl:operation>
 		<wsdl:operation name="CreateEquivalentEntry">
-			<wsdl:documentation>Creates a single Entry and associated Properties, and links the new Entry to an existing equivalent Entry.</wsdl:documentation>
+			<wsdl:documentation>Creates a single Entry and associated Properties, and links the new Entry to an existing equivalent Entry. Returns the CIRID of the newly created Entry.</wsdl:documentation>
 			<wsdl:input message="tns:CreateEquivalentEntryIn"/>
 			<wsdl:output message="tns:CreateEquivalentEntryOut"/>
 			<wsdl:fault name="EntryNotFoundFault" message="tns:EntryNotFoundFault"/>
@@ -326,17 +316,17 @@
 			<wsdl:fault name="PropertyNotFoundFault" message="tns:PropertyNotFoundFault"/>
 		</wsdl:operation>
 		<wsdl:operation name="GetRegistry">
-			<wsdl:documentation>Returns all Registries, Categories, Entries and Properties filtered by the specified attributes.</wsdl:documentation>
+			<wsdl:documentation>Returns all Registries, Categories, Entries and Properties filtered by the specified conditions.</wsdl:documentation>
 			<wsdl:input message="tns:GetRegistryIn"/>
 			<wsdl:output message="tns:GetRegistryOut"/>
 		</wsdl:operation>
 		<wsdl:operation name="GetEquivalentEntries">
-			<wsdl:documentation>Returns any equivalent Entries to the specified existing Entry (i.e. same CIRID). An Entry is specified by IDInSource and SourceID. A Target SourceID can be specified to filter returned Entries.</wsdl:documentation>
+			<wsdl:documentation>Returns any equivalent Entries to the specified existing Entries (i.e. by identifying all Entries with the same CIRID to the existing Entries). Multiple entries are specified by IDInSource and SourceID pairs. A TargetSourceID or list of TargetSourceIDs can be specified to filter returned Entries.</wsdl:documentation>
 			<wsdl:input message="tns:GetEquivalentEntriesIn"/>
 			<wsdl:output message="tns:GetEquivalentEntriesOut"/>
 		</wsdl:operation>
 		<wsdl:operation name="GetEquivalentEntriesByCIRID">
-			<wsdl:documentation>Returns any equivalent Entries to the specified existing Entry (i.e. same CIRID). An Entry is specified by CIRID. A Target SourceID can be specified to filter returned Entries.</wsdl:documentation>
+			<wsdl:documentation>Returns any equivalent Entries to the specified existing Entry (i.e. by identifying all other Entries with the same CIRID to the existing Entry). An Entry is specified by CIRID. A Target SourceID or list of SourceIDs can be specified to filter returned Entries.</wsdl:documentation>
 			<wsdl:input message="tns:GetEquivalentEntriesByCIRIDIn"/>
 			<wsdl:output message="tns:GetEquivalentEntriesByCIRIDOut"/>
 		</wsdl:operation>

@@ -174,6 +174,28 @@ In no event shall the OpenO&amp;M, its members, or any third party be liable for
 		</xs:sequence>
 	</xs:complexType>
 
+	<!-- ================== -->
+	<!-- Batch helper types -->
+	<!-- ================== -->
+
+	<xs:complexType name="EquivalentEntry">
+		<xs:sequence>
+			<xs:element minOccurs="1" maxOccurs="1" name="ExistingIDInSource" type="cct:IDType"/>
+			<xs:element minOccurs="1" maxOccurs="1" name="ExistingSourceID" type="cct:IDType"/>
+			<xs:element minOccurs="1" maxOccurs="1" name="RegistryID" type="cct:IDType"/>
+			<xs:element minOccurs="1" maxOccurs="1" name="CategoryID" type="cct:IDType"/>
+			<xs:element minOccurs="1" maxOccurs="1" name="CategorySourceID" type="cct:IDType"/>
+			<xs:element minOccurs="1" maxOccurs="1" name="Entry" type="tns:Entry"/>
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="EntrySourceIdentifier">
+		<xs:sequence>
+			<xs:element minOccurs="1" maxOccurs="1" name="IDInSource" type="cct:IDType"/>
+			<xs:element minOccurs="1" maxOccurs="1" name="SourceID" type="cct:IDType"/>
+		</xs:sequence>
+	</xs:complexType>
+
 	<!-- ============== -->
 	<!-- Fault elements -->
 	<!-- ============== -->
