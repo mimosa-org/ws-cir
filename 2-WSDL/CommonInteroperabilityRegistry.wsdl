@@ -130,7 +130,7 @@
 			<xs:element name="GetEquivalentEntries">
 				<xs:complexType>
 					<xs:sequence>
-						<xs:element minOccurs="1" maxOccurs="unbounded" name="EntrySourceIdentifier" type="tns:EntrySourceIdentifier"/>
+						<xs:element minOccurs="1" maxOccurs="unbounded" name="EntryIdentifier" type="tns:EntryIdentifier"/>
 						<xs:element minOccurs="0" maxOccurs="unbounded" name="TargetSourceID" type="cct:IDType"/>
 					</xs:sequence>
 				</xs:complexType>

@@ -189,13 +189,6 @@ In no event shall the OpenO&amp;M, its members, or any third party be liable for
 		</xs:sequence>
 	</xs:complexType>
 
-	<xs:complexType name="EntrySourceIdentifier">
-		<xs:sequence>
-			<xs:element minOccurs="1" maxOccurs="1" name="IDInSource" type="cct:IDType"/>
-			<xs:element minOccurs="1" maxOccurs="1" name="SourceID" type="cct:IDType"/>
-		</xs:sequence>
-	</xs:complexType>
-
 	<!-- ============== -->
 	<!-- Fault elements -->
 	<!-- ============== -->
