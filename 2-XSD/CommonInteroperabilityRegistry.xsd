@@ -2,12 +2,10 @@
 <xs:schema
 	xmlns:xs="http://www.w3.org/2001/XMLSchema"
 	xmlns:cct="urn:un:unece:uncefact:documentation:standard:CoreComponentType:2"
-	xmlns:tns="http://www.openoandm.org/xml/CIR/"
+	xmlns:cir="http://www.openoandm.org/xml/CIR/"
 	targetNamespace="http://www.openoandm.org/xml/CIR/"
 	elementFormDefault="qualified"
 	attributeFormDefault="unqualified">
-
-	<xs:import namespace="urn:un:unece:uncefact:documentation:standard:CoreComponentType:2" schemaLocation="CoreComponentType_2p0.xsd"/>
 
 	<xs:annotation>
 		<xs:documentation>
@@ -25,9 +23,11 @@ In no event shall the OpenO&amp;M, its members, or any third party be liable for
 		</xs:documentation>
 	</xs:annotation>
 
-	<!-- ========== -->
-	<!-- Base types -->
-	<!-- ========== -->
+  <xs:import namespace="urn:un:unece:uncefact:documentation:standard:CoreComponentType:2" schemaLocation="CoreComponentType_2p0.xsd"/>
+
+  <!-- =========== -->
+	<!-- Value Types -->
+	<!-- =========== -->
 
 	<xs:simpleType name="UUID">
 		<xs:annotation>
@@ -46,15 +46,15 @@ In no event shall the OpenO&amp;M, its members, or any third party be liable for
 		</xs:sequence>
 	</xs:group>
 
-	<!-- ===================== -->
-	<!-- Command Service Types -->
-	<!-- ===================== -->
+	<!-- ============ -->
+	<!-- Entity Types -->
+	<!-- ============ -->
 
 	<xs:complexType name="Registry">
 		<xs:sequence>
 			<xs:element minOccurs="1" maxOccurs="1" name="ID" type="cct:IDType"/>
 			<xs:element minOccurs="0" maxOccurs="unbounded" name="Description" type="cct:TextType"/>
-			<xs:element minOccurs="0" maxOccurs="unbounded" name="Category" type="tns:Category"/>
+			<xs:element minOccurs="0" maxOccurs="unbounded" name="Category" type="cir:Category"/>
 		</xs:sequence>
 	</xs:complexType>
 
@@ -64,7 +64,7 @@ In no event shall the OpenO&amp;M, its members, or any third party be liable for
 			<xs:element minOccurs="1" maxOccurs="1" name="CategorySourceID" type="cct:IDType"/>
 			<xs:element minOccurs="0" maxOccurs="unbounded" name="Description" type="cct:TextType"/>
 			<xs:element minOccurs="0" maxOccurs="1" name="ISO15926ReferenceURI" type="xs:anyURI"/>
-			<xs:element minOccurs="0" maxOccurs="unbounded" name="Entry" type="tns:Entry"/>
+			<xs:element minOccurs="0" maxOccurs="unbounded" name="Entry" type="cir:Entry"/>
 		</xs:sequence>
 	</xs:complexType>
 
@@ -72,25 +72,25 @@ In no event shall the OpenO&amp;M, its members, or any third party be liable for
 		<xs:sequence>
 			<xs:element minOccurs="1" maxOccurs="1" name="IDInSource" type="cct:IDType"/>
 			<xs:element minOccurs="1" maxOccurs="1" name="SourceID" type="cct:IDType"/>
-			<xs:element minOccurs="0" maxOccurs="1" name="CIRID" type="tns:UUID"/>
+			<xs:element minOccurs="0" maxOccurs="1" name="CIRID" type="cir:UUID"/>
 			<xs:element minOccurs="0" maxOccurs="1" name="SourceOwnerID" type="cct:IDType"/>
 			<xs:element minOccurs="0" maxOccurs="1" name="Tag" type="cct:CodeType"/>
 			<xs:element minOccurs="0" maxOccurs="unbounded" name="Description" type="cct:TextType"/>
 			<xs:element minOccurs="0" maxOccurs="1" name="Inactive" type="xs:boolean"/>
-			<xs:element minOccurs="0" maxOccurs="unbounded" name="Property" type="tns:Property"/>
+			<xs:element minOccurs="0" maxOccurs="unbounded" name="Property" type="cir:Property"/>
 		</xs:sequence>
 	</xs:complexType>
 
 	<xs:complexType name="Property">
 		<xs:sequence>
 			<xs:element minOccurs="1" maxOccurs="1" name="ID" type="cct:IDType"/>
-			<xs:group minOccurs="0" maxOccurs="unbounded" ref="tns:PropertyValue"/>
+			<xs:group minOccurs="0" maxOccurs="unbounded" ref="cir:PropertyValue"/>
 			<xs:element minOccurs="0" maxOccurs="1" name="DataType" type="cct:CodeType"/>
 		</xs:sequence>
 	</xs:complexType>
 
 	<!-- ================ -->
-	<!-- Identifier types -->
+	<!-- Identifier Types -->
 	<!-- ================ -->
 
 	<xs:complexType name="RegistryIdentifier">
@@ -129,15 +129,15 @@ In no event shall the OpenO&amp;M, its members, or any third party be liable for
 	</xs:complexType>
 
 	<!-- ============ -->
-	<!-- Filter types -->
+	<!-- Filter Types -->
 	<!-- ============ -->
 
 	<xs:complexType name="Filter">
 		<xs:sequence>
-			<xs:element minOccurs="0" maxOccurs="1" name="RegistryFilter" type="tns:RegistryFilter"/>
-			<xs:element minOccurs="0" maxOccurs="1" name="CategoryFilter" type="tns:CategoryFilter"/>
-			<xs:element minOccurs="0" maxOccurs="1" name="EntryFilter" type="tns:EntryFilter"/>
-			<xs:element minOccurs="0" maxOccurs="1" name="PropertyFilter" type="tns:PropertyFilter"/>
+			<xs:element minOccurs="0" maxOccurs="1" name="RegistryFilter" type="cir:RegistryFilter"/>
+			<xs:element minOccurs="0" maxOccurs="1" name="CategoryFilter" type="cir:CategoryFilter"/>
+			<xs:element minOccurs="0" maxOccurs="1" name="EntryFilter" type="cir:EntryFilter"/>
+			<xs:element minOccurs="0" maxOccurs="1" name="PropertyFilter" type="cir:PropertyFilter"/>
 		</xs:sequence>
 	</xs:complexType>
 	
@@ -159,7 +159,7 @@ In no event shall the OpenO&amp;M, its members, or any third party be liable for
 		<xs:sequence>
 			<xs:element minOccurs="0" maxOccurs="1" name="IDInSource" type="cct:IDType"/>
 			<xs:element minOccurs="0" maxOccurs="1" name="SourceID" type="cct:IDType"/>
-			<xs:element minOccurs="0" maxOccurs="1" name="CIRID" type="tns:UUID"/>
+			<xs:element minOccurs="0" maxOccurs="1" name="CIRID" type="cir:UUID"/>
 			<xs:element minOccurs="0" maxOccurs="1" name="SourceOwnerID" type="cct:IDType"/>
 			<xs:element minOccurs="0" maxOccurs="1" name="Tag" type="cct:CodeType"/>
 			<xs:element minOccurs="0" maxOccurs="1" name="Inactive" type="xs:boolean"/>
@@ -174,9 +174,9 @@ In no event shall the OpenO&amp;M, its members, or any third party be liable for
 		</xs:sequence>
 	</xs:complexType>
 
-	<!-- ================== -->
-	<!-- Batch helper types -->
-	<!-- ================== -->
+	<!-- =========== -->
+	<!-- Batch Types -->
+	<!-- =========== -->
 
 	<xs:complexType name="EquivalentEntry">
 		<xs:sequence>
@@ -185,12 +185,176 @@ In no event shall the OpenO&amp;M, its members, or any third party be liable for
 			<xs:element minOccurs="1" maxOccurs="1" name="RegistryID" type="cct:IDType"/>
 			<xs:element minOccurs="1" maxOccurs="1" name="CategoryID" type="cct:IDType"/>
 			<xs:element minOccurs="1" maxOccurs="1" name="CategorySourceID" type="cct:IDType"/>
-			<xs:element minOccurs="1" maxOccurs="1" name="Entry" type="tns:Entry"/>
+			<xs:element minOccurs="1" maxOccurs="1" name="Entry" type="cir:Entry"/>
 		</xs:sequence>
 	</xs:complexType>
 
+	<!-- ========================= -->
+	<!-- Command Services Elements -->
+	<!-- ========================= -->
+
+	<!-- CIR "Create" Command Service elements -->
+
+	<xs:element name="CreateRegistry">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element minOccurs="1" maxOccurs="unbounded" name="Registry" type="cir:Registry"/>
+				<xs:element minOccurs="1" maxOccurs="1" name="CreateCIRID" type="xs:boolean"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+
+	<xs:element name="CreateRegistryResponse">
+		<xs:complexType />
+	</xs:element>
+
+	<xs:element name="CreateEquivalentEntry">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element minOccurs="1" maxOccurs="unbounded" name="EquivalentEntry" type="cir:EquivalentEntry"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+
+	<xs:element name="CreateEquivalentEntryResponse">
+		<xs:complexType />
+	</xs:element>
+
+	<!-- CIR "Update" Command Service elements -->
+
+	<xs:element name="UpdateRegistry">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element minOccurs="1" maxOccurs="unbounded" name="Registry" type="cir:Registry"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+
+	<xs:element name="UpdateRegistryResponse">
+		<xs:complexType />
+	</xs:element>
+
+	<xs:element name="UpdateEntryCIRID">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element minOccurs="1" maxOccurs="unbounded" name="OldCIRID" type="cct:IDType"/>
+				<xs:element minOccurs="1" maxOccurs="1" name="NewCIRID" type="cct:IDType"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+
+	<xs:element name="UpdateEntryCIRIDResponse">
+		<xs:complexType />
+	</xs:element>
+
+	<!-- CIR "Delete" Command Service elements -->
+
+	<xs:element name="DeleteRegistry">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element minOccurs="1" maxOccurs="1" name="RegistryID" type="cct:IDType"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+
+	<xs:element name="DeleteRegistryResponse">
+		<xs:complexType />
+	</xs:element>
+
+	<xs:element name="DeleteCategory">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element minOccurs="1" maxOccurs="1" name="RegistryID" type="cct:IDType"/>
+				<xs:element minOccurs="1" maxOccurs="1" name="CategoryID" type="cct:IDType"/>
+				<xs:element minOccurs="1" maxOccurs="1" name="CategorySourceID" type="cct:IDType"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+
+	<xs:element name="DeleteCategoryResponse">
+		<xs:complexType />
+	</xs:element>
+
+	<xs:element name="DeleteEntries">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element minOccurs="1" maxOccurs="unbounded" name="EntryIdentifier" type="cir:EntryIdentifier" />
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+
+	<xs:element name="DeleteEntriesResponse">
+		<xs:complexType />
+	</xs:element>
+
+	<xs:element name="DeleteProperties">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element minOccurs="1" maxOccurs="unbounded" name="PropertyIdentifier" type="cir:PropertyIdentifier"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+
+	<xs:element name="DeletePropertiesResponse">
+		<xs:complexType />
+	</xs:element>
+
+	<!-- ========================= -->
+	<!-- Query Services Elements -->
+	<!-- ========================= -->
+
+	<xs:element name="GetRegistry">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element minOccurs="0" maxOccurs="1" name="Filter" type="cir:Filter"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+
+	<xs:element name="GetRegistryResponse">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element minOccurs="0" maxOccurs="1" name="Registry" type="cir:Registry"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+
+	<xs:element name="GetEquivalentEntries">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element minOccurs="1" maxOccurs="unbounded" name="EntryIdentifier" type="cir:EntryIdentifier"/>
+				<xs:element minOccurs="0" maxOccurs="unbounded" name="TargetSourceID" type="cct:IDType"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+
+	<xs:element name="GetEquivalentEntriesResponse">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element minOccurs="0" maxOccurs="1" name="Registry" type="cir:Registry"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+
+	<xs:element name="GetEntriesByCIRID">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element minOccurs="1" maxOccurs="1" name="ExistingCIRID" type="cct:IDType"/>
+				<xs:element minOccurs="0" maxOccurs="unbounded" name="TargetSourceID" type="cct:IDType"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+
+	<xs:element name="GetEntriesByCIRIDResponse">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element minOccurs="0" maxOccurs="1" name="Registry" type="cir:Registry"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+
 	<!-- ============== -->
-	<!-- Fault elements -->
+	<!-- Fault Elements -->
 	<!-- ============== -->
 
 	<xs:element name="CreateRegistryFault">
@@ -213,7 +377,7 @@ In no event shall the OpenO&amp;M, its members, or any third party be liable for
 		<xs:complexType>
 			<xs:sequence>
 				<xs:element minOccurs="0" maxOccurs="1" name="Description" type="cct:TextType"/>
-				<xs:element minOccurs="1" maxOccurs="1" name="RegistryIdentifier" type="tns:RegistryIdentifier"/>
+				<xs:element minOccurs="1" maxOccurs="1" name="RegistryIdentifier" type="cir:RegistryIdentifier"/>
 			</xs:sequence>
 		</xs:complexType>
 	</xs:element>
@@ -222,7 +386,7 @@ In no event shall the OpenO&amp;M, its members, or any third party be liable for
 		<xs:complexType>
 			<xs:sequence>
 				<xs:element minOccurs="0" maxOccurs="1" name="Description" type="cct:TextType"/>
-				<xs:element minOccurs="1" maxOccurs="1" name="CategoryIdentifier" type="tns:CategoryIdentifier"/>
+				<xs:element minOccurs="1" maxOccurs="1" name="CategoryIdentifier" type="cir:CategoryIdentifier"/>
 			</xs:sequence>
 		</xs:complexType>
 	</xs:element>
@@ -231,7 +395,7 @@ In no event shall the OpenO&amp;M, its members, or any third party be liable for
 		<xs:complexType>
 			<xs:sequence>
 				<xs:element minOccurs="0" maxOccurs="1" name="Description" type="cct:TextType"/>
-				<xs:element minOccurs="1" maxOccurs="1" name="EntryIdentifier" type="tns:EntryIdentifier"/>
+				<xs:element minOccurs="1" maxOccurs="1" name="EntryIdentifier" type="cir:EntryIdentifier"/>
 			</xs:sequence>
 		</xs:complexType>
 	</xs:element>
@@ -240,7 +404,7 @@ In no event shall the OpenO&amp;M, its members, or any third party be liable for
 		<xs:complexType>
 			<xs:sequence>
 				<xs:element minOccurs="0" maxOccurs="1" name="Description" type="cct:TextType"/>
-				<xs:element minOccurs="1" maxOccurs="1" name="PropertyIdentifier" type="tns:PropertyIdentifier"/>
+				<xs:element minOccurs="1" maxOccurs="1" name="PropertyIdentifier" type="cir:PropertyIdentifier"/>
 			</xs:sequence>
 		</xs:complexType>
 	</xs:element>
@@ -249,7 +413,7 @@ In no event shall the OpenO&amp;M, its members, or any third party be liable for
 		<xs:complexType>
 			<xs:sequence>
 				<xs:element minOccurs="0" maxOccurs="1" name="Description" type="cct:TextType"/>
-				<xs:element minOccurs="1" maxOccurs="1" name="EntryIdentifier" type="tns:EntryIdentifier"/>
+				<xs:element minOccurs="1" maxOccurs="1" name="EntryIdentifier" type="cir:EntryIdentifier"/>
 			</xs:sequence>
 		</xs:complexType>
 	</xs:element>
@@ -258,7 +422,7 @@ In no event shall the OpenO&amp;M, its members, or any third party be liable for
 		<xs:complexType>
 			<xs:sequence>
 				<xs:element minOccurs="0" maxOccurs="1" name="Description" type="cct:TextType"/>
-				<xs:element minOccurs="1" maxOccurs="1" name="PropertyIdentifier" type="tns:PropertyIdentifier"/>
+				<xs:element minOccurs="1" maxOccurs="1" name="PropertyIdentifier" type="cir:PropertyIdentifier"/>
 			</xs:sequence>
 		</xs:complexType>
 	</xs:element>

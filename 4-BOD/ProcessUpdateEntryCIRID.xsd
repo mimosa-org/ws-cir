@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+	xmlns:oa="http://www.openapplications.org/oagis/9"
+	xmlns:cir="http://www.openoandm.org/xml/CIR/"
+  xmlns:bod="http://www.openoandm.org/xml/CIR/BOD/"
+	targetNamespace="http://www.openoandm.org/xml/CIR/BOD/"
+	elementFormDefault="qualified"
+	attributeFormDefault="unqualified">
+
+	<xs:import schemaLocation="OAGIS/Meta.xsd" namespace="http://www.openapplications.org/oagis/9"/>
+  <xs:import schemaLocation="../2-XSD/CommonInteroperabilityRegistry.xsd" namespace="http://www.openoandm.org/xml/CIR/"/>
+
+	<xs:element name="ProcessUpdateEntryCIRID">
+		<xs:annotation>
+			<xs:documentation>Replaces the CIRID field on matching Entries with a new CIRID value.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="oa:BusinessObjectDocumentType">
+					<xs:sequence>
+						<xs:element name="DataArea" type="bod:ProcessUpdateEntryCIRIDDataArea"/>
+					</xs:sequence>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+
+	<xs:complexType name="ProcessUpdateEntryCIRIDDataArea">
+		<xs:sequence>
+			<xs:element ref="oa:Process"/>
+			<xs:element ref="cir:UpdateEntryCIRID"/>
+		</xs:sequence>
+	</xs:complexType>
+
+</xs:schema>

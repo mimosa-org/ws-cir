@@ -1,0 +1,406 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+   Schema agency: 	Open Applications Group 
+
+
+   OAGIS® Revision:    OAGIS Platform 1_2_1  
+   Date:               19 Aug 2011 
+   Copyright 1997-2011, All Rights Reserved 
+
+  	
+   Copyright (C) Open Applications Group (1997-2011). All Rights Reserved.
+  
+  
+   This is an OAGIS® BOD XML Schema (XSD) Definition.
+
+   License information for this file is provided in the file **OAGi License Agreement.txt** that is provided with this download package.
+
+   For support, more information, or to report implementation bugs, please contact the Open Applications Group at oagis@openapplications.org.
+    
+   XML Schema 
+     
+    Name: /OAGi-BPI-Platform/org_openapplications_platform/1_2_1/Common/OAGi/Components/Fields.xsd
+-->
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://www.openapplications.org/oagis/9" xmlns:oacl="http://www.openapplications.org/oagis/9/codelists" xmlns:udt="http://www.openapplications.org/oagis/9/unqualifieddatatypes/1.1" xmlns:qdt="http://www.openapplications.org/oagis/9/qualifieddatatypes/1.1" xmlns:ccts="urn:un:unece:uncefact:documentation:1.1" targetNamespace="http://www.openapplications.org/oagis/9" elementFormDefault="qualified" attributeFormDefault="unqualified">
+	<xsd:import namespace="http://www.openapplications.org/oagis/9/unqualifieddatatypes/1.1" schemaLocation="UnqualifiedDataTypes.xsd"/>
+	<xsd:import namespace="http://www.openapplications.org/oagis/9/qualifieddatatypes/1.1" schemaLocation="QualifiedDataTypes.xsd"/>
+	<xsd:import namespace="http://www.openapplications.org/oagis/9/codelists" schemaLocation="CodeLists.xsd"/>
+	<!--=======================-->
+	<!--Code-->
+	<!--=======================-->
+	<xsd:element name="Code" type="CodeType">
+		<xsd:annotation>
+			<xsd:documentation source="http://www.openapplications.org/platform/1">Element for the communication of all codes.</xsd:documentation>
+		</xsd:annotation>
+	</xsd:element>
+	<xsd:element name="FromStateCode" type="StateCodeType"/>
+	<xsd:element name="ReasonCode" type="CodeType">
+		<xsd:annotation>
+			<xsd:documentation source="http://www.openapplications.org/platform/1">Identifies the reason for an activity</xsd:documentation>
+		</xsd:annotation>
+	</xsd:element>
+	<xsd:element name="ToStateCode" type="StateCodeType"/>
+	<!--=======================-->
+	<!--Type - is a synonym of Code-->
+	<!--=======================-->
+	<xsd:element name="Type" type="CodeType">
+		<xsd:annotation>
+			<xsd:documentation source="http://www.openapplications.org/platform/1">Indicates the type of the object in which assoicated.</xsd:documentation>
+		</xsd:annotation>
+	</xsd:element>
+	<!--=======================-->
+	<!--Date - DateTime - Time - Duration-->
+	<!--=======================-->
+	<xsd:element name="ChangeDateTime" type="DateTimeType">
+		<xsd:annotation>
+			<xsd:documentation source="http://www.openapplications.org/platform/1">Indicates when the status change occured.</xsd:documentation>
+		</xsd:annotation>
+	</xsd:element>
+	<xsd:element name="EffectiveDateTime" type="DateTimeType">
+		<xsd:annotation>
+			<xsd:documentation source="http://www.openapplications.org/platform/1">This is the DateTime the associated object is made effective</xsd:documentation>
+		</xsd:annotation>
+	</xsd:element>
+	<!--=======================-->
+	<!--Identifier-->
+	<!--=======================-->
+	<xsd:element name="AuthorizationID" type="IdentifierType">
+		<xsd:annotation>
+			<xsd:documentation source="http://www.openapplications.org/platform/1">Identifyies the authorization level of the user or application that is sending the Business Object Document Message. This authorization level being recognized be the receiving system indicates what can be done on the receiving system(s).</xsd:documentation>
+		</xsd:annotation>
+	</xsd:element>
+	<xsd:element name="ID" type="IdentifierType">
+		<xsd:annotation>
+			<xsd:documentation source="http://www.openapplications.org/platform/1">Is the Identifiers of the given instance of an entity within the scope of the integration. The schemeAgencyID attribute identifies the party that provided or knows this party by the given identifier.
+			</xsd:documentation>
+		</xsd:annotation>
+	</xsd:element>
+	<!--=======================-->
+	<!--Text - Description-->
+	<!--=======================-->
+	<xsd:element name="Description" type="DescriptionType"/>
+	<!--=======================-->
+	<!--Name-->
+	<!--=======================-->
+	<xsd:element name="Reason" type="SequencedTextType"/>
+	<xsd:element name="Note" type="NoteType"/>
+	<!--=======================-->
+	<!--Data Types-->
+	<!--=======================-->
+	<xsd:complexType name="UserAreaType">
+		<xsd:sequence>
+			<xsd:any namespace="##any" processContents="strict" minOccurs="0" maxOccurs="unbounded"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:element name="UserArea" type="UserAreaType">
+		<xsd:annotation>
+			<xsd:documentation source="http://www.openapplications.org/platform/1">Allows the user of OAGIS to extend the specification in order to provide additional information that is not captured in OAGIS.</xsd:documentation>
+			<xsd:documentation source="http://www.openapplications.org/platform/1">This is done by defining the additional information in XML Schema and referencing the new schema in the xml instance document through the use of namespaces. Once this is done the additional information defined there can be carried in the BOD XML instance document.</xsd:documentation>
+			<xsd:documentation source="http://www.openapplications.org/platform/1">The Open Applications Group will make best efforts to quickly consider all proposed submissions.The USERAREA is always the last element in all components, except where the component has been extended inline.</xsd:documentation>
+		</xsd:annotation>
+	</xsd:element>
+	<xsd:complexType name="CodeType">
+		<xsd:simpleContent>
+			<xsd:extension base="udt:CodeType"/>
+		</xsd:simpleContent>
+	</xsd:complexType>
+	<xsd:simpleType name="DateTimeType">
+		<xsd:annotation>
+			<xsd:documentation xml:lang="en">
+				<ccts:UniqueID>QDT000000</ccts:UniqueID>
+				<ccts:CategoryCode>QDT</ccts:CategoryCode>
+				<ccts:DictionaryEntryName>Month_ Date. Type</ccts:DictionaryEntryName>
+				<ccts:VersionID>1.0</ccts:VersionID>
+				<ccts:DefinitionText>A particular point in the progression of time together with the relevant supplementary information.  Provides the XML Schema simpleType that allows either just the Date or the Date and Time to be provided in the elements that are based on this type and/or types that use this as their base.</ccts:DefinitionText>
+				<ccts:RepresentationTermName>Date</ccts:RepresentationTermName>
+				<ccts:QualifierTerm>Month</ccts:QualifierTerm>
+			</xsd:documentation>
+		</xsd:annotation>
+		<xsd:union memberTypes="udt:DateType udt:TimeType udt:DateTimeType"/>
+	</xsd:simpleType>
+	<xsd:complexType name="IdentifierType">
+		<xsd:simpleContent>
+			<xsd:extension base="udt:IdentifierType"/>
+		</xsd:simpleContent>
+	</xsd:complexType>
+	<xsd:simpleType name="IndicatorType">
+		<xsd:restriction base="udt:IndicatorType"/>
+	</xsd:simpleType>
+	<xsd:complexType name="MeasureType">
+		<xsd:simpleContent>
+			<xsd:extension base="udt:MeasureType">
+				<xsd:attribute name="type" type="NormalizedStringType"/>
+			</xsd:extension>
+		</xsd:simpleContent>
+	</xsd:complexType>
+	<xsd:complexType name="TextType">
+		<xsd:simpleContent>
+			<xsd:extension base="udt:TextType"/>
+		</xsd:simpleContent>
+	</xsd:complexType>
+	<xsd:complexType name="NameType">
+		<xsd:simpleContent>
+			<xsd:extension base="udt:NameType">
+				<xsd:attribute name="sequence" type="IntegerNumericType">
+					<xsd:annotation>
+						<xsd:documentation source="http://www.openapplications.org/platform/1">When a Name occurs multiple times, this sequence integer can be used to provide the order in which the Names are meaningful.</xsd:documentation>
+					</xsd:annotation>
+				</xsd:attribute>
+				<xsd:attribute name="sequenceName" type="StringType"/>
+			</xsd:extension>
+		</xsd:simpleContent>
+	</xsd:complexType>
+	<xsd:complexType name="DescriptionType">
+		<xsd:annotation>
+			<xsd:documentation xml:lang="en">
+				<ccts:UniqueID>QDT000000</ccts:UniqueID>
+				<ccts:CategoryCode>QDT</ccts:CategoryCode>
+				<ccts:DictionaryEntryName>Description_ Text. Type</ccts:DictionaryEntryName>
+				<ccts:VersionID>1.0</ccts:VersionID>
+				<ccts:DefinitionText/>
+				<ccts:RepresentationTermName>Text</ccts:RepresentationTermName>
+				<ccts:QualifierTerm>Description</ccts:QualifierTerm>
+			</xsd:documentation>
+		</xsd:annotation>
+		<xsd:simpleContent>
+			<xsd:extension base="udt:TextType">
+				<xsd:attribute name="type" type="NormalizedStringType"/>
+			</xsd:extension>
+		</xsd:simpleContent>
+	</xsd:complexType>
+	<xsd:complexType name="NoteType">
+		<xsd:annotation>
+			<xsd:documentation source="http://www.openapplications.org/platform/1">A free form note. The lang attribute identifies the language that the note is in. The author identifies the author of the note. The enrtyDate indicates the date the note was entered or last modified.</xsd:documentation>
+		</xsd:annotation>
+		<xsd:simpleContent>
+			<xsd:extension base="DescriptionType">
+				<xsd:attribute name="author" type="StringType" use="optional"/>
+				<xsd:attribute name="entryDateTime" type="DateTimeType" use="optional"/>
+				<xsd:attribute name="status" type="StringType" use="optional"/>
+			</xsd:extension>
+		</xsd:simpleContent>
+	</xsd:complexType>
+	<!--=======================-->
+	<!--Structured DataTypes-->
+	<!--=======================-->
+	<xsd:complexType name="SequencedTextType">
+		<xsd:simpleContent>
+			<xsd:extension base="TextType">
+				<xsd:attribute name="sequence" type="PositiveIntegerNumericType" use="optional"/>
+				<xsd:attribute name="sequenceName" type="NormalizedStringType" use="optional"/>
+			</xsd:extension>
+		</xsd:simpleContent>
+	</xsd:complexType>
+	<!--=======================-->
+	<!--Code Content Types-->
+	<!--=======================-->
+	<xsd:simpleType name="ActionCodeContentType">
+		<xsd:restriction base="oacl:ActionCodeContentType"/>
+	</xsd:simpleType>
+	<xsd:simpleType name="LanguageCodeContentType">
+		<xsd:restriction base="oacl:LanguageCodeContentType"/>
+	</xsd:simpleType>
+	<xsd:simpleType name="ResponseActionCodeContentType">
+		<xsd:restriction base="oacl:ResponseActionCodeContentType"/>
+	</xsd:simpleType>
+	<xsd:simpleType name="ResponseCodeContentType">
+		<xsd:restriction base="oacl:ResponseCodeContentType"/>
+	</xsd:simpleType>
+	<xsd:simpleType name="StateCodeContentType">
+		<xsd:restriction base="oacl:StateCodeContentType"/>
+	</xsd:simpleType>
+	<xsd:simpleType name="SystemEnvironmentCodeContentType">
+		<xsd:restriction base="oacl:SystemEnvironmentCodeContentType"/>
+	</xsd:simpleType>
+	<!--=======================-->
+	<!--Data Types-->
+	<!--=======================-->
+	<xsd:simpleType name="IntegerNumericType">
+		<xsd:restriction base="qdt:IntegerNumericType"/>
+	</xsd:simpleType>
+	<xsd:simpleType name="PositiveIntegerNumericType">
+		<xsd:restriction base="qdt:PositiveIntegerNumericType"/>
+	</xsd:simpleType>
+	<xsd:simpleType name="NormalizedStringType">
+		<xsd:restriction base="qdt:NormalizedStringType"/>
+	</xsd:simpleType>
+	<xsd:simpleType name="StringType">
+		<xsd:restriction base="qdt:StringType"/>
+	</xsd:simpleType>
+	<xsd:simpleType name="TokenType">
+		<xsd:restriction base="qdt:TokenType"/>
+	</xsd:simpleType>
+	<!--=======================-->
+	<!--Qualified Code Types-->
+	<!--=======================-->
+	<xsd:attributeGroup name="CodeListAttributeGroup">
+		<xsd:attribute name="listID" type="NormalizedStringType" use="optional">
+			<xsd:annotation>
+				<xsd:documentation xml:lang="en">
+					<ccts:UniqueID>UNDT000007-SC2</ccts:UniqueID>
+					<ccts:CategoryCode>SC</ccts:CategoryCode>
+					<ccts:DictionaryEntryName>Code List. Identifier</ccts:DictionaryEntryName>
+					<ccts:Definition>The identification of a list of codes.</ccts:Definition>
+					<ccts:ObjectClass>Code List</ccts:ObjectClass>
+					<ccts:PropertyTermName>Identification</ccts:PropertyTermName>
+					<ccts:RepresentationTermName>Identifier</ccts:RepresentationTermName>
+					<ccts:PrimitiveType>string</ccts:PrimitiveType>
+				</xsd:documentation>
+			</xsd:annotation>
+		</xsd:attribute>
+		<xsd:attribute name="listAgencyID" type="NormalizedStringType" use="optional">
+			<xsd:annotation>
+				<xsd:documentation xml:lang="en">
+					<ccts:UniqueID>UNDT000007-SC3</ccts:UniqueID>
+					<ccts:CategoryCode>SC</ccts:CategoryCode>
+					<ccts:DictionaryEntryName>Code List. Agency. Identifier</ccts:DictionaryEntryName>
+					<ccts:Definition>An agency that maintains one or more lists of codes.</ccts:Definition>
+					<ccts:ObjectClass>Code List</ccts:ObjectClass>
+					<ccts:PropertyTermName>Agency</ccts:PropertyTermName>
+					<ccts:RepresentationTermName>Identifier</ccts:RepresentationTermName>
+					<ccts:PrimitiveType>string</ccts:PrimitiveType>
+					<ccts:UsageRule>Defaults to the UN/EDIFACT data element 3055 code list.</ccts:UsageRule>
+				</xsd:documentation>
+			</xsd:annotation>
+		</xsd:attribute>
+		<xsd:attribute name="listAgencyName" type="StringType" use="optional">
+			<xsd:annotation>
+				<xsd:documentation xml:lang="en">
+					<ccts:UniqueID>UNDT000007-SC4</ccts:UniqueID>
+					<ccts:CategoryCode>SC</ccts:CategoryCode>
+					<ccts:DictionaryEntryName>Code List. Agency Name. Text</ccts:DictionaryEntryName>
+					<ccts:Definition>The name of the agency that maintains the list of codes.</ccts:Definition>
+					<ccts:ObjectClass>Code List</ccts:ObjectClass>
+					<ccts:PropertyTermName>Agency Name</ccts:PropertyTermName>
+					<ccts:RepresentationTermName>Text</ccts:RepresentationTermName>
+					<ccts:PrimitiveType>string</ccts:PrimitiveType>
+				</xsd:documentation>
+			</xsd:annotation>
+		</xsd:attribute>
+		<xsd:attribute name="listName" type="StringType" use="optional">
+			<xsd:annotation>
+				<xsd:documentation xml:lang="en">
+					<ccts:UniqueID>UNDT000007-SC5</ccts:UniqueID>
+					<ccts:CategoryCode>SC</ccts:CategoryCode>
+					<ccts:DictionaryEntryName>Code List. Name. Text</ccts:DictionaryEntryName>
+					<ccts:Definition>The name of a list of codes.</ccts:Definition>
+					<ccts:ObjectClass>Code List</ccts:ObjectClass>
+					<ccts:PropertyTermName>Name</ccts:PropertyTermName>
+					<ccts:RepresentationTermName>Text</ccts:RepresentationTermName>
+					<ccts:PrimitiveType>string</ccts:PrimitiveType>
+				</xsd:documentation>
+			</xsd:annotation>
+		</xsd:attribute>
+		<xsd:attribute name="listVersionID" type="NormalizedStringType" use="optional">
+			<xsd:annotation>
+				<xsd:documentation xml:lang="en">
+					<ccts:UniqueID>UNDT000007-SC6</ccts:UniqueID>
+					<ccts:CategoryCode>SC</ccts:CategoryCode>
+					<ccts:DictionaryEntryName>Code List. Version. Identifier</ccts:DictionaryEntryName>
+					<ccts:Definition>The version of the list of codes.</ccts:Definition>
+					<ccts:ObjectClass>Code List</ccts:ObjectClass>
+					<ccts:PropertyTermName>Version</ccts:PropertyTermName>
+					<ccts:RepresentationTermName>Identifier</ccts:RepresentationTermName>
+					<ccts:PrimitiveType>string</ccts:PrimitiveType>
+				</xsd:documentation>
+			</xsd:annotation>
+		</xsd:attribute>
+		<xsd:attribute name="name" type="StringType" use="optional">
+			<xsd:annotation>
+				<xsd:documentation xml:lang="en">
+					<ccts:UniqueID>UNDT000007-SC7</ccts:UniqueID>
+					<ccts:CategoryCode>SC</ccts:CategoryCode>
+					<ccts:DictionaryEntryName>Code. Name. Text</ccts:DictionaryEntryName>
+					<ccts:Definition>The textual equivalent of the code content component.</ccts:Definition>
+					<ccts:ObjectClass>Code</ccts:ObjectClass>
+					<ccts:PropertyTermName>Name</ccts:PropertyTermName>
+					<ccts:RepresentationTermName>Text</ccts:RepresentationTermName>
+					<ccts:PrimitiveType>string</ccts:PrimitiveType>
+				</xsd:documentation>
+			</xsd:annotation>
+		</xsd:attribute>
+		<xsd:attribute name="languageID" type="LanguageCodeContentType" use="optional">
+			<xsd:annotation>
+				<xsd:documentation xml:lang="en">
+					<ccts:UniqueID>UNDT000007-SC8</ccts:UniqueID>
+					<ccts:CategoryCode>SC</ccts:CategoryCode>
+					<ccts:DictionaryEntryName>Language. Identifier</ccts:DictionaryEntryName>
+					<ccts:Definition>The identifier of the language used in the code name.</ccts:Definition>
+					<ccts:ObjectClass>Language</ccts:ObjectClass>
+					<ccts:PropertyTermName>Identification</ccts:PropertyTermName>
+					<ccts:RepresentationTermName>Identifier</ccts:RepresentationTermName>
+					<ccts:PrimitiveType>string</ccts:PrimitiveType>
+				</xsd:documentation>
+			</xsd:annotation>
+		</xsd:attribute>
+		<xsd:attribute name="listURI" type="xsd:anyURI" use="optional">
+			<xsd:annotation>
+				<xsd:documentation xml:lang="en">
+					<ccts:UniqueID>UNDT000007-SC9</ccts:UniqueID>
+					<ccts:CategoryCode>SC</ccts:CategoryCode>
+					<ccts:DictionaryEntryName>Code List. Uniform Resource. Identifier</ccts:DictionaryEntryName>
+					<ccts:Definition>The Uniform Resource Identifier that identifies where the code list is located.</ccts:Definition>
+					<ccts:ObjectClass>Code List</ccts:ObjectClass>
+					<ccts:PropertyTermName>Uniform Resource Identifier</ccts:PropertyTermName>
+					<ccts:RepresentationTermName>Identifier</ccts:RepresentationTermName>
+					<ccts:PrimitiveType>string</ccts:PrimitiveType>
+				</xsd:documentation>
+			</xsd:annotation>
+		</xsd:attribute>
+		<xsd:attribute name="listSchemeURI" type="xsd:anyURI" use="optional">
+			<xsd:annotation>
+				<xsd:documentation xml:lang="en">
+					<ccts:UniqueID>UNDT000007-SC10</ccts:UniqueID>
+					<ccts:CategoryCode>SC</ccts:CategoryCode>
+					<ccts:DictionaryEntryName>Code List Scheme. Uniform Resource. Identifier</ccts:DictionaryEntryName>
+					<ccts:Definition>The Uniform Resource Identifier that identifies where the code list scheme is located.</ccts:Definition>
+					<ccts:ObjectClass>Code List Scheme</ccts:ObjectClass>
+					<ccts:PropertyTermName>Uniform Resource Identifier</ccts:PropertyTermName>
+					<ccts:RepresentationTermName>Identifier</ccts:RepresentationTermName>
+					<ccts:PrimitiveType>string</ccts:PrimitiveType>
+				</xsd:documentation>
+			</xsd:annotation>
+		</xsd:attribute>
+	</xsd:attributeGroup>
+	<xsd:complexType name="ConfirmationResponseCodeType">
+		<xsd:simpleContent>
+			<xsd:extension base="ResponseCodeType"/>
+		</xsd:simpleContent>
+	</xsd:complexType>
+	<xsd:complexType name="ResponseCodeType">
+		<xsd:annotation>
+			<xsd:documentation xml:lang="en">
+				<ccts:UniqueID>QDT000000</ccts:UniqueID>
+				<ccts:CategoryCode>QDT</ccts:CategoryCode>
+				<ccts:DictionaryEntryName>Response_ Code. Type</ccts:DictionaryEntryName>
+				<ccts:VersionID>1.0</ccts:VersionID>
+				<ccts:DefinitionText/>
+				<ccts:RepresentationTermName>Code</ccts:RepresentationTermName>
+				<ccts:QualifierTerm>Response</ccts:QualifierTerm>
+			</xsd:documentation>
+		</xsd:annotation>
+		<xsd:simpleContent>
+			<xsd:extension base="ResponseCodeContentType">
+				<xsd:attributeGroup ref="CodeListAttributeGroup"/>
+			</xsd:extension>
+		</xsd:simpleContent>
+	</xsd:complexType>
+	<xsd:complexType name="StateCodeType">
+		<xsd:annotation>
+			<xsd:documentation xml:lang="en">
+				<ccts:UniqueID>QDT000000</ccts:UniqueID>
+				<ccts:CategoryCode>QDT</ccts:CategoryCode>
+				<ccts:DictionaryEntryName>State_ Code. Type</ccts:DictionaryEntryName>
+				<ccts:VersionID>1.0</ccts:VersionID>
+				<ccts:DefinitionText/>
+				<ccts:RepresentationTermName>Code</ccts:RepresentationTermName>
+				<ccts:QualifierTerm>State</ccts:QualifierTerm>
+			</xsd:documentation>
+		</xsd:annotation>
+		<xsd:simpleContent>
+			<xsd:extension base="StateCodeContentType">
+				<xsd:attributeGroup ref="CodeListAttributeGroup"/>
+			</xsd:extension>
+		</xsd:simpleContent>
+	</xsd:complexType>
+</xsd:schema>

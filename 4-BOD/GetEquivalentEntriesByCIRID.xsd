@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+	xmlns:oa="http://www.openapplications.org/oagis/9"
+	xmlns:cir="http://www.openoandm.org/xml/CIR/"
+  xmlns:bod="http://www.openoandm.org/xml/CIR/BOD/"
+	targetNamespace="http://www.openoandm.org/xml/CIR/BOD/"
+	elementFormDefault="qualified"
+	attributeFormDefault="unqualified">
+
+	<xs:import schemaLocation="OAGIS/Meta.xsd" namespace="http://www.openapplications.org/oagis/9"/>
+  <xs:import schemaLocation="../2-XSD/CommonInteroperabilityRegistry.xsd" namespace="http://www.openoandm.org/xml/CIR/"/>
+
+	<xs:element name="GetEntriesByCIRID">
+		<xs:annotation>
+			<xs:documentation>Returns any Entries with the specified CIRID. An Entry is specified by CIRID. A TargetSourceID or list of TargetSourceIDs can be specified to filter returned Entries.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="oa:BusinessObjectDocumentType">
+					<xs:sequence>
+						<xs:element name="DataArea" type="bod:GetEntriesByCIRIDDataArea"/>
+					</xs:sequence>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+
+	<xs:complexType name="GetEntriesByCIRIDDataArea">
+		<xs:sequence>
+			<xs:element ref="oa:Process"/>
+			<xs:element ref="cir:GetEntriesByCIRID"/>
+		</xs:sequence>
+	</xs:complexType>
+
+</xs:schema>
