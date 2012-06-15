@@ -208,7 +208,7 @@ In no event shall the OpenO&amp;M, its members, or any third party be liable for
 		<xs:complexType />
 	</xs:element>
 
-	<xs:element name="CreateEquivalentEntry">
+	<xs:element name="CreateEquivalentEntries">
 		<xs:complexType>
 			<xs:sequence>
 				<xs:element minOccurs="1" maxOccurs="unbounded" name="EquivalentEntry" type="cir:EquivalentEntry"/>
@@ -216,7 +216,7 @@ In no event shall the OpenO&amp;M, its members, or any third party be liable for
 		</xs:complexType>
 	</xs:element>
 
-	<xs:element name="CreateEquivalentEntryResponse">
+	<xs:element name="CreateEquivalentEntriesResponse">
 		<xs:complexType />
 	</xs:element>
 
@@ -306,7 +306,7 @@ In no event shall the OpenO&amp;M, its members, or any third party be liable for
 	<xs:element name="GetRegistry">
 		<xs:complexType>
 			<xs:sequence>
-				<xs:element minOccurs="0" maxOccurs="1" name="Filter" type="cir:Filter"/>
+				<xs:element minOccurs="0" maxOccurs="unbounded" name="Filter" type="cir:Filter"/>
 			</xs:sequence>
 		</xs:complexType>
 	</xs:element>
@@ -314,7 +314,7 @@ In no event shall the OpenO&amp;M, its members, or any third party be liable for
 	<xs:element name="GetRegistryResponse">
 		<xs:complexType>
 			<xs:sequence>
-				<xs:element minOccurs="0" maxOccurs="1" name="Registry" type="cir:Registry"/>
+				<xs:element minOccurs="0" maxOccurs="unbounded" name="Registry" type="cir:Registry"/>
 			</xs:sequence>
 		</xs:complexType>
 	</xs:element>
@@ -331,7 +331,7 @@ In no event shall the OpenO&amp;M, its members, or any third party be liable for
 	<xs:element name="GetEquivalentEntriesResponse">
 		<xs:complexType>
 			<xs:sequence>
-				<xs:element minOccurs="0" maxOccurs="1" name="Registry" type="cir:Registry"/>
+				<xs:element minOccurs="0" maxOccurs="unbounded" name="Registry" type="cir:Registry"/>
 			</xs:sequence>
 		</xs:complexType>
 	</xs:element>
@@ -348,7 +348,7 @@ In no event shall the OpenO&amp;M, its members, or any third party be liable for
 	<xs:element name="GetEntriesByCIRIDResponse">
 		<xs:complexType>
 			<xs:sequence>
-				<xs:element minOccurs="0" maxOccurs="1" name="Registry" type="cir:Registry"/>
+				<xs:element minOccurs="0" maxOccurs="unbounded" name="Registry" type="cir:Registry"/>
 			</xs:sequence>
 		</xs:complexType>
 	</xs:element>

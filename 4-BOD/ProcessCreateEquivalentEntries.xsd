@@ -10,7 +10,7 @@
 	<xs:import schemaLocation="OAGIS/Meta.xsd" namespace="http://www.openapplications.org/oagis/9"/>
   <xs:import schemaLocation="../2-XSD/CommonInteroperabilityRegistry.xsd" namespace="http://www.openoandm.org/xml/CIR/"/>
 
-	<xs:element name="ProcessCreateEquivalentEntry">
+	<xs:element name="ProcessCreateEquivalentEntries">
 		<xs:annotation>
 			<xs:documentation>Creates Entries and associated Properties, and links a new Entry to an existing equivalent Entry.</xs:documentation>
 		</xs:annotation>
@@ -18,17 +18,17 @@
 			<xs:complexContent>
 				<xs:extension base="oa:BusinessObjectDocumentType">
 					<xs:sequence>
-						<xs:element name="DataArea" type="bod:ProcessCreateEquivalentEntryDataArea"/>
+						<xs:element name="DataArea" type="bod:ProcessCreateEquivalentEntriesDataArea"/>
 					</xs:sequence>
 				</xs:extension>
 			</xs:complexContent>
 		</xs:complexType>
 	</xs:element>
 
-	<xs:complexType name="ProcessCreateEquivalentEntryDataArea">
+	<xs:complexType name="ProcessCreateEquivalentEntriesDataArea">
 		<xs:sequence>
 			<xs:element ref="oa:Process"/>
-			<xs:element ref="cir:CreateEquivalentEntry"/>
+			<xs:element ref="cir:CreateEquivalentEntries"/>
 		</xs:sequence>
 	</xs:complexType>
 

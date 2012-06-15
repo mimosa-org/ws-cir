@@ -19,11 +19,11 @@
 	<wsdl:message name="CreateRegistryOut">
 		<wsdl:part name="parameters" element="cir:CreateRegistryResponse"/>
 	</wsdl:message>
-	<wsdl:message name="CreateEquivalentEntryIn">
-		<wsdl:part name="parameters" element="cir:CreateEquivalentEntry"/>
+	<wsdl:message name="CreateEquivalentEntriesIn">
+		<wsdl:part name="parameters" element="cir:CreateEquivalentEntries"/>
 	</wsdl:message>
-	<wsdl:message name="CreateEquivalentEntryOut">
-		<wsdl:part name="parameters" element="cir:CreateEquivalentEntryResponse"/>
+	<wsdl:message name="CreateEquivalentEntriesOut">
+		<wsdl:part name="parameters" element="cir:CreateEquivalentEntriesResponse"/>
 	</wsdl:message>
 	<wsdl:message name="UpdateRegistryIn">
 		<wsdl:part name="parameters" element="cir:UpdateRegistry"/>
@@ -114,10 +114,10 @@
 			<wsdl:fault name="DuplicateEntryFault" message="cir:DuplicateEntryFault"/>
 			<wsdl:fault name="DuplicatePropertyFault" message="cir:DuplicatePropertyFault"/>
 		</wsdl:operation>
-		<wsdl:operation name="CreateEquivalentEntry">
-			<wsdl:documentation>Creates a single Entry and associated Properties, and links the new Entry to an existing equivalent Entry. Returns the CIRID of the newly created Entry.</wsdl:documentation>
-			<wsdl:input message="cir:CreateEquivalentEntryIn"/>
-			<wsdl:output message="cir:CreateEquivalentEntryOut"/>
+		<wsdl:operation name="CreateEquivalentEntries">
+			<wsdl:documentation>Creates Entries and associated Properties, and links a new Entry to an existing equivalent Entry.</wsdl:documentation>
+			<wsdl:input message="cir:CreateEquivalentEntriesIn"/>
+			<wsdl:output message="cir:CreateEquivalentEntriesOut"/>
 			<wsdl:fault name="EntryNotFoundFault" message="cir:EntryNotFoundFault"/>
 			<wsdl:fault name="RegistryNotFoundFault" message="cir:RegistryNotFoundFault"/>
 			<wsdl:fault name="CategoryNotFoundFault" message="cir:CategoryNotFoundFault"/>
@@ -207,8 +207,8 @@
 				<soap:fault name="DuplicatePropertyFault" use="literal"/>
 			</wsdl:fault>
 		</wsdl:operation>
-		<wsdl:operation name="CreateEquivalentEntry">
-			<soap:operation soapAction="http://www.openoandm.org/xml/CIR/CreateEquivalentEntry" style="document"/>
+		<wsdl:operation name="CreateEquivalentEntries">
+			<soap:operation soapAction="http://www.openoandm.org/xml/CIR/CreateEquivalentEntries" style="document"/>
 			<wsdl:input>
 				<soap:body use="literal"/>
 			</wsdl:input>
@@ -376,8 +376,8 @@
 				<soap12:fault name="DuplicatePropertyFault" use="literal"/>
 			</wsdl:fault>
 		</wsdl:operation>
-		<wsdl:operation name="CreateEquivalentEntry">
-			<soap12:operation soapAction="http://www.openoandm.org/xml/CIR/CreateEquivalentEntry" style="document"/>
+		<wsdl:operation name="CreateEquivalentEntries">
+			<soap12:operation soapAction="http://www.openoandm.org/xml/CIR/CreateEquivalentEntries" style="document"/>
 			<wsdl:input>
 				<soap12:body use="literal"/>
 			</wsdl:input>
