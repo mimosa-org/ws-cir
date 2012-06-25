@@ -2,13 +2,13 @@
 <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
 	xmlns:oa="http://www.openapplications.org/oagis/9"
 	xmlns:cir="http://www.openoandm.org/xml/CIR/"
-  xmlns:bod="http://www.openoandm.org/xml/CIR/BOD/"
+	xmlns:bod="http://www.openoandm.org/xml/CIR/BOD/"
 	targetNamespace="http://www.openoandm.org/xml/CIR/BOD/"
 	elementFormDefault="qualified"
 	attributeFormDefault="unqualified">
 
 	<xs:import schemaLocation="OAGIS/Meta.xsd" namespace="http://www.openapplications.org/oagis/9"/>
-  <xs:import schemaLocation="../2-XSD/CommonInteroperabilityRegistry.xsd" namespace="http://www.openoandm.org/xml/CIR/"/>
+	<xs:import schemaLocation="../2-XSD/CommonInteroperabilityRegistry.xsd" namespace="http://www.openoandm.org/xml/CIR/"/>
 
 	<xs:element name="ProcessUpdateEntryCIRID">
 		<xs:annotation>
