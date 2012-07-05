@@ -1,13 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
-	Schema agency: OpenO&M
-	Revision:      CIR 1.0
-	Date:          01 July 2012
 	Copyright MIMOSA 2012. All Rights Reserved.
 
 	License information for this file is provided in the file "License Agreement.txt" that is provided with this download package.
 
-	For support, more information, or to report errors, please contact MIMOSA at http://www.mimosa.org.
+	For support, more information, or to report errors, please contact MIMOSA at http://www.mimosa.org or OpenO&M at http://www.openoandm.info.
 -->
 <xs:schema
 	xmlns:xs="http://www.w3.org/2001/XMLSchema"
@@ -17,21 +14,7 @@
 	elementFormDefault="qualified"
 	attributeFormDefault="unqualified">
 
-	<xs:annotation>
-		<xs:documentation>
-OpenO&amp;M Common Interoperability Registry (CIR)
-Copyright 2011. MIMOSA and World Batch Forum (WBF).
-All Rights Reserved. http://www.openoandm.org
-
-This OpenO&amp;M Work (including specifications, documents, software, and related items) referred to as the OpenO&amp;M Common Interoperability Registry is provided by the copyright holders under the following license.
-
-Permission to use, copy, modify, or redistribute this Work and its documentation, with or without modification, for any purpose and without fee or royalty is hereby granted provided OpenO&amp;M and the World Batch Forum are acknowledged as the originator of this Work using the following statement:
-
-"The Common Interoperability Registry (CIR) is used courtesy of OpenO&amp;M. The Business To Manufacturing Markup Language (B2MML) is used courtesy of WBF."
-
-In no event shall the OpenO&amp;M, its members, or any third party be liable for any costs, expenses, losses, damages or injuries incurred by use of the Work or as a result of this agreement.
-		</xs:documentation>
-	</xs:annotation>
+	<xs:import namespace="urn:un:unece:uncefact:documentation:standard:CoreComponentType:2" schemaLocation="CoreComponentType_2p0.xsd"/>
 
 	<xs:import namespace="urn:un:unece:uncefact:documentation:standard:CoreComponentType:2" schemaLocation="CoreComponentType_2p0.xsd"/>
 
