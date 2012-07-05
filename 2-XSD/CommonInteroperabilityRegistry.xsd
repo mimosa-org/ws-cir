@@ -16,8 +16,6 @@
 
 	<xs:import namespace="urn:un:unece:uncefact:documentation:standard:CoreComponentType:2" schemaLocation="CoreComponentType_2p0.xsd"/>
 
-	<xs:import namespace="urn:un:unece:uncefact:documentation:standard:CoreComponentType:2" schemaLocation="CoreComponentType_2p0.xsd"/>
-
 	<!-- =========== -->
 	<!-- Value Types -->
 	<!-- =========== -->
