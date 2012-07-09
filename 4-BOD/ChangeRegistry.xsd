@@ -17,25 +17,25 @@
 	<xs:import schemaLocation="OAGIS/Meta.xsd" namespace="http://www.openapplications.org/oagis/9"/>
 	<xs:import schemaLocation="../2-XSD/CommonInteroperabilityRegistry.xsd" namespace="http://www.openoandm.org/xml/CIR/"/>
 
-	<xs:element name="ProcessDeleteProperties">
+	<xs:element name="ChangeRegistry">
 		<xs:annotation>
-			<xs:documentation>Deletes the specified Properties.</xs:documentation>
+			<xs:documentation>Updates the attributes of existing Registries, Categories, Entries or Properties.</xs:documentation>
 		</xs:annotation>
 		<xs:complexType>
 			<xs:complexContent>
 				<xs:extension base="oa:BusinessObjectDocumentType">
 					<xs:sequence>
-						<xs:element name="DataArea" type="bod:ProcessDeletePropertiesDataArea"/>
+						<xs:element name="DataArea" type="bod:ChangeRegistryDataArea"/>
 					</xs:sequence>
 				</xs:extension>
 			</xs:complexContent>
 		</xs:complexType>
 	</xs:element>
 
-	<xs:complexType name="ProcessDeletePropertiesDataArea">
+	<xs:complexType name="ChangeRegistryDataArea">
 		<xs:sequence>
-			<xs:element ref="oa:Process"/>
-			<xs:element ref="cir:DeleteProperties"/>
+			<xs:element ref="oa:Change"/>
+			<xs:element ref="cir:UpdateRegistry"/>
 		</xs:sequence>
 	</xs:complexType>
 

@@ -17,25 +17,25 @@
 	<xs:import schemaLocation="OAGIS/Meta.xsd" namespace="http://www.openapplications.org/oagis/9"/>
 	<xs:import schemaLocation="../2-XSD/CommonInteroperabilityRegistry.xsd" namespace="http://www.openoandm.org/xml/CIR/"/>
 
-	<xs:element name="ProcessUpdateRegistry">
+	<xs:element name="ProcessEquivalentEntries">
 		<xs:annotation>
-			<xs:documentation>Updates the attributes of existing Registries, Categories, Entries or Properties.</xs:documentation>
+			<xs:documentation>Creates Entries and associated Properties, and links a new Entry to an existing equivalent Entry.</xs:documentation>
 		</xs:annotation>
 		<xs:complexType>
 			<xs:complexContent>
 				<xs:extension base="oa:BusinessObjectDocumentType">
 					<xs:sequence>
-						<xs:element name="DataArea" type="bod:ProcessUpdateRegistryDataArea"/>
+						<xs:element name="DataArea" type="bod:ProcessEquivalentEntriesDataArea"/>
 					</xs:sequence>
 				</xs:extension>
 			</xs:complexContent>
 		</xs:complexType>
 	</xs:element>
 
-	<xs:complexType name="ProcessUpdateRegistryDataArea">
+	<xs:complexType name="ProcessEquivalentEntriesDataArea">
 		<xs:sequence>
 			<xs:element ref="oa:Process"/>
-			<xs:element ref="cir:UpdateRegistry"/>
+			<xs:element ref="cir:CreateEquivalentEntries"/>
 		</xs:sequence>
 	</xs:complexType>
 

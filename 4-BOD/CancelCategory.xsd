@@ -17,7 +17,7 @@
 	<xs:import schemaLocation="OAGIS/Meta.xsd" namespace="http://www.openapplications.org/oagis/9"/>
 	<xs:import schemaLocation="../2-XSD/CommonInteroperabilityRegistry.xsd" namespace="http://www.openoandm.org/xml/CIR/"/>
 
-	<xs:element name="ProcessDeleteCategory">
+	<xs:element name="CancelCategory">
 		<xs:annotation>
 			<xs:documentation>Deletes the specified Category along with its Entries and Properties.</xs:documentation>
 		</xs:annotation>
@@ -25,16 +25,16 @@
 			<xs:complexContent>
 				<xs:extension base="oa:BusinessObjectDocumentType">
 					<xs:sequence>
-						<xs:element name="DataArea" type="bod:ProcessDeleteCategoryDataArea"/>
+						<xs:element name="DataArea" type="bod:CancelCategoryDataArea"/>
 					</xs:sequence>
 				</xs:extension>
 			</xs:complexContent>
 		</xs:complexType>
 	</xs:element>
 
-	<xs:complexType name="ProcessDeleteCategoryDataArea">
+	<xs:complexType name="CancelCategoryDataArea">
 		<xs:sequence>
-			<xs:element ref="oa:Process"/>
+			<xs:element ref="oa:Cancel"/>
 			<xs:element ref="cir:DeleteCategory"/>
 		</xs:sequence>
 	</xs:complexType>

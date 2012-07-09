@@ -17,25 +17,26 @@
 	<xs:import schemaLocation="OAGIS/Meta.xsd" namespace="http://www.openapplications.org/oagis/9"/>
 	<xs:import schemaLocation="../2-XSD/CommonInteroperabilityRegistry.xsd" namespace="http://www.openoandm.org/xml/CIR/"/>
 
-	<xs:element name="ProcessCreateRegistry">
+	<xs:element name="RespondCancelCategory">
 		<xs:annotation>
-			<xs:documentation>Creates a new Registry, new Category in a Registry, new Entries in a Category, and Properties with Values in an Entry.</xs:documentation>
+			<xs:documentation>Response to a CancelCategory BOD.</xs:documentation>
 		</xs:annotation>
 		<xs:complexType>
 			<xs:complexContent>
 				<xs:extension base="oa:BusinessObjectDocumentType">
 					<xs:sequence>
-						<xs:element name="DataArea" type="bod:ProcessCreateRegistryDataArea"/>
+						<xs:element name="DataArea" type="bod:RespondCancelCategoryDataArea"/>
 					</xs:sequence>
 				</xs:extension>
 			</xs:complexContent>
 		</xs:complexType>
 	</xs:element>
 
-	<xs:complexType name="ProcessCreateRegistryDataArea">
+	<xs:complexType name="RespondCancelCategoryDataArea">
 		<xs:sequence>
-			<xs:element ref="oa:Process"/>
-			<xs:element ref="cir:CreateRegistry"/>
+			<xs:element ref="oa:Respond"/>
+			<xs:element ref="cir:RegistryNotFoundFault" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element ref="cir:CategoryNotFoundFault" minOccurs="0" maxOccurs="unbounded"/>
 		</xs:sequence>
 	</xs:complexType>
 

@@ -17,25 +17,25 @@
 	<xs:import schemaLocation="OAGIS/Meta.xsd" namespace="http://www.openapplications.org/oagis/9"/>
 	<xs:import schemaLocation="../2-XSD/CommonInteroperabilityRegistry.xsd" namespace="http://www.openoandm.org/xml/CIR/"/>
 
-	<xs:element name="ProcessUpdateEntryCIRID">
+	<xs:element name="CancelProperties">
 		<xs:annotation>
-			<xs:documentation>Replaces the CIRID field on matching Entries with a new CIRID value.</xs:documentation>
+			<xs:documentation>Deletes the specified Properties.</xs:documentation>
 		</xs:annotation>
 		<xs:complexType>
 			<xs:complexContent>
 				<xs:extension base="oa:BusinessObjectDocumentType">
 					<xs:sequence>
-						<xs:element name="DataArea" type="bod:ProcessUpdateEntryCIRIDDataArea"/>
+						<xs:element name="DataArea" type="bod:CancelPropertiesDataArea"/>
 					</xs:sequence>
 				</xs:extension>
 			</xs:complexContent>
 		</xs:complexType>
 	</xs:element>
 
-	<xs:complexType name="ProcessUpdateEntryCIRIDDataArea">
+	<xs:complexType name="CancelPropertiesDataArea">
 		<xs:sequence>
-			<xs:element ref="oa:Process"/>
-			<xs:element ref="cir:UpdateEntryCIRID"/>
+			<xs:element ref="oa:Cancel"/>
+			<xs:element ref="cir:DeleteProperties"/>
 		</xs:sequence>
 	</xs:complexType>
 

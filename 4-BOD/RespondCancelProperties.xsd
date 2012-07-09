@@ -17,25 +17,28 @@
 	<xs:import schemaLocation="OAGIS/Meta.xsd" namespace="http://www.openapplications.org/oagis/9"/>
 	<xs:import schemaLocation="../2-XSD/CommonInteroperabilityRegistry.xsd" namespace="http://www.openoandm.org/xml/CIR/"/>
 
-	<xs:element name="ProcessDeleteEntries">
+	<xs:element name="RespondCancelProperties">
 		<xs:annotation>
-			<xs:documentation>Deletes the specified Entries along with its Properties.</xs:documentation>
+			<xs:documentation>Response to a CancelProperties BOD.</xs:documentation>
 		</xs:annotation>
 		<xs:complexType>
 			<xs:complexContent>
 				<xs:extension base="oa:BusinessObjectDocumentType">
 					<xs:sequence>
-						<xs:element name="DataArea" type="bod:ProcessDeleteEntriesDataArea"/>
+						<xs:element name="DataArea" type="bod:RespondCancelPropertiesDataArea"/>
 					</xs:sequence>
 				</xs:extension>
 			</xs:complexContent>
 		</xs:complexType>
 	</xs:element>
 
-	<xs:complexType name="ProcessDeleteEntriesDataArea">
+	<xs:complexType name="RespondCancelPropertiesDataArea">
 		<xs:sequence>
-			<xs:element ref="oa:Process"/>
-			<xs:element ref="cir:DeleteEntries"/>
+			<xs:element ref="oa:Respond"/>
+			<xs:element ref="cir:RegistryNotFoundFault" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element ref="cir:CategoryNotFoundFault" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element ref="cir:EntryNotFoundFault" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element ref="cir:PropertyNotFoundFault" minOccurs="0" maxOccurs="unbounded"/>
 		</xs:sequence>
 	</xs:complexType>
 

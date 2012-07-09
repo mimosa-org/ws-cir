@@ -17,25 +17,27 @@
 	<xs:import schemaLocation="OAGIS/Meta.xsd" namespace="http://www.openapplications.org/oagis/9"/>
 	<xs:import schemaLocation="../2-XSD/CommonInteroperabilityRegistry.xsd" namespace="http://www.openoandm.org/xml/CIR/"/>
 
-	<xs:element name="ProcessCreateEquivalentEntries">
+	<xs:element name="RespondCancelEntries">
 		<xs:annotation>
-			<xs:documentation>Creates Entries and associated Properties, and links a new Entry to an existing equivalent Entry.</xs:documentation>
+			<xs:documentation>Response to a CancelEntries BOD.</xs:documentation>
 		</xs:annotation>
 		<xs:complexType>
 			<xs:complexContent>
 				<xs:extension base="oa:BusinessObjectDocumentType">
 					<xs:sequence>
-						<xs:element name="DataArea" type="bod:ProcessCreateEquivalentEntriesDataArea"/>
+						<xs:element name="DataArea" type="bod:RespondCancelEntriesDataArea"/>
 					</xs:sequence>
 				</xs:extension>
 			</xs:complexContent>
 		</xs:complexType>
 	</xs:element>
 
-	<xs:complexType name="ProcessCreateEquivalentEntriesDataArea">
+	<xs:complexType name="RespondCancelEntriesDataArea">
 		<xs:sequence>
-			<xs:element ref="oa:Process"/>
-			<xs:element ref="cir:CreateEquivalentEntries"/>
+			<xs:element ref="oa:Respond"/>
+			<xs:element ref="cir:RegistryNotFoundFault" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element ref="cir:CategoryNotFoundFault" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element ref="cir:EntryNotFoundFault" minOccurs="0" maxOccurs="unbounded"/>
 		</xs:sequence>
 	</xs:complexType>
 
