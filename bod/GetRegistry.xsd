@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+	ws-CIR 1.0 Get Registry BOD
+
+	Copyright MIMOSA 2012. All Rights Reserved.
+	License information for this file is provided in the file "LICENSE.txt" that is provided with this download package.
+
+	For support, more information, or to report errors, please contact MIMOSA at http://www.mimosa.org/contact.
+-->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+	xmlns:oa="http://www.openapplications.org/oagis/9"
+	xmlns:cir="http://www.openoandm.org/ws-cir/"
+	xmlns:bod="http://www.openoandm.org/ws-cir/"
+	targetNamespace="http://www.openoandm.org/ws-cir/"
+	elementFormDefault="qualified"
+	attributeFormDefault="unqualified">
+
+	<xs:import schemaLocation="oagis/Meta.xsd" namespace="http://www.openapplications.org/oagis/9"/>
+	<xs:import schemaLocation="../xsd/CommonInteroperabilityRegistry.xsd" namespace="http://www.openoandm.org/ws-cir/"/>
+
+	<xs:element name="GetRegistry">
+		<xs:annotation>
+			<xs:documentation>Returns all Registries, Categories, Entries and Properties filtered by the specified conditions.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="oa:BusinessObjectDocumentType">
+					<xs:sequence>
+						<xs:element name="DataArea" type="bod:GetRegistryDataArea"/>
+					</xs:sequence>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+
+	<xs:complexType name="GetRegistryDataArea">
+		<xs:sequence>
+			<xs:element ref="oa:Process"/>
+			<xs:element ref="cir:GetRegistry"/>
+		</xs:sequence>
+	</xs:complexType>
+
+</xs:schema>

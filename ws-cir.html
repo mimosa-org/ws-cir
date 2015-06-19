@@ -1,0 +1,1132 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<title>ws-CIR 1.0</title>
+		<link href="assets/bootstrap.min.css" rel="stylesheet">
+		<link href="assets/ws-cir.min.css" rel="stylesheet">
+		<script src="assets/jquery.min.js"></script>
+		<script src="assets/bootstrap.min.js"></script>
+	</head>
+	<body id="top" data-spy="scroll" data-target=".sidebar">
+		<div class="container">
+			<div class="logos">
+				<img src="assets/openoandm_logo.png" class="img-responsive" alt="OpenO&amp;M logo">
+			</div>
+			<h1>ws-CIR 1.0</h1>
+			<h3>Web Service Common Interoperability Registry</h3>
+			<h3>OpenO&amp;M Candidate Standard 19 June 2015</h3>
+			<dl>
+				<dt>This Document</dt>
+				<dd><a href="http://www.openoandm.org/ws-cir/1.0/ws-cir.html" class="url-link">http://www.openoandm.org/ws-cir/1.0/ws-cir.html</a></dd>
+				<dt>WSDL</dt>
+				<dd><a href="http://www.openoandm.org/ws-cir/1.0/wsdl/CommonInteroperabilityRegistry.wsdl" class="url-link">http://www.openoandm.org/ws-cir/1.0/wsdl/CommonInteroperabilityRegistry.wsdl</a></dd>
+				<dt>Packaged Specification</dt>
+				<dd><a href="http://www.openoandm.org/ws-cir/ws-cir-1.0.zip" class="url-link">http://www.openoandm.org/ws-cir/ws-cir-1.0.zip</a></dd>
+				<dt>Latest Version</dt>
+				<dd><a href="http://www.openoandm.org/ws-cir" class="url-link">http://www.openoandm.org/ws-cir</a></dd>
+				<dt>Editors</dt>
+				<dd>
+					<dl>
+						<dt>MIMOSA</dt>
+						<dd>Avin Mathew, Assetricity</dd>
+						<dd>Ken Bever, Assetricity</dd>
+					</dl>
+					<dl>
+						<dt>ISA</dt>
+						<dd>Dennis Brandl, BR&amp;L Consulting</dd>
+					</dl>
+				</dd>
+			</dl>
+		</div>
+		<div class="container">
+			<div class="row">
+				<div class="col-md-9" role="main">
+					<h2 id="abstract">Abstract</h2>
+					<p>This document defines the OpenO&amp;M Web Service Common Interoperability Registry (ws-CIR). The ws-CIR specification is a standards-based, vendor-neutral approach for the construction of an object registration server. The specification defines an underlying logical data model, the services for the registry, and a normative XML Schema/WSDL specification as well as a message model for the services.</p>
+					<h2 id="status" class="no-page-break">Status</h2>
+					<p>Implementers should be aware that this specification is not stable. <em>Implementers who are not taking part in the discussions are likely to find the specification changing out from under them in incompatible ways.</em> Vendors interested in implementing this specification before it eventually reaches the final Standard stage should join the MIMOSA mailing lists and take part in the discussions.</p>
+					<p>The latest stable version of the editor's draft of this specification is always available on the <a href="https://github.com/mimosa-org/ws-cir">MIMOSA ws-CIR Git repository</a>.</p>
+					<p>If you wish to make comments regarding this specification in a manner that is tracked by OpenO&amp;M, please submit them via <a href="https://github.com/mimosa-org/ws-cir/issues">the public bug database</a>. You can alternatively <a href="http://www.mimosa.org/contact">contact MIMOSA directly</a> and arrangements will be made to transpose appropriate remarks to the public bug database. All feedback is welcome.</p>
+					<h2 id="notices">Notices</h2>
+					<div class="well">
+					<p>Copyright MIMOSA 2015. All Rights Reserved.</p>
+					<p>All capitalized terms in the following text have the meanings assigned to them in the MIMOSA Intellectual Property Rights Policy (the "MIMOSA IPR Policy"). The full Policy may be found at the <a href="http://www.mimosa.org/sites/default/files/policies-charters/MIMOSA_IPR_Policy.pdf">MIMOSA website</a>.</p>
+					<p>The limited permissions granted above are perpetual and will not be revoked by MIMOSA or its successors or assigns.</p>
+					<p>This document and the information contained herein is provided on an "AS IS" basis and MIMOSA DISCLAIMS ALL WARRANTIES, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO ANY WARRANTY THAT THE USE OF THE INFORMATION HEREIN WILL NOT INFRINGE ANY OWNERSHIP RIGHTS OR ANY IMPLIED WARRANTIES OF MERCHANTABILITY OR FITNESS FOR A PARTICULAR PURPOSE.</p>
+					<p>MIMOSA requests that any MIMOSA Party or any other party that believes it has patent claims that would necessarily be infringed by implementations of this MIMOSA Final Deliverable, to notify MIMOSA TC Administrator and provide an indication of its willingness to grant patent licenses to such patent claims in a manner consistent with the IPR Mode of the MIMOSA Technical Committee that produced this deliverable.</p>
+					<p>MIMOSA invites any party to contact the MIMOSA TC Administrator if it is aware of a claim of ownership of any patent claims that would necessarily be infringed by implementations of this MIMOSA Final Deliverable by a patent holder that is not willing to provide a license to such patent claims in a manner consistent with the IPR Mode of the MIMOSA Technical Committee that produced this MIMOSA Final Deliverable. MIMOSA may include such claims on its website, but disclaims any obligation to do so.</p>
+					<p>MIMOSA takes no position regarding the validity or scope of any intellectual property or other rights that might be claimed to pertain to the implementation or use of the technology described in this MIMOSA Final Deliverable or the extent to which any license under such rights might or might not be available; neither does it represent that it has made any effort to identify any such rights. Information on MIMOSA's procedures with respect to rights in any document or deliverable produced by a MIMOSA Technical Committee can be found on the MIMOSA website. Copies of claims of rights made available for publication and any assurances of licenses to be made available, or the result of an attempt made to obtain a general license or permission for the use of such proprietary rights by implementers or users of this MIMOSA Final Deliverable, can be obtained from the MIMOSA TC Administrator. MIMOSA makes no representation that any information or list of intellectual property rights will at any time be complete, or that any claims in such list are, in fact, Essential Claims.</p>
+					</div>
+					<p>The OpenO&amp;M ws-CIR is released under the <a href="http://www.mimosa.org/sites/default/files/policies-charters/MIMOSA_License_Agreement.pdf">MIMOSA License Agreement</a>.</p>
+					<div class="toc">
+						<h2>Table of Contents</h2>
+						<ul class="toc">
+							<li>
+								<a href="#introduction"><span class="secno">1</span>Introduction</a>
+								<ul class="toc">
+									<li><a href="#notational-conventions"><span class="secno">1.1</span>Notational Conventions</a></li>
+									<li><a href="#namespaces"><span class="secno">1.2</span>Namespaces</a></li>
+								</ul>
+							</li>
+							<li>
+								<a href="#logical-data-model"><span class="secno">2</span>Logical Data Model</a>
+								<ul class="toc">
+									<li>
+										<a href="#primitive-data-types"><span class="secno">2.1</span>Primitive Data Types</a>
+										<ul class="toc">
+											<li><a href="#xml-schema-types"><span class="secno">2.1.1</span>XML Schema Types</a></li>
+											<li><a href="#core-component-types"><span class="secno">2.1.2</span>Core Component Types</a></li>
+										</ul>
+									</li>
+									<li><a href="#uml-model"><span class="secno">2.2</span>UML Model</a></li>
+									<li><a href="#registry"><span class="secno">2.3</span>Registry</a></li>
+									<li><a href="#category"><span class="secno">2.4</span>Category</a></li>
+									<li><a href="#entry"><span class="secno">2.5</span>Entry</a></li>
+									<li><a href="#property"><span class="secno">2.6</span>Property</a></li>
+									<li><a href="#property-value"><span class="secno">2.7</span>PropertyValue</a></li>
+								</ul>
+							</li>
+							<li>
+								<a href="#service-definitions"><span class="secno">3</span>Service Definitions</a>
+								<ul class="toc">
+									<li>
+										<a href="#ws-cir-command-services"><span class="secno">3.1</span>ws-CIR Command Services</a>
+										<ul class="toc">
+											<li><a href="#create-registry"><span class="secno">3.1.1</span>Create Registry</a></li>
+											<li><a href="#create-equivalent-entries"><span class="secno">3.1.2</span>Create Equivalent Entries</a></li>
+											<li><a href="#update-registry"><span class="secno">3.1.3</span>Update Registry</a></li>
+											<li><a href="#update-entry-cirid"><span class="secno">3.1.4</span>Update Entry CIRID</a></li>
+											<li><a href="#delete-registry"><span class="secno">3.1.5</span>Delete Registry</a></li>
+											<li><a href="#delete-category"><span class="secno">3.1.6</span>Delete Category</a></li>
+											<li><a href="#delete-entries"><span class="secno">3.1.7</span>Delete Entries</a></li>
+											<li><a href="#delete-properties"><span class="secno">3.1.8</span>Delete Properties</a></li>
+										</ul>
+									</li>
+									<li>
+										<a href="#ws-cir-query-services"><span class="secno">3.2</span>ws-CIR Query Services</a>
+										<ul class="toc">
+											<li><a href="#get-registry"><span class="secno">3.2.1</span>Get Registry</a></li>
+											<li><a href="#get-equivalent-entries"><span class="secno">3.2.2</span>Get Equivalent Entries</a></li>
+											<li><a href="#get-entries-by-cirid"><span class="secno">3.2.3</span>Get Entries By CIRID</a></li>
+										</ul>
+									</li>
+								</ul>
+							</li>
+							<li><a href="#wildcard-specification"><span class="secno">4</span>Wildcard Specification</a></li>
+							<li><a href="#conformance"><span class="secno">5</span>Conformance</a></li>
+							<li>
+								<a href="#openom-defined-properties"><span class="secno">Appendix A</span>OpenO&M Defined Properties</a>
+								<ul class="toc">
+									<li><a href="#parent-entity-id">ParentEntityID</a></li>
+									<li><a href="#child-entity-id">ChildEntityID</a></li>
+									<li><a href="#possible-equivalent-entry-id">PossibleEquivalentEntryID</a></li>
+								</ul>
+							</li>
+							<li>
+								<a href="#oagis-based-message-model"><span class="secno">Annex A</span>OAGIS-Based Message Model</a>
+								<ul class="toc">
+									<li><a href="#bod-catalogue">BOD Catalogue</a></li>
+									<li><a href="#request-response-bods">Request/Response BODs</a></li>
+									<li><a href="#usage-of-oagis-elements">Usage of OAGIS Elements</a></li>
+								</ul>
+							</li>
+						</ul>
+					</div>
+					<h2 id="introduction"><span class="secno">1</span>Introduction</h2>
+					<p>The Web Service Common Interoperability Registry (ws-CIR) Specification provides a normative specification for the implementation of an object registry for operations and maintenance. It consists of:</p>
+					<ul>
+						<li>A functional specification (this document)</li>
+						<li>WSDL service definitions (with associated XML Schema definitions)</li>
+						<li>Message model based on Open Applications Group Integration Specification (OAGIS)</li>
+					</ul>
+					<p>The specification should be sufficiently detailed so that an implementation of the ws-CIR server can be developed unambiguously.</p>
+					<h3 id="notational-conventions"><span class="secno">1.2</span>Notational Conventions</h3>
+					<p>The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT", "SHOULD", "SHOULD NOT", "RECOMMENDED", "MAY", and "OPTIONAL" in this document are to be interpreted as described in <a href="http://www.ietf.org/rfc/rfc2119.txt">RFC 2119</a>.</p>
+					<p>This specification uses the following syntax to define XML structures: <code><em>Element Name</em> (<em>Type</em>) [<em>Cardinality</em>]</code>. The namespaces for Types are defined in <a href="#namespaces">the following section</a>. For example, the Topic element defined as an XML Schema <code>string</code> with one to many cardinality would be defined as: <code>Topic (xs:string) [1..*]</code>.</p>
+					<h3 id="namespaces"><span class="secno">1.3</span>Namespaces</h3>
+					<p>The following namespaces are used in this document:</p>
+					<table class="table">
+						<thead>
+							<tr>
+								<th>Prefix</th>
+								<th>Namespace</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td>xs</td>
+								<td>http://www.w3.org/2001/XMLSchema</td>
+							</tr>
+							<tr>
+								<td>cct</td>
+								<td>urn:un:unece:uncefact:documentation:standard:CoreComponentType:2</td>
+							</tr>
+							<tr>
+								<td>cir</td>
+								<td>http://www.openoandm.org/ws-cir/</td>
+							</tr>
+						</tbody>
+					</table>
+					<h2 id="logical-data-model"><span class="secno">2</span>Logical Data Model</h2>
+					<p>This section presents the data model used within the ws-CIR specification as part of its conceptual design. A ws-CIR server implementation MAY use this data model as a physical data model for data persistence.</p>
+					<h3 id="primitive-data-types"><span class="secno">2.1</span>Primitive Data Types</h3>
+					<h3 id="xml-schema-types"><span class="secno">2.1.1</span>XML Schema Types</h3>
+					<p>As the ws-CIR Services use XML Schema for schema definitions used by the WSDL services and message model, all primitive types used in the ws-CIR model are derived from XML Schema primitive types.</p>
+					<p>The namespace prefix <code>xs</code> is used to denote the XML Schema types in any UML diagrams.</p>
+					<h3 id="core-component-types"><span class="secno">2.1.2</span>Core Component Types</h3>
+					<p>The <a href="http://www.unece.org/cefact/codesfortrade/ccts_datatypecatalogue.html">UN/CEFACT Core Component Types 2.01</a>, which derive from XML Schema primitive types and define basic data element types for semantic interoperability, are used in place of most primitive types in the data model. For most attributes, the usage of the Core Component Types is not explicitly addressed by this ws-CIR specification, and their inclusion is for future versions of the ws-CIR specification. However, there are two locations within the data model that immediately necessitate their inclusion: (1) the use of the language/locale attribute on TextType for Registry/Category/Entry Description attributes, and (2) the code list metadata on CodeType for the Property UnitOfMeasure attribute.</p>
+					<p>The namespace prefix <code>cct</code> is used to denote the Core Component Types in any UML diagrams.</p>
+					<h3 id="uml-model"><span class="secno">2.2</span>UML Model</h3>
+					<img src="assets/uml_model.png" class="img-responsive" alt="UML Model">
+					<h3 id="registry"><span class="secno">2.3</span>Registry</h3>
+					<p>A Registry is the container object for a set of Categories. Examples of multiple registries include: test registry, active registry, local site registry, global corporate registry.</p>
+					<table class="table">
+						<thead>
+							<tr>
+								<th>Attribute</th>
+								<th>Description</th>
+								<th>Cardinality</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td>ID</td>
+								<td>
+									<p>User defined identifier of the registry. This MUST be unique within the ws-CIR server. For example:</p>
+									<ul>
+										<li>Registration Server A</li>
+										<li>Test Registry</li>
+										<li>Finance System Registry</li>
+									</ul>
+									<p>A value based on ISO/IEC 9834-8 UUID MAY be used to ensure global uniqueness.</p>
+								</td>
+								<td>1</td>
+							</tr>
+							<tr>
+								<td>Description</td>
+								<td>Description and expected use of the registry. Multiple values are allowed for multiple languages or alternate descriptions. The language/locale is specified through the UN/CEFACT TextType metadata attributes.</td>
+								<td>0..*</td>
+							</tr>
+						</tbody>
+					</table>
+					<p><strong>Primary Key:</strong> Registry.ID</p>
+					<h3 id="category"><span class="secno">2.4</span>Category</h3>
+					<p>A Category object is the container object for a set of Entries. Categories define sets of related or potentially related Entries. For example, a Category may be defined for equipment hierarchy level names (Enterprise, Site, Area, Work Center, Work Unit), which have alternate names on different systems. The combination of ID and SourceID MUST be unique within a Registry.</p>
+					<table class="table">
+						<thead>
+							<tr>
+								<th>Attribute</th>
+								<th>Description</th>
+								<th>Cardinality</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td>ID</td>
+								<td>
+									<p>User defined identifier of the category. For example:</p>
+									<ul>
+										<li>Asset</li>
+										<li>Asset_Type</li>
+										<li>Segment</li>
+										<li>Segment_Type</li>
+										<li>Meas_Location</li>
+										<li>Meas_Loc_Type</li>
+										<li>Network</li>
+										<li>Network_Type</li>
+										<li>P&amp;ID Diagram Object</li>
+										<li>Batch Status</li>
+										<li>Production Status</li>
+										<li>Equipment Status</li>
+									</ul>
+								</td>
+								<td>1</td>
+							</tr>
+							<tr>
+								<td>SourceID</td>
+								<td>
+									<p>Identification of the category. May define the organization and specification name for the category. For example:</p>
+									<ul>
+										<li>MIMOSA OSA-EAI V3</li>
+										<li>ISA 88 BatchStatus</li>
+										<li>ISA 95-2000 EquipmentModel</li>
+										<li>B2MML.EquipmentModel</li>
+										<li>ISA88.RecipeModel1995</li>
+										<li>BatchML.RecipeModelV4.04.01</li>
+										<li>ChemCompany.RefineryModelV2.1</li>
+										<li>ShippingCompany.TransportCode</li>
+									</ul>
+								</td>
+								<td>1</td>
+							</tr>
+							<tr>
+								<td>Description</td>
+								<td>Description and expected use of the category. Multiple values are allowed for multiple languages or alternate descriptions. The language/locale is specified through the UN/CEFACT TextType metadata attributes.</td>
+								<td>0..*</td>
+							</tr>
+						</tbody>
+					</table>
+					<p><strong>Primary Key:</strong> Registry.ID, Category.ID, Category.SourceID</p>
+					<h3 id="entry"><span class="secno">2.5</span>Entry</h3>
+					<p>Entries define named element and properties with an identifier local to the owning application and a possible global ID (CIRID) that defined equivalent Entries in other applications. For example, the record TC101 in System A may be the equivalent of record UNIT101.TOP_TEMP in System B. The combination of IDinSource and SourceID MUST be unique within a Category.</p>
+					<table class="table">
+						<thead>
+							<tr>
+								<th>Attribute</th>
+								<th>Description</th>
+								<th>Cardinality</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td>IDInSource</td>
+								<td>User defined identification of the entry in the source system. This may be the primary key within the source system or another unique value that can be used to distinguish objects within the source system.</td>
+								<td>1</td>
+							</tr>
+							<tr>
+								<td>SourceID</td>
+								<td>
+									<p>Identification of the source system. For example:</p>
+									<ul>
+										<li>Engineering DB #234</li>
+										<li>Supplier A MIMOSA CRIS Registry Database #1</li>
+										<li>EAM/CMMS System B</li>
+									</ul>
+								</td>
+								<td>1</td>
+							</tr>
+							<tr>
+								<td>CIRID</td>
+								<td>System-assigned universally unique ID for the entry based on ISO/IEC 9834-8 UUID. Used to correlate multiple entries to identify logical equivalent entries (i.e. multiple entries with the same CIRID are equivalent objects).</td>
+								<td>0..1</td>
+							</tr>
+							<tr>
+								<td>SourceOwnerID</td>
+								<td>
+									<p>Organization that has responsibility for the source system or entity namespace. For example:</p>
+									<ul>
+										<li>Oil Company A</li>
+										<li>Chem Company B</li>
+										<li>System Supplier A</li>
+										<li>System Supplier B</li>
+									</ul>
+								</td>
+								<td>0..1</td>
+							</tr>
+							<tr>
+								<td>Name</td>
+								<td>Name of the entry. This is the source system's external identification of the entry. It is often a label the user will see on a screen for this object in the source system. Usually locally unique for the user, but may not be the source system's internal primary key/unique identifier.</td>
+								<td>0..1</td>
+							</tr>
+							<tr>
+								<td>Description</td>
+								<td>Description of the entry. Multiple values are allowed for multiple languages or alternate descriptions. The language/locale is specified through the UN/CEFACT TextType metadata attributes.</td>
+								<td>0..1</td>
+							</tr>
+							<tr>
+								<td>Inactive</td>
+								<td>Boolean flag where FALSE or absent indicates the entry is active and available for use while TRUE indicates the entry is inactive. Examples of inactive entries may be data that is entered but the source system is not yet available or in use.</td>
+								<td>0..1</td>
+							</tr>
+						</tbody>
+					</table>
+					<p><strong>Primary Key:</strong> Registry.ID, Category.ID, Category.SourceID, Entry.IDInSource, Entry.SourceID</p>
+					<p>Entries with the same CIRID are considered equivalent objects. For example, for the following set of Entries (not all columns are shown), the first three Entries are equivalent.</p>
+					<table class="table">
+						<thead>
+							<tr>
+								<th>IDInSource</th>
+								<th>SourceID</th>
+								<th>CIRID</th>
+								<th>Name</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td>234443</td>
+								<td>System A</td>
+								<td>550e8400-e29b-41d4-a716-446655440000</td>
+								<td>Loop 106</td>
+							</tr>
+							<tr>
+								<td>423ABC</td>
+								<td>System B</td>
+								<td>550e8400-e29b-41d4-a716-446655440000</td>
+								<td>Cmn Loop 106</td>
+							</tr>
+							<tr>
+								<td>TIC-106</td>
+								<td>System C</td>
+								<td>550e8400-e29b-41d4-a716-446655440000</td>
+								<td>Top Temp Control</td>
+							</tr>
+							<tr>
+								<td>TIC-8106</td>
+								<td>System C</td>
+								<td>550e8400-e29b-41d4-a716-446655448778</td>
+								<td>Top Temp Control</td>
+							</tr>
+						</tbody>
+					</table>
+					<h3 id="property"><span class="secno">2.6</span>Property</h3>
+					<p>A Property defines an attribute or characteristic of an Entry. Properties may be used to help identify equivalent Entries. The Properties should be a small set of attributes that may be needed to link systems together, and are not intended to be a global property master registry.</p>
+					<table class="table">
+						<thead>
+							<tr>
+								<th>Attribute</th>
+								<th>Description</th>
+								<th>Cardinality</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td>ID</td>
+								<td>User defined identification of the property. This MUST be unique for a registry entry.</td>
+								<td>1</td>
+							</tr>
+							<tr>
+								<td>PropertyValue</td>
+								<td>Value of the property. See <a href="#property-value">PropertyValue</a></td>
+								<td>0..*</td>
+							</tr>
+							<tr>
+								<td>DataType</td>
+								<td>Data type of the value.</td>
+								<td>0..1</td>
+							</tr>
+						</tbody>
+					</table>
+					<p><strong>Primary Key:</strong> Registry.ID, Category.ID, Category.SourceID, Entry.IDInSource, Entry.SourceID, Property.ID</p>
+					<h3 id="property-value"><span class="secno">2.7</span>PropertyValue</h3>
+					<p>A PropertyValue is a group of attributes that form the value of an Entry Property. The PropertyValue can be a key-value pair or a single value with or without a unit of measure.</p>
+					<table class="table">
+						<thead>
+							<tr>
+								<th>Attribute</th>
+								<th>Description</th>
+								<th>Cardinality</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td>Key</td>
+								<td>String-serialized key for the key-value pair of the property. Is not required if the value is not a key-value pair.</td>
+								<td>0..1</td>
+							</tr>
+							<tr>
+								<td>Value</td>
+								<td>String-serialized value of the property</td>
+								<td>1</td>
+							</tr>
+							<tr>
+								<td>UnitOfMeasure</td>
+								<td>Unit of measure of the value. The code list MAY be specified through the UN/CEFACT CodeType list metadata attributes.</td>
+								<td>0..1</td>
+							</tr>
+						</tbody>
+					</table>
+					<div class="alert alert-info">A JSON representation MAY be used to represent the Value, similar to the <a href="">OpenO&amp;M Defined Properties</a>.</div>
+					<h2 id="service-definitions"><span class="secno">3</span>Service Definitions</h2>
+					<p>This section defines the detailed format for the ws-CIR Service definitions.</p>
+					<h3 id="ws-cir-command-services"><span class="secno">3.1</span>ws-CIR Command Services</h3>
+					<p>The Command Services exposed by the ws-CIR allow a client to create/update/delete registry data. All operations MUST be atomic, and there MUST NOT be no partial creates/updates/deletions if a fault is thrown during the invocation of a service.</p>
+					<h4 id="create-registry"><span class="secno">3.1.1</span>Create Registry</h4>
+					<table class="table operation">
+						<tr>
+							<th>Name</th>
+							<td>CreateRegistry</td>
+						</tr>
+						<tr>
+							<th>Description</th>
+							<td>Creates a new Registry, new Category in a Registry, new Entries in a Category, and Properties with Values in an Entry.</td>
+						</tr>
+						<tr>
+							<th>Input</th>
+							<td>
+								<p>Registry (cir:Registry) [1..*]<br>&nbsp;&nbsp;&nbsp;&nbsp;
+								The Registry/Category/Entry/Property structure to create within the ws-CIR server.</p>
+								<p>CreateCIRID (<a href="http://www.w3.org/TR/xmlschema-2/#boolean">xs:boolean</a>) [1]<br>&nbsp;&nbsp;&nbsp;&nbsp;
+								This flag indicates whether CIRIDs are created and allocated to the supplied Entries.</p>
+							</td>
+						</tr>
+						<tr>
+							<th>Behavior</th>
+							<td>
+								<p>If the ws-CIR server is configured to not allow new Registry objects and a new RegistryID is supplied, then the ws-CIR server MUST throw a CreateRegistryFault.</p>
+								<p>If the ws-CIR server is configured to not allow new Category objects and a new CategoryID and SourceID are supplied, then the ws-CIR server MUST throw a CreateCategoryFault.</p>
+								<p>If there is a duplicate Entry (same primary key as an existing Entry), then the ws-CIR server MUST throw a DuplicateEntryFault.</p>
+								<p>If there is a duplicate Property (same primary key as an existing Property), then the ws-CIR server MUST throw a DuplicatePropertyFault.</p>
+								<p>If CreateCIRID is TRUE, then the ws-CIR server MUST generate new UUIDs for any Entries supplied without a CIRID. If CreateCIRID is FALSE, then the CIRID field is not supplemented with UUIDs.</p>
+							</td>
+						</tr>
+						<tr>
+							<th>Output</th>
+							<td>N/A</td>
+						</tr>
+						<tr>
+							<th>Faults</th>
+							<td>
+								<p>CreateRegistryFault</p>
+								<p>CreateCategoryFault</p>
+								<p>DuplicateEntryFault</p>
+								<p>DuplicatePropertyFault</p>
+							</td>
+						</tr>
+					</table>
+					<h4 id="create-equivalent-entries"><span class="secno">3.1.2</span>Create Equivalent Entries</h4>
+					<table class="table operation">
+						<tr>
+							<th>Name</th>
+							<td>CreateEquivalentEntries</td>
+						</tr>
+						<tr>
+							<th>Description</th>
+							<td>Creates Entries and associated Properties, and links a new Entry to an existing equivalent Entry.</td>
+						</tr>
+						<tr>
+							<th>Input</th>
+							<td>
+								<p>EquivalentEntry (cir:EquivalentEntry) [1..*], composed of:<br>&nbsp;&nbsp;&nbsp;&nbsp;
+								ExistingIDInSource (cct:IDType) [1]<br>&nbsp;&nbsp;&nbsp;&nbsp;
+								ExistingSourceID (cct:IDType) [1]<br>&nbsp;&nbsp;&nbsp;&nbsp;
+								RegistryID (cct:IDType) [1]<br>&nbsp;&nbsp;&nbsp;&nbsp;
+								CategoryID (cct:IDType) [1]<br>&nbsp;&nbsp;&nbsp;&nbsp;
+								CategorySourceID (cct:IDType) [1]<br>&nbsp;&nbsp;&nbsp;&nbsp;
+								Entry (cir:Entry) [1]<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+								The Entry/Property structure to create within the ws-CIR server.</p>
+							</td>
+						</tr>
+						<tr>
+							<th>Behavior</th>
+							<td>
+								<p>If the Entry identified by the ExistingIDInSource and ExistingSourceID is not found, then the ws-CIR server MUST throw an EntryNotFoundFault.</p>
+								<p>If the Registry identified by the RegistryID is not found, then the ws-CIR server MUST throw a RegistryNotFoundFault.</p>
+								<p>If the Category identified by the CategoryID and CategorySourceID is not found, then the ws-CIR server MUST throw a CategoryNotFoundFault.</p>
+								<p>If there is a duplicate Entry (same primary key as an existing Entry), then the ws-CIR server MUST throw a DuplicateEntryFault.</p>
+								<p>If only the existing Entry or both the existing Entry and supplied Entry have a CIRID, then the ws-CIR server MUST apply the existing Entry CIRID to both Entries. If the existing Entry does not have a CIRID but the supplied Entry does, the ws-CIR server MUST apply the supplied Entry CIRID to both Entries. If neither Entry has a CIRID specified, then the ws-CIR server MUST create and apply new CIRID to both Entries.</p>
+							</td>
+						</tr>
+						<tr>
+							<th>Output</th>
+							<td>N/A</td>
+						</tr>
+						<tr>
+							<th>Faults</th>
+							<td>
+								<p>EntryNotFoundFault</p>
+								<p>RegistryNotFoundFault</p>
+								<p>CategoryNotFoundFault</p>
+								<p>DuplicateEntryFault</p>
+							</td>
+						</tr>
+					</table>
+					<h4 id="update-registry"><span class="secno">3.1.3</span>Update Registry</h4>
+					<table class="table operation">
+						<tr>
+							<th>Name</th>
+							<td>UpdateRegistry</td>
+						</tr>
+						<tr>
+							<th>Description</th>
+							<td>Updates the attributes of existing Registries, Categories, Entries or Properties.</td>
+						</tr>
+						<tr>
+							<th>Input</th>
+							<td>
+								<p>Registry (cir:Registry) [1..*]</p>
+							</td>
+						</tr>
+						<tr>
+							<th>Behavior</th>
+							<td>
+								<p>All attributes of a Registry/Category/Entry/Property object apart from its primary key are updated based on the supplied data.</p>
+								<p>If a Registry identified by the ID is not found, then the ws-CIR server MUST throw a RegistryNotFoundFault.</p>
+								<p>If a Category identified by the ID and SourceID is not found, then the ws-CIR server MUST throw a CategoryNotFoundFault.</p>
+								<p>If an Entry identified by the IDInSource and SourceID is not found, then the ws-CIR server MUST throw an EntryNotFoundFault.</p>
+								<p>If a Property identified by the ID is not found, then the ws-CIR server MUST throw a PropertyNotFoundFault.</p>
+							</td>
+						</tr>
+						<tr>
+							<th>Output</th>
+							<td>N/A</td>
+						</tr>
+						<tr>
+							<th>Faults</th>
+							<td>
+								<p>RegistryNotFoundFault</p>
+								<p>CategoryNotFoundFault</p>
+								<p>EntryNotFoundFault</p>
+								<p>PropertyNotFoundFault</p>
+							</td>
+						</tr>
+					</table>
+					<h4 id="update-entry-cirid"><span class="secno">3.1.4</span>Update Entry CIRID</h4>
+					<table class="table operation">
+						<tr>
+							<th>Name</th>
+							<td>UpdateEntryCIRID</td>
+						</tr>
+						<tr>
+							<th>Description</th>
+							<td>Replaces the CIRID field on matching Entries with a new CIRID value.</td>
+						</tr>
+						<tr>
+							<th>Input</th>
+							<td>
+								<p>OldCIRID (cir:UUID) [1..*]</p>
+								<p>NewCIRID (cir:UUID) [1]</p>
+							</td>
+						</tr>
+						<tr>
+							<th>Output</th>
+							<td>N/A</td>
+						</tr>
+						<tr>
+							<th>Faults</th>
+							<td>N/A</td>
+						</tr>
+					</table>
+					<h4 id="delete-registry"><span class="secno">3.1.5</span>Delete Registry</h4>
+					<table class="table operation">
+						<tr>
+							<th>Name</th>
+							<td>DeleteRegistry</td>
+						</tr>
+						<tr>
+							<th>Description</th>
+							<td>Deletes the specified Registry along with its Categories, Entries and Properties.</td>
+						</tr>
+						<tr>
+							<th>Input</th>
+							<td>
+								<p>RegistryID (cct:IDType) [1]</p>
+							</td>
+						</tr>
+						<tr>
+							<th>Behavior</th>
+							<td>
+								<p>If the Registry identified by the RegistryID is not found, then the ws-CIR server MUST throw a RegistryNotFoundFault.</p>
+							</td>
+						</tr>
+						<tr>
+							<th>Output</th>
+							<td>N/A</td>
+						</tr>
+						<tr>
+							<th>Faults</th>
+							<td>RegistryNotFoundFault</td>
+						</tr>
+					</table>
+					<h4 id="delete-category"><span class="secno">3.1.6</span>Delete Category</h4>
+					<table class="table operation">
+						<tr>
+							<th>Name</th>
+							<td>DeleteCategory</td>
+						</tr>
+						<tr>
+							<th>Description</th>
+							<td>Deletes the specified Category along with its Entries and Properties.</td>
+						</tr>
+						<tr>
+							<th>Input</th>
+							<td>
+								<p>RegistryID (cct:IDType) [1]</p>
+								<p>CategoryID (cct:IDType) [1]</p>
+								<p>CategorySourceID (cct:IDType) [1]</p>
+							</td>
+						</tr>
+						<tr>
+							<th>Behavior</th>
+							<td>
+								<p>If the Registry identified by the RegistryID is not found, then the ws-CIR server MUST throw a RegistryNotFoundFault.</p>
+								<p>If the Category identified by the CategoryID and CategorySourceID is not found, then the ws-CIR server MUST throw a CategoryNotFoundFault.</p>
+							</td>
+						</tr>
+						<tr>
+							<th>Output</th>
+							<td>N/A</td>
+						</tr>
+						<tr>
+							<th>Faults</th>
+							<td>
+								<p>RegistryNotFoundFault</p>
+								<p>CategoryNotFoundFault</p>
+							</td>
+							
+						</tr>
+					</table>
+					<h4 id="delete-entries"><span class="secno">3.1.7</span>Delete Entries</h4>
+					<table class="table operation">
+						<tr>
+							<th>Name</th>
+							<td>DeleteEntries</td>
+						</tr>
+						<tr>
+							<th>Description</th>
+							<td>Deletes the specified Entries along with its Properties.</td>
+						</tr>
+						<tr>
+							<th>Input</th>
+							<td>
+								<p>EntryIdentifier (cir:EntryIdentifier) [1..*], composed of:<br>&nbsp;&nbsp;&nbsp;&nbsp;
+								RegistryID (cct:IDType) [1]<br>&nbsp;&nbsp;&nbsp;&nbsp;
+								CategoryID (cct:IDType) [1]<br>&nbsp;&nbsp;&nbsp;&nbsp;
+								CategorySourceID (cct:IDType) [1]<br>&nbsp;&nbsp;&nbsp;&nbsp;
+								EntryIDInSource (cct:IDType) [1]<br>&nbsp;&nbsp;&nbsp;&nbsp;
+								EntrySourceID (cct:IDType) [1]</p>
+							</td>
+						</tr>
+						<tr>
+							<th>Behavior</th>
+							<td>
+								<p>If a Registry identified by the ID is not found, then the ws-CIR server MUST throw a RegistryNotFoundFault.</p>
+								<p>If a Category identified by the ID and SourceID is not found, then the ws-CIR server MUST throw a CategoryNotFoundFault.</p>
+								<p>If an Entry identified by the IDInSource and SourceID is not found, then the ws-CIR server MUST throw an EntryNotFoundFault.</p>
+							</td>
+						</tr>
+						<tr>
+							<th>Output</th>
+							<td>N/A</td>
+						</tr>
+						<tr>
+							<th>Faults</th>
+							<td>
+								<p>RegistryNotFoundFault</p>
+								<p>CategoryNotFoundFault</p>
+								<p>EntryNotFoundFault</p>
+							</td>
+						</tr>
+					</table>
+					<h4 id="delete-properties"><span class="secno">3.1.7</span>Delete Properties</h4>
+					<table class="table operation">
+						<tr>
+							<th>Name</th>
+							<td>DeleteProperties</td>
+						</tr>
+						<tr>
+							<th>Description</th>
+							<td>Deletes the specified Properties.</td>
+						</tr>
+						<tr>
+							<th>Input</th>
+							<td>
+								<p>PropertyIdentifier (cir:PropertyIdentifier) [1..*], composed of:<br>&nbsp;&nbsp;&nbsp;&nbsp;
+								RegistryID (cct:IDType) [1]<br>&nbsp;&nbsp;&nbsp;&nbsp;
+								CategoryID (cct:IDType) [1]<br>&nbsp;&nbsp;&nbsp;&nbsp;
+								CategorySourceID (cct:IDType) [1]<br>&nbsp;&nbsp;&nbsp;&nbsp;
+								EntryIDInSource (cct:IDType) [1]<br>&nbsp;&nbsp;&nbsp;&nbsp;
+								EntrySourceID (cct:IDType) [1]<br>&nbsp;&nbsp;&nbsp;&nbsp;
+								PropertyID (cct:IDType) [1]</p>
+							</td>
+						</tr>
+						<tr>
+							<th>Behavior</th>
+							<td>
+								<p>If a Registry identified by the ID is not found, then the ws-CIR server MUST throw a RegistryNotFoundFault.</p>
+								<p>If a Category identified by the ID and SourceID is not found, then the ws-CIR server MUST throw a CategoryNotFoundFault.</p>
+								<p>If an Entry identified by the IDInSource and SourceID is not found, then the ws-CIR server MUST throw an EntryNotFoundFault.</p>
+								<p>If a Property identified by the ID is not found, then the ws-CIR server MUST throw a PropertyNotFoundFault.</p>
+							</td>
+						</tr>
+						<tr>
+							<th>Output</th>
+							<td>N/A</td>
+						</tr>
+						<tr>
+							<th>Faults</th>
+							<td>
+								<p>RegistryNotFoundFault</p>
+								<p>CategoryNotFoundFault</p>
+								<p>EntryNotFoundFault</p>
+								<p>PropertyNotFoundFault</p>
+							</td>
+						</tr>
+					</table>
+					<h3 id="ws-cir-query-services"><span class="secno">3.2</span>ws-CIR Query Services</h3>
+					<p>The Query Services exposed by the ws-CIR allow a client to retrieve registry data. The client MAY use the <a href="#wildcard-specification">Wildcard Specification</a> in designated fields for advanced string matching.</p>
+					<h4 id="get-registry"><span class="secno">3.2.1</span>Get Registry</h4>
+					<table class="table operation">
+						<tr>
+							<th>Name</th>
+							<td>GetRegistry</td>
+						</tr>
+						<tr>
+							<th>Description</th>
+							<td>Returns all Registries, Categories, Entries and Properties filtered by the specified conditions.</td>
+						</tr>
+						<tr>
+							<th>Input</th>
+							<td>
+								<p>Registry (cir:Registry) [1..*]<br>&nbsp;&nbsp;&nbsp;&nbsp;
+								The Registry/Category/Entry/Property structure to create within the ws-CIR server.</p>
+								<p>Filter (cir:Filter) [0..*], composed of:<br>&nbsp;&nbsp;&nbsp;&nbsp;
+								RegistryFilter (cir:RegistryFilter) [0..1]<br>&nbsp;&nbsp;&nbsp;&nbsp;
+								CategoryFilter (cir:CategoryFilter) [0..1]<br>&nbsp;&nbsp;&nbsp;&nbsp;
+								EntryFilter (cir:EntryFilter) [0..1]<br>&nbsp;&nbsp;&nbsp;&nbsp;
+								PropertyFilter (cir:PropertyFilter) [0..1]</p>
+							</td>
+						</tr>
+						<tr>
+							<th>Behavior</th>
+							<td>
+								<p>Each filter type within a Filter (i.e. RegistryFilter, CategoryFilter, EntryFilter, PropertyFilter) acts as a logical AND filter. For example, if the Registry ID value is "Test", Category ID is "Asset", and Property ID "Length" then only Entries (and associated Registry, Category and Properties) of the "Asset" Category in the "Test" Registry that have a Property of "Length" are returned.</p>
+								<p>The absence of an input parameter type indicates that the data is not filtered by this facet (i.e. logical TRUE) and that all data elements are valid.</p>
+								<p>Multiple filters of the same filter type are supported and act as a logical OR filter. For example, if the EntryFilter 1 Name is "P101" and the EntryFilter 2 Name is "P102", then the Entries with a Name of "P101" or "P102" are returned.</p>
+								<p>Wildcards are supported on all fields within each filter type.</p>
+							</td>
+						</tr>
+						<tr>
+							<th>Output</th>
+							<td>Registry (cir:Registry) [0..*]</td>
+						</tr>
+					</table>
+					<h4 id="get-equivalent-entries"><span class="secno">3.2.2</span>Get Equivalent Entries</h4>
+					<table class="table operation">
+						<tr>
+							<th>Name</th>
+							<td>GetEquivalentEntries</td>
+						</tr>
+						<tr>
+							<th>Description</th>
+							<td>Returns any equivalent Entries to the specified Entries (i.e. by identifying all Entries with the same CIRID to the specified Entries). Multiple entries are specified by IDInSource and SourceID pairs. A TargetSourceID or list of TargetSourceIDs can be specified to filter equivalent Entries.</td>
+						</tr>
+						<tr>
+							<th>Input</th>
+							<td>
+								<p>EntryIdentifier (cir:EntryIdentifier) [1..*], composed of:<br>&nbsp;&nbsp;&nbsp;&nbsp;
+								RegistryID (cct:IDType) [1]<br>&nbsp;&nbsp;&nbsp;&nbsp;
+								CategoryID (cct:IDType) [1]<br>&nbsp;&nbsp;&nbsp;&nbsp;
+								CategorySourceID (cct:IDType) [1]<br>&nbsp;&nbsp;&nbsp;&nbsp;
+								EntryIDInSource (cct:IDType) [1]<br>&nbsp;&nbsp;&nbsp;&nbsp;
+								EntrySourceID (cct:IDType) [1]</p>
+								<p>TargetSourceID (cct:IDType) [0..*]</p>
+							</td>
+						</tr>
+						<tr>
+							<th>Behavior</th>
+							<td>
+								<p>Both the specified Entry and equivalent Entries are returned to allow correlation (via CIRID) by the client.</p>
+								<p>If the specified Entry does not exist or does not have a corresponding CIRID, no equivalent Entries will be returned. Nevertheless, the specified Entry is still returned with a populated CIRID field.</p>
+								<p>The TargetSourceID filter only filters the equivalent Entries to those with the same SourceID.</p>
+								<p>If no TargetSourceID is specified, all Entries with the same CIRID are returned.</p>
+								<p>Multiple TargetSourceIDs are supported and act as a logical OR filter.</p>
+								<p>Wildcards are only supported on the TargetSourceID field.</p>
+							</td>
+						</tr>
+						<tr>
+							<th>Output</th>
+							<td>Registry (cir:Registry) [0..*]</td>
+						</tr>
+					</table>
+					<h4 id="get-entries-by-cirid"><span class="secno">3.2.3</span>Get Entries By CIRID</h4>
+					<table class="table operation">
+						<tr>
+							<th>Name</th>
+							<td>GetEntriesByCIRID</td>
+						</tr>
+						<tr>
+							<th>Description</th>
+							<td>Returns any Entries with the specified CIRID. An Entry is specified by CIRID. A TargetSourceID or list of TargetSourceIDs can be specified to filter returned Entries.</td>
+						</tr>
+						<tr>
+							<th>Input</th>
+							<td>
+								<p>ExistingCIRID (cir:UUID) [1]</p>
+								<p>TargetSourceID (cct:IDType) [0..*]</p>
+							</td>
+						</tr>
+						<tr>
+							<th>Behavior</th>
+							<td>
+								<p>If there is no existing Entry with the specified CIRID, nothing is returned.</p>
+								<p>Only other Entries are returned – the existing Entry is not returned as part of the result set.</p>
+								<p>If no TargetSourceID is specified, all Entries with the same CIRID are returned.</p>
+								<p>Multiple TargetSourceIDs are supported and act as a logical OR filter.</p>
+								<p>Wildcards are only supported on the TargetSourceID field.</p>
+							</td>
+						</tr>
+						<tr>
+							<th>Output</th>
+							<td>Registry (cir:Registry) [0..*]</td>
+						</tr>
+					</table>
+
+					<h2 id="wildcard-specification"><span class="secno">4</span>Wildcard Specification</h2>
+					<p>To expand the RegistryFilter, CategoryFilter, EntryFilter and PropertyFilter beyond basic string matching, a limited subset of <a href="http://pubs.opengroup.org/onlinepubs/9699919799/basedefs/V1_chap09.html">POSIX Regular Expression</a> metacharacters MAY be used for more advanced string matching. The following metacharacters are supported by this specification:</p>
+					<p>&nbsp;&nbsp;&nbsp;&nbsp;.&nbsp;&nbsp;&nbsp;&nbsp;Matches any single character except for newline characters<br>
+					&nbsp;&nbsp;&nbsp;&nbsp;*&nbsp;&nbsp;&nbsp;&nbsp;Matches the preceding element zero or more times<br>
+					&nbsp;&nbsp;&nbsp;&nbsp;+&nbsp;&nbsp;&nbsp;&nbsp;Matches the preceding element one or more times<br>
+					&nbsp;&nbsp;&nbsp;&nbsp;?&nbsp;&nbsp;&nbsp;&nbsp;Matches the preceding element zero or one time<br>
+					&nbsp;&nbsp;&nbsp;&nbsp;\&nbsp;&nbsp;&nbsp;&nbsp;Escape character to interpret the following character as a literal character</p><p><span class="label label-info">Note</span> The entire regular expression is implicitly anchored and its start and end. To accept all elements with the expression in the middle of their contents, use an expression similar to <code>.*term.*</code>.</p>
+
+					<h2 id="conformance"><span class="secno">5</span>Conformance</h2>
+					<p>Any assessment of conformance of a ws-CIR implementation MUST be qualified by the following:</p>
+					<ol>
+						<li>Support for Command Services</li>
+						<li>Support for Query Services</li>
+						<li>Support for Wildcard Specification</li>
+						<li>Support for SOAP 1.1 and SOAP 1.2 services</li>
+						<li>Support for specific BODs (see <a href="#oagis-based-message-model">OAGIS-Based Message Model</a>)</li>
+						<li>A statement of the total conformance concerning services supported or, in case of partial conformance, a statement identifying explicitly the areas of non-conformance</li>
+					</ol>
+
+					<h2 id="openom-defined-properties"><span class="secno">Appendix A</span>OpenO&amp;M Defined Properties</h2>
+					<p>There are predefined OpenO&amp;M properties that SHOULD be used to identify commonly understood relationships between entities.</p>
+					<h3 id="parent-entity-id">ParentEntityID</h3>
+					<p>The ParentEntityID contains the set of IDInSource IDs for parent object of the entity in the source's hierarchy. Multiple parent objects are specified by multiple PropertyValues.</p>
+					<h3 id="child-entity-id">ChildEntityID</h3>
+					<p>The ChildEntityID contains the set of IDInSource IDs for child objects of the entity in the source's hierarchy. Multiple child objects are specified by multiple PropertyValues.</p>
+					<h3 id="possible-equivalent-entry-id">PossibleEquivalentEntryID</h3>
+					<p>The PossibleEquivalentEntryID contains a set of target entities which are possibly equivalent to the entity. This allows for automated equivalency determination. Each returned target entry contains the following set of information:</p>
+					<ul>
+						<li>IDInSource</li>
+						<li>SourceID</li>
+						<li>PercentLikelihood [Optional]</li>
+					</ul>
+					<p>The property value should follow the JSON format for the array of objects of equivalent IDs. For example:</p>
+					<pre><span class="p">[</span> <span class="p">{</span> <span class="nt">"IDInSource"</span><span class="p">:</span> <span class="s2">"TIC101"</span><span class="p">,</span> <span class="nt">"SourceID"</span><span class="p">:</span> <span class="s2">"Thor"</span> <span class="p">}</span> <span class="p">]</span></pre>
+					<pre><span class="p">[</span> <span class="p">{</span> <span class="nt">"IDInSource"</span><span class="p">:</span> <span class="s2">"TIC101"</span><span class="p">,</span> <span class="nt">"SourceID"</span><span class="p">:</span> <span class="s2">"Thor"</span><span class="p">,</span> <span class="nt">"PercentLikelihood"</span><span class="p">:</span> <span class="mi">20</span> <span class="p">}</span> <span class="p">]</span></pre>
+					<pre><span class="p">[</span>
+  <span class="p">{</span> <span class="nt">"IDInSource"</span><span class="p">:</span> <span class="s2">"TIC101"</span><span class="p">,</span> <span class="nt">"SourceID"</span> <span class="p">:</span> <span class="s2">"Thor"</span><span class="p">,</span> <span class="nt">"PercentLikelihood"</span><span class="p">:</span> <span class="mi">20</span> <span class="p">},</span>
+  <span class="p">{</span> <span class="nt">"IDInSource"</span><span class="p">:</span> <span class="s2">"T101"</span><span class="p">,</span> <span class="nt">"SourceID"</span> <span class="p">:</span> <span class="s2">"Apollo"</span> <span class="p">}</span>
+<span class="p">]</span></pre>
+
+					<h2 id="oagis-based-message-model"><span class="secno">Annex A</span>OAGIS-Based Message Model</h2>
+					<p>A set of OAGIS-based Business Object Documents (BODs) are defined in this specification for use in a messaging-based environment (e.g. with the <a href="http://www.openoandm.org/ws-isbm">OpenO&amp;M ws-ISBM</a>). The messages (located in the <code>bod</code> directory of the package) are defined as XML Schema and reference the OAGIS Platform Specification 1.2.1 (located in the <code>bod/oagis</code> directory of the package) as well as the ws-CIR Service Definition XML Schema (located in the <code>xsd</code> directory of the package). While the included OAGIS XML Schemas have been edited to serve the purposes of this ws-CIR specification, they remain a proper subset of OAGIS and are also compatible with the original full definition.</p>
+					<h3 id="bod-catalogue">BOD Catalogue</h3>
+					<p>The following table is a complete listing of the ws-CIR BODs with the corresponding Verb and Noun.</p>
+					<table class="table">
+						<thead>
+							<tr>
+								<td><strong>BOD</strong></td>
+								<td><strong>Verb</strong></td>
+								<td><strong>Noun</strong></td>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td><a href="bod/AcknowledgeEquivalentEntries.xsd">AcknowledgeEquivalentEntries</a></td>
+								<td>Acknowledge</td>
+								<td>CreateEquivalentEntries faults</td>
+							</tr>
+							<tr>
+								<td><a href="bod/AcknowledgeRegistry.xsd">AcknowledgeRegistry</a></a></td>
+								<td>Acknowledge</td>
+								<td>CreateRegistry faults</td>
+							</tr>
+							<tr>
+								<td><a href="bod/CancelCategory.xsd">CancelCategory</a></td>
+								<td>Cancel</td>
+								<td>DeleteCategory</td>
+							</tr>
+							<tr>
+								<td><a href="bod/CancelEntries.xsd">CancelEntries</a></td>
+								<td>Cancel</td>
+								<td>DeleteEntries</td>
+							</tr>
+							<tr>
+								<td><a href="bod/CancelProperties.xsd">CancelProperties</a></td>
+								<td>Cancel</td>
+								<td>DeleteProperties</td>
+							</tr>
+							<tr>
+								<td><a href="bod/CancelRegistry.xsd">CancelRegistry</a></td>
+								<td>Cancel</td>
+								<td>DeleteRegistry</td>
+							</tr>
+							<tr>
+								<td><a href="bod/ChangeEntryCIRID.xsd">ChangeEntryCIRID</a></td>
+								<td>Change</td>
+								<td>UpdateEntryCIRID</td>
+							</tr>
+							<tr>
+								<td><a href="bod/ChangeRegistry.xsd">ChangeRegistry</a></td>
+								<td>Change</td>
+								<td>UpdateRegistry</td>
+							</tr>
+							<tr>
+								<td><a href="bod/GetEquivalentEntries.xsd">GetEquivalentEntries</a></td>
+								<td>Get</td>
+								<td>GetEquivalentEntries</td>
+							</tr>
+							<tr>
+								<td><a href="bod/GetEntriesByCIRID.xsd">GetEntriesByCIRID</a></td>
+								<td>Get</td>
+								<td>GetEntriesByCIRID</td>
+							</tr>
+							<tr>
+								<td><a href="bod/GetRegistry.xsd">GetRegistry</a></td>
+								<td>Get</td>
+								<td>GetRegistry</td>
+							</tr>
+							<tr>
+								<td><a href="bod/ProcessEquivalentEntries.xsd">ProcessEquivalentEntries</a></td>
+								<td>Process</td>
+								<td>CreateEquivalentEntries</td>
+							</tr>
+							<tr>
+								<td><a href="bod/ProcessRegistry.xsd">ProcessRegistry</a></td>
+								<td>Process</td>
+								<td>CreateRegistry</td>
+							</tr>
+							<tr>
+								<td><a href="bod/RespondRegistry.xsd">RespondRegistry</a></td>
+								<td>Respond</td>
+								<td>UpdateRegistry faults</td>
+							</tr>
+							<tr>
+								<td><a href="bod/ShowEquivalentEntries.xsd">ShowEquivalentEntries</a></td>
+								<td>Show</td>
+								<td>GetEquivalentEntriesResponse</td>
+							</tr>
+							<tr>
+								<td><a href="bod/ShowEntriesByCIRID.xsd">ShowEntriesByCIRID</a></td>
+								<td>Show</td>
+								<td>GetEntriesByCIRIDResponse</td>
+							</tr>
+							<tr>
+								<td><a href="bod/ShowRegistry.xsd">ShowRegistry</a></td>
+								<td>Show</td>
+								<td>GetRegistryResponse</td>
+							</tr>
+						</tbody>
+					</table>
+					<h3 id="request-response-bods">Request/Response BODs</h3>
+					<p>The following table correlates the ws-CIR response BOD for a given ws-CIR request BOD.</p>
+					<table class="table">
+						<thead>
+							<tr>
+								<td><strong>Request BOD</strong>
+								<td><strong>Response BOD</strong>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td><a href="bod/ProcessRegistry.xsd">ProcessRegistry</a></td>
+								<td><a href="bod/AcknowledgeRegistry.xsd">AcknowledgeRegistry</a></td>
+							</tr>
+							<tr>
+								<td><a href="bod/ProcessEquivalentEntries.xsd">ProcessEquivalentEntries</a></td>
+								<td><a href="bod/AcknowledgeEquivalentEntries.xsd">AcknowledgeEquivalentEntries</a></td>
+							</tr>
+							<tr>
+								<td><a href="bod/ChangeRegistry.xsd">ChangeRegistry</a></td>
+								<td><a href="bod/RespondRegistry.xsd">RespondRegistry</a></td>
+							</tr>
+							<tr>
+								<td><a href="bod/GetRegistry.xsd">GetRegistry</a></td>
+								<td><a href="bod/ShowRegistry.xsd">ShowRegistry</a></td>
+							</tr>
+							<tr>
+								<td><a href="bod/GetEquivalentEntries.xsd">GetEquivalentEntries</a></td>
+								<td><a href="bod/ShowEquivalentEntries.xsd">ShowEquivalentEntries</a></td>
+							</tr>
+							<tr>
+								<td><a href="bod/GetEntriesByCIRID.xsd">GetEntriesByCIRID</a></td>
+								<td><a href="bod/ShowEntriesByCIRID.xsd">ShowEntriesByCIRID</a></td>
+							</tr>
+						</tbody>
+					</table>
+					<p><span class="label label-info">Note</span> There is no response to ChangeEntryCIRID as the ws-CIR model returns no value nor throws any faults.</p>
+					<p><span class="label label-info">Note</span> There are no responses for Cancel BODs for consistency with the OAGIS model.</p>
+					<h3 id="usage-of-oagis-elements">Usage of OAGIS Elements</h3>
+					<p>This section clarifies the ws-CIR usage of certain OAGIS message elements. It is assumed the reader has some familiarity with the OAGIS XML Schema structure.</p>
+					<h4>BOD Attributes</h4>
+					<p>The <code>releaseID</code> attribute of <code>BusinessObjectDocumentType</code> MUST be set to the version of the OAGIS release that is referenced by the BOD; the value of this attribute for ws-CIR 1.0 BODs is <code>1.2.1</code>.</p>
+					<p>The <code>versionID</code> attribute of <code>BusinessObjectDocumentType</code> MUST be set to the version of the BOD (e.g. <code>1.0</code>).</p>
+					<h4>Application Area</h4>
+					<p>All BOD Application Areas should at a minimum include the <code>Sender</code> <code>LogicalID</code>, <code>CreationDateTime</code> and <code>BODID</code>.</p>
+					<h4>Verbs</h4>
+					<p>All Process, Change and Cancel verbs SHOULD only use a snapshot approach (where the full entity is sent). An <code>ActionExpression</code> is OPTIONAL (and should be ignored) as the noun will be implicitly processed according to the ws-CIR service invoked (e.g. the ProcessRegistry BOD with a CreateRegistry noun will <em>add</em> a new registry).</p>
+					<p>ws-CIR server implementations MUST support all <code>ProcessType</code> <code>acknowledgeCode</code>s and <code>ChangeType</code> <code>responseCode</code>s for message confirmation and error reporting of Process and Change BOD requests/responses.</p>
+					<p>The result paging attributes of the Get and Show verbs are not supported due to the nested structure of the result set.</p>
+					<p>The <code>OriginalApplicationArea</code> from Acknowledge, Respond and Show BODs can be omitted if other message correlation functionality is used.</p>
+					<h4>Error Handling</h4>
+					<p>As opposed to the WSDL implementation which can only return a single fault during an operation, this message model allows for multiple faults in a response. A ws-CIR server implementation MAY return a single or multiple faults in a response.</p>
+				</div>
+				<div class="col-md-3 hidden-print" role="complementary">
+					<div class="sidebar" data-spy="affix" data-offset-top="697" role="complementary">
+						<ul class="nav sidenav">
+							<li><a href="#abstract">Abstract</a></li>
+							<li><a href="#status">Status</a></li>
+							<li><a href="#notices">Notices</a></li>
+							<li>
+								<a href="#introduction"><span class="secno">1</span>Introduction</a>
+								<ul class="nav">
+									<li><a href="#notational-conventions"><span class="secno">1.1</span>Notational Conventions</a></li>
+									<li><a href="#namespaces"><span class="secno">1.2</span>Namespaces</a></li>
+								</ul>
+							</li>
+							<li>
+								<a href="#logical-data-model"><span class="secno">2</span>Logical Data Model</a>
+								<ul class="nav">
+									<li>
+										<a href="#primitive-data-types"><span class="secno">2.1</span>Primitive Data Types</a>
+										<ul class="nav">
+											<li><a href="#xml-schema-types"><span class="secno">2.1.1</span>XML Schema Types</a></li>
+											<li><a href="#core-component-types"><span class="secno">2.1.2</span>Core Component Types</a></li>
+										</ul>
+									</li>
+									<li><a href="#uml-model"><span class="secno">2.2</span>UML Model</a></li>
+									<li><a href="#registry"><span class="secno">2.3</span>Registry</a></li>
+									<li><a href="#category"><span class="secno">2.4</span>Category</a></li>
+									<li><a href="#entry"><span class="secno">2.5</span>Entry</a></li>
+									<li><a href="#property"><span class="secno">2.6</span>Property</a></li>
+									<li><a href="#property-value"><span class="secno">2.7</span>PropertyValue</a></li>
+								</ul>
+							</li>
+							<li>
+								<a href="#service-definitions"><span class="secno">3</span>Service Definitions</a>
+								<ul class="nav">
+									<li>
+										<a href="#ws-cir-command-services"><span class="secno">3.1</span>ws-CIR Command Services</a>
+										<ul class="nav">
+											<li><a href="#create-registry"><span class="secno">3.1.1</span>Create Registry</a></li>
+											<li><a href="#create-equivalent-entries"><span class="secno">3.1.2</span>Create Equivalent Entries</a></li>
+											<li><a href="#update-registry"><span class="secno">3.1.3</span>Update Registry</a></li>
+											<li><a href="#update-entry-cirid"><span class="secno">3.1.4</span>Update Entry CIRID</a></li>
+											<li><a href="#delete-registry"><span class="secno">3.1.5</span>Delete Registry</a></li>
+											<li><a href="#delete-category"><span class="secno">3.1.6</span>Delete Category</a></li>
+											<li><a href="#delete-entries"><span class="secno">3.1.7</span>Delete Entries</a></li>
+											<li><a href="#delete-properties"><span class="secno">3.1.8</span>Delete Properties</a></li>
+										</ul>
+									</li>
+									<li>
+										<a href="#ws-cir-query-services"><span class="secno">3.2</span>ws-CIR Query Services</a>
+										<ul class="nav">
+											<li><a href="#get-registry"><span class="secno">3.2.1</span>Get Registry</a></li>
+											<li><a href="#get-equivalent-entries"><span class="secno">3.2.2</span>Get Equivalent Entries</a></li>
+											<li><a href="#get-entries-by-cirid"><span class="secno">3.2.3</span>Get Entries By CIRID</a></li>
+										</ul>
+									</li>
+								</ul>
+							</li>
+							<li><a href="#wildcard-specification"><span class="secno">4</span>Wildcard Specification</a></li>
+							<li><a href="#conformance"><span class="secno">5</span>Conformance</a></li>
+							<li>
+								<a href="#openom-defined-properties"><span class="secno">Appendix A</span>OpenO&M Defined Properties</a>
+								<ul class="nav">
+									<li><a href="#parent-entity-id">ParentEntityID</a></li>
+									<li><a href="#child-entity-id">ChildEntityID</a></li>
+									<li><a href="#possible-equivalent-entry-id">PossibleEquivalentEntryID</a></li>
+								</ul>
+							</li>
+							<li>
+								<a href="#oagis-based-message-model"><span class="secno">Annex A</span>OAGIS-Based Message Model</a>
+								<ul class="nav">
+									<li><a href="#bod-catalogue">BOD Catalogue</a></li>
+									<li><a href="#request-response-bods">Request/Response BODs</a></li>
+									<li><a href="#usage-of-oagis-elements">Usage of OAGIS Elements</a></li>
+								</ul>
+							</li>
+						</ul>
+						<a class="back-to-top" href="#top">Back to top</a>
+					</div>
+				</div>
+			</div>
+		</div>
+	</body>
+</html>

@@ -1,0 +1,419 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+	ws-CIR 1.0 XML Schema
+
+	Copyright MIMOSA 2012. All Rights Reserved.
+	License information for this file is provided in the file "LICENSE.txt" that is provided with this download package.
+
+	For support, more information, or to report errors, please contact MIMOSA at http://www.mimosa.org/contact.
+-->
+<xs:schema
+	xmlns:xs="http://www.w3.org/2001/XMLSchema"
+	xmlns:cct="urn:un:unece:uncefact:documentation:standard:CoreComponentType:2"
+	xmlns:cir="http://www.openoandm.org/ws-cir/"
+	targetNamespace="http://www.openoandm.org/ws-cir/"
+	elementFormDefault="qualified"
+	attributeFormDefault="unqualified">
+
+	<xs:import namespace="urn:un:unece:uncefact:documentation:standard:CoreComponentType:2" schemaLocation="CoreComponentType_2p0.xsd"/>
+
+	<!-- =========== -->
+	<!-- Value Types -->
+	<!-- =========== -->
+
+	<xs:simpleType name="UUID">
+		<xs:annotation>
+			<xs:documentation>A UUID is represented by 32 hexadecimal digits, displayed in five groups separated by hyphens, in the form `8-4-4-4-12` for a total of 36 characters (for example, 123e4567-e89b-12d3-a456-426655440000). See RFC 4122 - A Universally Unique IDentifier (UUID) URN Namespace.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:pattern value="[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}"/>
+		</xs:restriction>
+	</xs:simpleType>
+
+	<!-- ============ -->
+	<!-- Entity Types -->
+	<!-- ============ -->
+
+	<xs:complexType name="Registry">
+		<xs:sequence>
+			<xs:element minOccurs="1" maxOccurs="1" name="ID" type="cct:IDType"/>
+			<xs:element minOccurs="0" maxOccurs="unbounded" name="Description" type="cct:TextType"/>
+			<xs:element minOccurs="0" maxOccurs="unbounded" name="Category" type="cir:Category"/>
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="Category">
+		<xs:sequence>
+			<xs:element minOccurs="1" maxOccurs="1" name="ID" type="cct:IDType"/>
+			<xs:element minOccurs="1" maxOccurs="1" name="CategorySourceID" type="cct:IDType"/>
+			<xs:element minOccurs="0" maxOccurs="unbounded" name="Description" type="cct:TextType"/>
+			<xs:element minOccurs="0" maxOccurs="unbounded" name="Entry" type="cir:Entry"/>
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="Entry">
+		<xs:sequence>
+			<xs:element minOccurs="1" maxOccurs="1" name="IDInSource" type="cct:IDType"/>
+			<xs:element minOccurs="1" maxOccurs="1" name="SourceID" type="cct:IDType"/>
+			<xs:element minOccurs="0" maxOccurs="1" name="CIRID" type="cir:UUID"/>
+			<xs:element minOccurs="0" maxOccurs="1" name="SourceOwnerID" type="cct:IDType"/>
+			<xs:element minOccurs="0" maxOccurs="1" name="Name" type="cct:TextType"/>
+			<xs:element minOccurs="0" maxOccurs="unbounded" name="Description" type="cct:TextType"/>
+			<xs:element minOccurs="0" maxOccurs="1" name="Inactive" type="xs:boolean"/>
+			<xs:element minOccurs="0" maxOccurs="unbounded" name="Property" type="cir:Property"/>
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="Property">
+		<xs:sequence>
+			<xs:element minOccurs="1" maxOccurs="1" name="ID" type="cct:IDType"/>
+			<xs:element minOccurs="0" maxOccurs="unbounded" name="PropertyValue" type="cir:PropertyValue"/>
+			<xs:element minOccurs="0" maxOccurs="1" name="DataType" type="cct:CodeType"/>
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="PropertyValue">
+		<xs:sequence>
+			<xs:element minOccurs="0" maxOccurs="1" name="Key" type="cct:IDType"/>
+			<xs:element minOccurs="1" maxOccurs="1" name="Value" type="xs:string"/>
+			<xs:element minOccurs="0" maxOccurs="1" name="UnitOfMeasure" type="cct:CodeType"/>
+		</xs:sequence>
+	</xs:complexType>
+
+	<!-- ================ -->
+	<!-- Identifier Types -->
+	<!-- ================ -->
+
+	<xs:complexType name="RegistryIdentifier">
+		<xs:sequence>
+			<xs:element minOccurs="1" maxOccurs="1" name="RegistryID" type="cct:IDType"/>
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="CategoryIdentifier">
+		<xs:sequence>
+			<xs:element minOccurs="1" maxOccurs="1" name="RegistryID" type="cct:IDType"/>
+			<xs:element minOccurs="1" maxOccurs="1" name="CategoryID" type="cct:IDType"/>
+			<xs:element minOccurs="1" maxOccurs="1" name="CategorySourceID" type="cct:IDType"/>
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="EntryIdentifier">
+		<xs:sequence>
+			<xs:element minOccurs="1" maxOccurs="1" name="RegistryID" type="cct:IDType"/>
+			<xs:element minOccurs="1" maxOccurs="1" name="CategoryID" type="cct:IDType"/>
+			<xs:element minOccurs="1" maxOccurs="1" name="CategorySourceID" type="cct:IDType"/>
+			<xs:element minOccurs="1" maxOccurs="1" name="EntryIDInSource" type="cct:IDType"/>
+			<xs:element minOccurs="1" maxOccurs="1" name="EntrySourceID" type="cct:IDType"/>
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="PropertyIdentifier">
+		<xs:sequence>
+			<xs:element minOccurs="1" maxOccurs="1" name="RegistryID" type="cct:IDType"/>
+			<xs:element minOccurs="1" maxOccurs="1" name="CategoryID" type="cct:IDType"/>
+			<xs:element minOccurs="1" maxOccurs="1" name="CategorySourceID" type="cct:IDType"/>
+			<xs:element minOccurs="1" maxOccurs="1" name="EntryIDInSource" type="cct:IDType"/>
+			<xs:element minOccurs="1" maxOccurs="1" name="EntrySourceID" type="cct:IDType"/>
+			<xs:element minOccurs="1" maxOccurs="1" name="PropertyID" type="cct:IDType"/>
+		</xs:sequence>
+	</xs:complexType>
+
+	<!-- ============ -->
+	<!-- Filter Types -->
+	<!-- ============ -->
+
+	<xs:complexType name="Filter">
+		<xs:sequence>
+			<xs:element minOccurs="0" maxOccurs="1" name="RegistryFilter" type="cir:RegistryFilter"/>
+			<xs:element minOccurs="0" maxOccurs="1" name="CategoryFilter" type="cir:CategoryFilter"/>
+			<xs:element minOccurs="0" maxOccurs="1" name="EntryFilter" type="cir:EntryFilter"/>
+			<xs:element minOccurs="0" maxOccurs="1" name="PropertyFilter" type="cir:PropertyFilter"/>
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="RegistryFilter">
+		<xs:sequence>
+			<xs:element minOccurs="0" maxOccurs="1" name="ID" type="cct:IDType"/>
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="CategoryFilter">
+		<xs:sequence>
+			<xs:element minOccurs="0" maxOccurs="1" name="ID" type="cct:IDType"/>
+			<xs:element minOccurs="0" maxOccurs="1" name="CategorySourceID" type="cct:IDType"/>
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="EntryFilter">
+		<xs:sequence>
+			<xs:element minOccurs="0" maxOccurs="1" name="IDInSource" type="cct:IDType"/>
+			<xs:element minOccurs="0" maxOccurs="1" name="SourceID" type="cct:IDType"/>
+			<xs:element minOccurs="0" maxOccurs="1" name="CIRID" type="cir:UUID"/>
+			<xs:element minOccurs="0" maxOccurs="1" name="SourceOwnerID" type="cct:IDType"/>
+			<xs:element minOccurs="0" maxOccurs="1" name="Name" type="cct:TextType"/>
+			<xs:element minOccurs="0" maxOccurs="1" name="Inactive" type="xs:boolean"/>
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="PropertyFilter">
+		<xs:sequence>
+			<xs:element minOccurs="0" maxOccurs="1" name="ID" type="cct:IDType"/>
+			<xs:element minOccurs="0" maxOccurs="1" name="DataType" type="cct:CodeType"/>
+		</xs:sequence>
+	</xs:complexType>
+
+	<!-- =========== -->
+	<!-- Batch Types -->
+	<!-- =========== -->
+
+	<xs:complexType name="EquivalentEntry">
+		<xs:sequence>
+			<xs:element minOccurs="1" maxOccurs="1" name="ExistingIDInSource" type="cct:IDType"/>
+			<xs:element minOccurs="1" maxOccurs="1" name="ExistingSourceID" type="cct:IDType"/>
+			<xs:element minOccurs="1" maxOccurs="1" name="RegistryID" type="cct:IDType"/>
+			<xs:element minOccurs="1" maxOccurs="1" name="CategoryID" type="cct:IDType"/>
+			<xs:element minOccurs="1" maxOccurs="1" name="CategorySourceID" type="cct:IDType"/>
+			<xs:element minOccurs="1" maxOccurs="1" name="Entry" type="cir:Entry"/>
+		</xs:sequence>
+	</xs:complexType>
+
+	<!-- ========================= -->
+	<!-- Command Services Elements -->
+	<!-- ========================= -->
+
+	<!-- CIR "Create" Command Service elements -->
+
+	<xs:element name="CreateRegistry">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element minOccurs="1" maxOccurs="unbounded" name="Registry" type="cir:Registry"/>
+				<xs:element minOccurs="1" maxOccurs="1" name="CreateCIRID" type="xs:boolean"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+
+	<xs:element name="CreateRegistryResponse">
+		<xs:complexType />
+	</xs:element>
+
+	<xs:element name="CreateEquivalentEntries">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element minOccurs="1" maxOccurs="unbounded" name="EquivalentEntry" type="cir:EquivalentEntry"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+
+	<xs:element name="CreateEquivalentEntriesResponse">
+		<xs:complexType />
+	</xs:element>
+
+	<!-- CIR "Update" Command Service elements -->
+
+	<xs:element name="UpdateRegistry">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element minOccurs="1" maxOccurs="unbounded" name="Registry" type="cir:Registry"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+
+	<xs:element name="UpdateRegistryResponse">
+		<xs:complexType />
+	</xs:element>
+
+	<xs:element name="UpdateEntryCIRID">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element minOccurs="1" maxOccurs="unbounded" name="OldCIRID" type="cir:UUID"/>
+				<xs:element minOccurs="1" maxOccurs="1" name="NewCIRID" type="cir:UUID"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+
+	<xs:element name="UpdateEntryCIRIDResponse">
+		<xs:complexType />
+	</xs:element>
+
+	<!-- CIR "Delete" Command Service elements -->
+
+	<xs:element name="DeleteRegistry">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element minOccurs="1" maxOccurs="1" name="RegistryID" type="cct:IDType"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+
+	<xs:element name="DeleteRegistryResponse">
+		<xs:complexType />
+	</xs:element>
+
+	<xs:element name="DeleteCategory">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element minOccurs="1" maxOccurs="1" name="RegistryID" type="cct:IDType"/>
+				<xs:element minOccurs="1" maxOccurs="1" name="CategoryID" type="cct:IDType"/>
+				<xs:element minOccurs="1" maxOccurs="1" name="CategorySourceID" type="cct:IDType"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+
+	<xs:element name="DeleteCategoryResponse">
+		<xs:complexType />
+	</xs:element>
+
+	<xs:element name="DeleteEntries">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element minOccurs="1" maxOccurs="unbounded" name="EntryIdentifier" type="cir:EntryIdentifier" />
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+
+	<xs:element name="DeleteEntriesResponse">
+		<xs:complexType />
+	</xs:element>
+
+	<xs:element name="DeleteProperties">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element minOccurs="1" maxOccurs="unbounded" name="PropertyIdentifier" type="cir:PropertyIdentifier"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+
+	<xs:element name="DeletePropertiesResponse">
+		<xs:complexType />
+	</xs:element>
+
+	<!-- ========================= -->
+	<!-- Query Services Elements -->
+	<!-- ========================= -->
+
+	<xs:element name="GetRegistry">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element minOccurs="0" maxOccurs="unbounded" name="Filter" type="cir:Filter"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+
+	<xs:element name="GetRegistryResponse">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element minOccurs="0" maxOccurs="unbounded" name="Registry" type="cir:Registry"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+
+	<xs:element name="GetEquivalentEntries">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element minOccurs="1" maxOccurs="unbounded" name="EntryIdentifier" type="cir:EntryIdentifier"/>
+				<xs:element minOccurs="0" maxOccurs="unbounded" name="TargetSourceID" type="cct:IDType"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+
+	<xs:element name="GetEquivalentEntriesResponse">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element minOccurs="0" maxOccurs="unbounded" name="Registry" type="cir:Registry"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+
+	<xs:element name="GetEntriesByCIRID">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element minOccurs="1" maxOccurs="1" name="ExistingCIRID" type="cir:UUID"/>
+				<xs:element minOccurs="0" maxOccurs="unbounded" name="TargetSourceID" type="cct:IDType"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+
+	<xs:element name="GetEntriesByCIRIDResponse">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element minOccurs="0" maxOccurs="unbounded" name="Registry" type="cir:Registry"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+
+	<!-- ============== -->
+	<!-- Fault Elements -->
+	<!-- ============== -->
+
+	<xs:element name="CreateRegistryFault">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element minOccurs="0" maxOccurs="1" name="Description" type="cct:TextType"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+
+	<xs:element name="CreateCategoryFault">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element minOccurs="0" maxOccurs="1" name="Description" type="cct:TextType"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+
+	<xs:element name="RegistryNotFoundFault">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element minOccurs="0" maxOccurs="1" name="Description" type="cct:TextType"/>
+				<xs:element minOccurs="1" maxOccurs="1" name="RegistryIdentifier" type="cir:RegistryIdentifier"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+
+	<xs:element name="CategoryNotFoundFault">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element minOccurs="0" maxOccurs="1" name="Description" type="cct:TextType"/>
+				<xs:element minOccurs="1" maxOccurs="1" name="CategoryIdentifier" type="cir:CategoryIdentifier"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+
+	<xs:element name="EntryNotFoundFault">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element minOccurs="0" maxOccurs="1" name="Description" type="cct:TextType"/>
+				<xs:element minOccurs="1" maxOccurs="1" name="EntryIdentifier" type="cir:EntryIdentifier"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+
+	<xs:element name="PropertyNotFoundFault">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element minOccurs="0" maxOccurs="1" name="Description" type="cct:TextType"/>
+				<xs:element minOccurs="1" maxOccurs="1" name="PropertyIdentifier" type="cir:PropertyIdentifier"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+
+	<xs:element name="DuplicateEntryFault">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element minOccurs="0" maxOccurs="1" name="Description" type="cct:TextType"/>
+				<xs:element minOccurs="1" maxOccurs="1" name="EntryIdentifier" type="cir:EntryIdentifier"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+
+	<xs:element name="DuplicatePropertyFault">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element minOccurs="0" maxOccurs="1" name="Description" type="cct:TextType"/>
+				<xs:element minOccurs="1" maxOccurs="1" name="PropertyIdentifier" type="cir:PropertyIdentifier"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+
+</xs:schema>
